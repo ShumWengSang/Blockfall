@@ -4,14 +4,24 @@ using System.Collections;
 using Lean;
 using DG.Tweening;
 using AdvancedInspector;
-
+using UnityEngine.UI;
 public class RotateGrid : MonoBehaviour {
 
 	Transform targetRotation;
 
 	public float rotationTime = 1.0f;
     [Inspect(InspectorLevel.Debug)]
-    public int TimesMoved;
+    public int TimesMoved
+    {
+        get { return MovedTime; }
+        set
+        {
+            MovesDone.text = "Moves: " + value.ToString();
+            MovedTime = value;
+        }
+    }
+
+    public int MovedTime;
     Camera mainCamera;
 
     Vector2 halfVector = new Vector2(0.5f, 0.5f);
@@ -19,6 +29,7 @@ public class RotateGrid : MonoBehaviour {
     Rigidbody[] Blocks;
 
     Tween theTween;
+    public Text MovesDone;
 
     void Awake()
     {

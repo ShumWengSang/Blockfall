@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using AdvancedInspector;
 public class ScoreSystem : MonoBehaviour
 {
@@ -8,15 +9,26 @@ public class ScoreSystem : MonoBehaviour
     public RotateGrid rotateScript;
 
     [Group("Ranking System"), Inspect]
-    int GoldRank;
+    public int GoldRank;
     [Group("Ranking System"), Inspect]
-    int SilverRank;
+    public int SilverRank;
     [Group("Ranking System"), Inspect]
-    int BronzeRank;
+    public int BronzeRank;
 
+    public Text Ranks;
     void Awake()
     {
         instance = this;
+    }
+
+    [Inspect]
+    void UpdateTexts()
+    {
+        Ranks.text = "Gold: " + GoldRank.ToString() + "\nSilver: " + SilverRank.ToString() + "\nBronze: " + BronzeRank.ToString();
+    }
+    void Start()
+    {
+        UpdateTexts();
     }
 
     void OnDestroy()
