@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using AdvancedInspector;
 public class ScoreSystem : MonoBehaviour
 {
+    public int World = 1;
+    public int level = 1;
     static ScoreSystem instance;
     [Inspect(InspectorLevel.Advanced)]
     public RotateGrid rotateScript;
@@ -15,6 +17,7 @@ public class ScoreSystem : MonoBehaviour
     [Group("Ranking System"), Inspect]
     public int BronzeRank;
 
+    public Text Level;
     public Text Ranks;
     void Awake()
     {
@@ -25,6 +28,7 @@ public class ScoreSystem : MonoBehaviour
     void UpdateTexts()
     {
         Ranks.text = "Gold: " + GoldRank.ToString() + "\nSilver: " + SilverRank.ToString() + "\nBronze: " + BronzeRank.ToString();
+        Level.text = World.ToString() + " - " + level.ToString();
     }
     void Start()
     {
