@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{2D910540-5166-9FDD-5A30-7A6011F820E7}") = "Blockfall", "Assembly-CSharp.csproj", "{89D9A4B9-A75B-ED6F-66FD-07D1FC6DC20F}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blockfall.CSharp", "blockfall.CSharp.csproj", "{D7DB436C-8053-918E-3236-FBFB102CEB7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{89D9A4B9-A75B-ED6F-66FD-07D1FC6DC20F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89D9A4B9-A75B-ED6F-66FD-07D1FC6DC20F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89D9A4B9-A75B-ED6F-66FD-07D1FC6DC20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89D9A4B9-A75B-ED6F-66FD-07D1FC6DC20F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7DB436C-8053-918E-3236-FBFB102CEB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7DB436C-8053-918E-3236-FBFB102CEB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7DB436C-8053-918E-3236-FBFB102CEB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7DB436C-8053-918E-3236-FBFB102CEB7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
