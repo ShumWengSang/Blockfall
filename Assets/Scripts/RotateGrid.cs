@@ -88,6 +88,8 @@ public class RotateGrid : MonoBehaviour {
 
     void OnFingerSwipe(LeanFinger finger)
     {
+        if (!areBlocksStationary())
+            return;
         SetBlockKinemactics(true);
         var StartViewPos = mainCamera.ScreenToViewportPoint(finger.StartScreenPosition);
         var EndViewPos = mainCamera.ScreenToViewportPoint(finger.LastScreenPosition);
@@ -105,20 +107,39 @@ public class RotateGrid : MonoBehaviour {
         }
         else
         {
-            SetBlockKinemactics(false);
+            //We check the direction of the swipe here to determine if it is a left or right swipe.
+            //If it is a up or down swipe we ignore.
+            var swipe = finger.SwipeDelta;
+
+            if (swipe.x < -Mathf.Abs(swipe.y))
+            {
+                //Swipe left
+                RotateLeft();
+            }
+
+            else if (swipe.x > Mathf.Abs(swipe.y))
+            {
+                //Swipe right
+                RotateRight();
+            }
+
+            else
+            {
+                SetBlockKinemactics(false);
+            }
         }
     }
 
     void RotateLeft()
     {
-        if (theTween == null && !areBlocksStationary())
-            theTween = targetRotation.DORotate(new Vector3(0, 0, 90), 1.0f).SetEase(Ease.InQuad).OnComplete(OnTweenComplete).SetRelative();
+        if (theTween == null)
+            theTween = targetRotation.DORotate(new Vector3(0, 0, 90), 1.0f).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
     }
 
     void RotateRight()
     {
-        if (theTween == null && !areBlocksStationary())
-            theTween = targetRotation.DORotate(new Vector3(0, 0, -90), 1.0f).SetEase(Ease.InQuad).OnComplete(OnTweenComplete).SetRelative();
+        if (theTween == null)
+            theTween = targetRotation.DORotate(new Vector3(0, 0, -90), 1.0f).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
     }
 
     void OnTweenComplete()
