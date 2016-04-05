@@ -2,15 +2,15 @@
 using System.Collections;
 using Lean;
 using DG.Tweening;
+using AdvancedInspector;
 
 public class RotateGrid : MonoBehaviour {
 
-	public bool rotatingGrid;
-
 	Transform targetRotation;
 
-	public float rotationSpeed;
-
+	public float rotationTime = 1.0f;
+    [Inspect(InspectorLevel.Debug)]
+    public int TimesMoved;
     Camera mainCamera;
 
     Vector2 halfVector = new Vector2(0.5f, 0.5f);
@@ -31,8 +31,8 @@ public class RotateGrid : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
-		rotatingGrid = false;
 		targetRotation = transform;
+        TimesMoved = 0;
 	}
 
 	void Update() {
@@ -149,13 +149,19 @@ public class RotateGrid : MonoBehaviour {
     void RotateLeft()
     {
         if (theTween == null)
-            theTween = targetRotation.DORotate(new Vector3(0, 0, 90), 1.0f).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
+        {
+            TimesMoved++;
+            theTween = targetRotation.DORotate(new Vector3(0, 0, 90), rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
+        }
     }
 
     void RotateRight()
     {
         if (theTween == null)
-            theTween = targetRotation.DORotate(new Vector3(0, 0, -90), 1.0f).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
+        {
+            TimesMoved++;
+            theTween = targetRotation.DORotate(new Vector3(0, 0, -90), rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
+        }
     }
 
     void OnTweenComplete()
