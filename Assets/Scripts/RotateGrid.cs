@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using Lean;
 using DG.Tweening;
@@ -36,18 +37,23 @@ public class RotateGrid : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
 			if (areBlocksStationary ()) {
 				SetBlockKinemactics (true);
 				RotateLeft ();
 			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.RightArrow)) {
+		if (Input.GetKeyDown(KeyCode.RightArrow)) {
 			if (areBlocksStationary ()) {
 				SetBlockKinemactics (true);
 				RotateRight();
 			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			SetBlockKinemactics (true);
+			AlignBlocks();
 		}
 	}
 
@@ -86,7 +92,7 @@ public class RotateGrid : MonoBehaviour {
     {
         for (int i = 0; i < Blocks.Length; i++)
         {
-            if (Blocks[i].velocity.magnitude != 0)
+            if (Blocks[i].velocity.magnitude > 0.01)
                 return false;
         }
         return true;
@@ -106,7 +112,9 @@ public class RotateGrid : MonoBehaviour {
     {
         if (!areBlocksStationary())
             return;
-        SetBlockKinemactics(true);
+		
+		SetBlockKinemactics(true);
+
         var StartViewPos = mainCamera.ScreenToViewportPoint(finger.StartScreenPosition);
         var EndViewPos = mainCamera.ScreenToViewportPoint(finger.LastScreenPosition);
 
@@ -146,17 +154,34 @@ public class RotateGrid : MonoBehaviour {
         }
     }
 
+	void AlignBlocks()
+	{
+		for (int i = 0; i < Blocks.Length; i++)
+		{
+			Vector3 newPosition = Blocks[i].GetComponentInParent<Transform>().position;
+
+			newPosition.x = Mathf.Round(newPosition.x * 2f) * 0.5f;
+			newPosition.y = Mathf.Round(newPosition.y * 2f) * 0.5f;
+
+			Blocks[i].GetComponentInParent<Transform>().position = newPosition;
+		}
+	}
+
     void RotateLeft()
     {
-        if (theTween == null)
+		if (theTween == null) {
+			AlignBlocks();
             theTween = targetRotation.DORotate(new Vector3(0, 0, 90), 1.0f).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
-    }
+		}
+	}
 
     void RotateRight()
     {
-        if (theTween == null)
+		if (theTween == null) {
+			AlignBlocks();
             theTween = targetRotation.DORotate(new Vector3(0, 0, -90), 1.0f).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
-    }
+		}
+	}
 
     void OnTweenComplete()
     {
