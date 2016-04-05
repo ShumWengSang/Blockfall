@@ -65,6 +65,27 @@ public class RotateGrid : MonoBehaviour {
             Blocks[i].isKinematic = value;
         }
     }
+
+    bool areBlocksStationary()
+    {
+        for (int i = 0; i < Blocks.Length; i++)
+        {
+            if (Blocks[i].velocity.magnitude != 0)
+                return false;
+        }
+        return true;
+    }
+
+    bool areBlocksMoving()
+    {
+        for (int i = 0; i < Blocks.Length; i++)
+        {
+            if (Blocks[i].velocity.magnitude == 0)
+                return false;
+        }
+        return true;
+    }
+
     void OnFingerSwipe(LeanFinger finger)
     {
         SetBlockKinemactics(true);
@@ -90,18 +111,19 @@ public class RotateGrid : MonoBehaviour {
 
     void RotateLeft()
     {
-        if(theTween.IsComplete())
-            theTween = targetRotation.DOBlendableRotateBy(new Vector3(0, 0, 90), 1.0f).SetEase(Ease.InQuad).OnComplete(OnTweenComplete);
+        if (theTween == null && !areBlocksStationary())
+            theTween = targetRotation.DORotate(new Vector3(0, 0, 90), 1.0f).SetEase(Ease.InQuad).OnComplete(OnTweenComplete).SetRelative();
     }
 
     void RotateRight()
     {
-        if (theTween.IsComplete())
-            theTween = targetRotation.DOBlendableRotateBy(new Vector3(0, 0, -90), 1.0f).SetEase(Ease.InQuad).OnComplete(OnTweenComplete);
+        if (theTween == null && !areBlocksStationary())
+            theTween = targetRotation.DORotate(new Vector3(0, 0, -90), 1.0f).SetEase(Ease.InQuad).OnComplete(OnTweenComplete).SetRelative();
     }
 
     void OnTweenComplete()
     {
         SetBlockKinemactics(false);
+        theTween = null;
     }
 }
