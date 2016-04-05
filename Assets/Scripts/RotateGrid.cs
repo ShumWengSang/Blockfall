@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Lean;
 using DG.Tweening;
 using AdvancedInspector;
 using UnityEngine.UI;
 public class RotateGrid : MonoBehaviour {
+    enum GridOrientation
+    {
+        Left,
+        Right
+    }
+    Stack<GridOrientation> LastMoves;
 
 	Transform targetRotation;
 
@@ -33,6 +40,7 @@ public class RotateGrid : MonoBehaviour {
 
     void Awake()
     {
+        LastMoves = new Stack<GridOrientation>();
         mainCamera = Camera.main;
         GameObject [] listOfGO = GameObject.FindGameObjectsWithTag("WoodBlock");
         Blocks = new Rigidbody[listOfGO.Length];
@@ -180,29 +188,64 @@ public class RotateGrid : MonoBehaviour {
 
     void RotateLeft()
     {
-		if (theTween == null) {
-			AlignBlocks();
+        if (theTween == null)
         {
-            TimesMoved++;
-            theTween = targetRotation.DORotate(new Vector3(0, 0, 90), rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
+            AlignBlocks();
+            {
+                TimesMoved++;
+                LastMoves.Push(GridOrientation.Left);
+                theTween = targetRotation.DORotate(new Vector3(0, 0, 90), rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
+            }
         }
-		}
-	}
+    }
 
     void RotateRight()
     {
-		if (theTween == null) {
-			AlignBlocks();
+        if (theTween == null)
         {
-            TimesMoved++;
-            theTween = targetRotation.DORotate(new Vector3(0, 0, -90), rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
+            AlignBlocks();
+            {
+                TimesMoved++;
+                LastMoves.Push(GridOrientation.Right);
+                theTween = targetRotation.DORotate(new Vector3(0, 0, -90), rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
+            }
         }
-		}
-	}
+    }
 
     void OnTweenComplete()
     {
         SetBlockKinemactics(false);
         theTween = null;
+    }
+
+    public void UndoLastMove()
+    {
+        if(LastMoves.Count > 1)
+            StartCoroutine(undoMove());
+    }
+
+    IEnumerator undoMove()
+    {
+
+        Physics.gravity = -Physics.gravity;
+        yield return new WaitForSeconds(0.5f);
+        while(!areBlocksStationary())
+        {
+            yield return null;
+        }
+        Physics.gravity = -Physics.gravity;
+        SetBlockKinemactics(true);
+        Vector3 targetVector;
+        GridOrientation currentOrientation = LastMoves.Pop();
+        if(currentOrientation == GridOrientation.Left)
+        {
+            targetVector = new Vector3(0, 0, -90);
+            currentOrientation = GridOrientation.Right;
+        }
+        else
+        {
+            targetVector = new Vector3(0, 0, 90);
+        }
+        theTween = targetRotation.DORotate(targetVector, rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
     }
 }
