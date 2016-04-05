@@ -1,2 +1,7 @@
 Library
 Temp
+*.userprefs
+Assembly-CSharp-Editor-firstpass.csproj
+Assembly-CSharp-Editor.csproj
+Assembly-CSharp-firstpass.csproj
+obj/Debug/Assembly-CSharp.csproj.FileListAbsolute.txt

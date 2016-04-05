@@ -1,60 +1,107 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Lean;
+using DG.Tweening;
 
 public class RotateGrid : MonoBehaviour {
 
 	public bool rotatingGrid;
 
-	public Transform targetRotation;
+	Transform targetRotation;
 
 	public float rotationSpeed;
 
+    Camera mainCamera;
+
+    Vector2 halfVector = new Vector2(0.5f, 0.5f);
+
+    Rigidbody[] Blocks;
+
+    Tween theTween;
+
+    void Awake()
+    {
+        mainCamera = Camera.main;
+        GameObject [] listOfGO = GameObject.FindGameObjectsWithTag("WoodBlock");
+        Blocks = new Rigidbody[listOfGO.Length];
+        for(int i = 0; i < listOfGO.Length; i++)
+        {
+            Blocks[i] = listOfGO[i].GetComponent<Rigidbody>();
+        }
+    }
 	// Use this for initialization
 	void Start () {
 		rotatingGrid = false;
-		rotationSpeed = 0.001f;
 		targetRotation = transform;
 	}
 
-	void InitRotate()
-	{
-		rotatingGrid = true;
-		GameObject.FindGameObjectsWithTag ("WoodBlock");
-	}
+    void OnEnable()
+    {
+        //LeanTouch.OnFingerDown += OnFingerDown;
+        //LeanTouch.OnFingerUp += OnFingerUp;
+        LeanTouch.OnFingerSwipe += OnFingerSwipe;
+    }
 
-	// Update is called once per frame
-	void Update () {
+    void OnDisable()
+    {
+        //LeanTouch.OnFingerDown -= OnFingerDown;
+        //LeanTouch.OnFingerUp -= OnFingerUp;
+        LeanTouch.OnFingerSwipe -= OnFingerSwipe;
+    }
 
-		if (!rotatingGrid) {
-			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-				Vector3 rotationVec = targetRotation.rotation.eulerAngles;
-				rotationVec.z = rotationVec.z + 90;
-				targetRotation.rotation = Quaternion.Euler (rotationVec);
+    void OnFingerUp(LeanFinger finger)
+    {
 
-				rotatingGrid = true;
-			}
+    }
+    void OnFingerDown(LeanFinger finger)
+    {
+        
+    }
 
-			if (Input.GetKeyDown (KeyCode.RightArrow)) {
-				Vector3 rotationVec = targetRotation.rotation.eulerAngles;
-				rotationVec.z = rotationVec.z - 90;
-				targetRotation.rotation = Quaternion.Euler (rotationVec);
+    void SetBlockKinemactics(bool value)
+    {
+        for (int i = 0; i < Blocks.Length; i++)
+        {
+            Blocks[i].isKinematic = value;
+        }
+    }
+    void OnFingerSwipe(LeanFinger finger)
+    {
+        SetBlockKinemactics(true);
+        var StartViewPos = mainCamera.ScreenToViewportPoint(finger.StartScreenPosition);
+        var EndViewPos = mainCamera.ScreenToViewportPoint(finger.LastScreenPosition);
 
-				rotatingGrid = true;
-			}
-		} 
-		else {
-			float step = rotationSpeed * Time.deltaTime;
+        if(StartViewPos.x >= 0.5f && EndViewPos.x >= 0.5f)
+        {
+            //Both are greater. This means its oing to the right.
+            Debug.Log("Rotating right");
+            RotateRight();
+        }
+        else if(StartViewPos.x < 0.5f && EndViewPos.x < 0.5f)
+        {
+            Debug.Log("Rotating left");
+            RotateLeft();
+        }
+        else
+        {
+            SetBlockKinemactics(false);
+        }
+    }
 
-			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation.rotation, 1.0f);
+    void RotateLeft()
+    {
+        if(theTween.IsComplete())
+            theTween = targetRotation.DOBlendableRotateBy(new Vector3(0, 0, 90), 1.0f).SetEase(Ease.InQuad).OnComplete(OnTweenComplete);
+    }
 
-			if (transform.rotation.z == targetRotation.rotation.z) {
-				rotatingGrid = false;
-				Mathf.RoundToInt (transform.rotation.z);
-			}
-		}
+    void RotateRight()
+    {
+        if (theTween.IsComplete())
+            theTween = targetRotation.DOBlendableRotateBy(new Vector3(0, 0, -90), 1.0f).SetEase(Ease.InQuad).OnComplete(OnTweenComplete);
+    }
 
-
-	} //Update
-
-
+    void OnTweenComplete()
+    {
+        SetBlockKinemactics(false);
+    }
 }
