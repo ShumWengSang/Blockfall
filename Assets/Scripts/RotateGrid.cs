@@ -35,6 +35,22 @@ public class RotateGrid : MonoBehaviour {
 		targetRotation = transform;
 	}
 
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+			if (areBlocksStationary ()) {
+				SetBlockKinemactics (true);
+				RotateLeft ();
+			}
+		}
+
+		if (Input.GetKeyDown (KeyCode.RightArrow)) {
+			if (areBlocksStationary ()) {
+				SetBlockKinemactics (true);
+				RotateRight();
+			}
+		}
+	}
+
     void OnEnable()
     {
         //LeanTouch.OnFingerDown += OnFingerDown;
