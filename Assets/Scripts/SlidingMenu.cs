@@ -4,13 +4,18 @@ using AdvancedInspector;
 using Lean;
 using DG.Tweening;
 public class SlidingMenu : MonoBehaviour {
+    [Descriptor("Model Rect", "Use this rect as the model object for all the slides to follow. Usually the first slide. Set its position properly.")]
     public RectTransform DefaultRect;
+     [Descriptor("Slide Parent", "Parent Transform that holds all the slides")]
     public RectTransform ContentParent;
     public RectTransform[] Content;
 
     public float margin;
 
     public float MoveTime = 1f;
+
+    public Transform fingerHover;
+    public Transform parentOrigParent;
 
     [Inspect(InspectorLevel.Debug)]
     private float Step = 0;
@@ -33,13 +38,20 @@ public class SlidingMenu : MonoBehaviour {
     void OnEnable()
     {
         LeanTouch.OnFingerSwipe += OnFingerSwipe;
+        LeanTouch.OnFingerSet += OnFingerSet;
+        LeanTouch.OnFingerDown += OnFingerDown;
+        LeanTouch.OnFingerUp += OnFingerUp;
     }
 
     void OnDisable()
     {
         LeanTouch.OnFingerSwipe -= OnFingerSwipe;
+        LeanTouch.OnFingerSet -= OnFingerSet;
+        LeanTouch.OnFingerUp -= OnFingerUp;
+        LeanTouch.OnFingerDown -= OnFingerDown;
     }
 	
+
     [Inspect]
     void GenerateContentParent()
     {
@@ -62,6 +74,27 @@ public class SlidingMenu : MonoBehaviour {
             Steps[i] = ContentParent.localPosition.x - i * Step;
         }
     }
+
+    void OnFingerDown(LeanFinger finger)
+    {
+        fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
+        if (DOTween.IsTweening(ContentParent))
+        {
+            ContentParent.DOKill();
+        }
+        ContentParent.SetParent(fingerHover);
+    }
+
+    void OnFingerSet(LeanFinger finger)
+    {
+        fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
+    }
+
+    void OnFingerUp(LeanFinger finger)
+    {
+        ContentParent.SetParent(parentOrigParent);
+    }
+
 
     void OnFingerSwipe(LeanFinger finger)
     {
@@ -119,7 +152,6 @@ public class SlidingMenu : MonoBehaviour {
 
     void MoveRight()
     {
-        Debug.Log("Move right");
         if (DOTween.IsTweening(ContentParent))
         {
             ContentParent.DOKill();
