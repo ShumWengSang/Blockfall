@@ -20,7 +20,6 @@ public class WoodenBlockManager
     void Awake()
     {
         instance = this;
-
     }
 
     public void Start()
@@ -86,10 +85,15 @@ public class RotateGrid : MonoBehaviour {
         Right
     }
     Stack<GridOrientation> LastMoves;
-
 	Transform targetRotation;
+    Camera mainCamera;
+    Tween theTween;
+    public Text MovesDone;
+    public WoodenBlockManager woodBlockManager;
+    Vector2 halfVector = new Vector2(0.5f, 0.5f);
 
 	public float rotationTime = 1.0f;
+
     [Inspect(InspectorLevel.Debug)]
     public int TimesMoved
     {
@@ -102,13 +106,8 @@ public class RotateGrid : MonoBehaviour {
     }
 
     public int MovedTime;
-    Camera mainCamera;
-    public WoodenBlockManager woodBlockManager;
-    Vector2 halfVector = new Vector2(0.5f, 0.5f);
 
 
-    Tween theTween;
-    public Text MovesDone;
 
     void Awake()
     {
@@ -155,17 +154,16 @@ public class RotateGrid : MonoBehaviour {
 
     void OnEnable()
     {
-        //LeanTouch.OnFingerDown += OnFingerDown;
-        //LeanTouch.OnFingerUp += OnFingerUp;
         LeanTouch.OnFingerSwipe += OnFingerSwipe;
+        GoalChecker.OnFinishedGame += OnGameComplete;
     }
 
     void OnDisable()
     {
-        //LeanTouch.OnFingerDown -= OnFingerDown;
-        //LeanTouch.OnFingerUp -= OnFingerUp;
         LeanTouch.OnFingerSwipe -= OnFingerSwipe;
+        //GoalChecker.OnFinishedGame -= OnGameComplete;
     }
+
 
     void OnFingerSwipe(LeanFinger finger)
     {
@@ -273,5 +271,10 @@ public class RotateGrid : MonoBehaviour {
             targetVector = new Vector3(0, 0, 90);
         }
         theTween = targetRotation.DORotate(targetVector, rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
+    }
+
+    void OnGameComplete()
+    {
+        LeanTouch.Instance.enabled = false;
     }
 }

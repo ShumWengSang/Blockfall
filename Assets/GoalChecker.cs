@@ -8,6 +8,8 @@ public class GoalChecker : MonoBehaviour {
     GoalCheck []goalCheck;
     WoodenBlockManager manager;
 
+    public delegate void GameComplete();
+    public static event GameComplete OnFinishedGame;
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +36,8 @@ public class GoalChecker : MonoBehaviour {
 	void Update () {
 		if (manager.areBlocksStationary ()) {
 			if (areGoalsScored ()) {
-				Debug.Log ("LEVEL COMPLETE");
+                if(OnFinishedGame != null)
+                    OnFinishedGame();
 			}
 		}
 	}
