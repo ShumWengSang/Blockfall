@@ -24,21 +24,23 @@ public class GoalCheck : MonoBehaviour {
 	}
 		
 	void OnTriggerEnter(Collider col) {
-		if (col.tag == "WoodBlock") {
+		if (col.CompareTag("WoodBlock")) {
 			SetEmission (litEmission);
 			goalScored = true;
 		}
 	}
 
 	void OnTriggerStay(Collider col) {
-		if (col.tag == "WoodBlock") {
+        if (col.CompareTag("WoodBlock"))
+        {
 			SetEmission (litEmission);
 			goalScored = true;
 		}
 	}
 
 	void OnTriggerExit(Collider col) {
-		if (col.tag == "WoodBlock") {
+        if (col.CompareTag("WoodBlock"))
+        {
 			SetEmission (unlitEmission);
 			goalScored = false;
 		}

@@ -5,19 +5,26 @@ public class GoalChecker : MonoBehaviour {
 
 	//public RotateGrid grid;
 	GameObject grid;
-	GameObject[] goals;
+    GoalCheck []goalCheck;
+    WoodenBlockManager manager;
+
 
 	// Use this for initialization
 	void Start () {
-		grid = GameObject.FindGameObjectWithTag("Grid");
-		goals = GameObject.FindGameObjectsWithTag("GoalZone");
+        GameObject[] goals = GameObject.FindGameObjectsWithTag("GoalZone");
+        goalCheck = new GoalCheck [goals.Length];
+        for(int i = 0; i < goalCheck.Length; i++)
+        {
+            goalCheck[i] = goals[i].GetComponent<GoalCheck>();
+        }
+        manager = WoodenBlockManager.instance;
 	}
 
 	public bool areGoalsScored()
 	{
-		for (int i = 0; i < goals.Length; i++)
+        for (int i = 0; i < goalCheck.Length; i++)
 		{
-			if (goals[i].GetComponent<GoalCheck>().goalScored == false)
+            if (goalCheck[i].goalScored == false)
 				return false;
 		}
 		return true;
@@ -25,7 +32,7 @@ public class GoalChecker : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (grid.GetComponent<RotateGrid> ().woodBlockManager.areBlocksStationary ()) {
+		if (manager.areBlocksStationary ()) {
 			if (areGoalsScored ()) {
 				Debug.Log ("LEVEL COMPLETE");
 			}

@@ -24,3 +24,12 @@ Current Unity version used is ???
 Why not use OnTriggerEnter for goal emission?
 
 How to check for all complete
+
+### Possible Optimizations ###
+
+Goal Check in Update
+
+OnTriggerSet for Goal Check
+
+Shader replacement for goals
+

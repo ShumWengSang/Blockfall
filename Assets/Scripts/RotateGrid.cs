@@ -15,10 +15,16 @@ public class WoodenBlockManager
     public WoodenBlockManager ()
     {
         Awake();
+        Start();
     }
     void Awake()
     {
         instance = this;
+
+    }
+
+    public void Start()
+    {
         GameObject[] listOfGO = GameObject.FindGameObjectsWithTag("WoodBlock");
         Blocks = new Rigidbody[listOfGO.Length];
         for (int i = 0; i < listOfGO.Length; i++)
@@ -117,6 +123,10 @@ public class RotateGrid : MonoBehaviour {
         if(woodBlockManager == null)
         {
             woodBlockManager = new WoodenBlockManager();
+        }
+        else
+        {
+            woodBlockManager.Start();
         }
 	}
 
