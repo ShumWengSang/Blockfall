@@ -7,10 +7,15 @@ using DG.Tweening;
 using AdvancedInspector;
 using UnityEngine.UI;
 
-public class WoodenBlockManager : MonoBehaviour
+public class WoodenBlockManager
 {
     public static WoodenBlockManager instance;
     Rigidbody[] Blocks;
+
+    public WoodenBlockManager ()
+    {
+        Awake();
+    }
     void Awake()
     {
         instance = this;
@@ -109,6 +114,10 @@ public class RotateGrid : MonoBehaviour {
 		targetRotation = transform;
         TimesMoved = 0;
         woodBlockManager = WoodenBlockManager.instance;
+        if(woodBlockManager == null)
+        {
+            woodBlockManager = new WoodenBlockManager();
+        }
 	}
 
 	void Update() {
