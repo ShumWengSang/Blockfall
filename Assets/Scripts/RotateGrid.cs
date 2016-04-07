@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class WoodenBlockManager
 {
     public static WoodenBlockManager instance;
-    Rigidbody[] Blocks;
+    public Rigidbody[] Blocks;
 
     public WoodenBlockManager ()
     {
