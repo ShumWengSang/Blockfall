@@ -113,20 +113,21 @@ public class RotateGrid : MonoBehaviour {
     {
         LastMoves = new Stack<GridOrientation>();
         mainCamera = Camera.main;
+		woodBlockManager = WoodenBlockManager.instance;
+		if(woodBlockManager == null)
+		{
+			woodBlockManager = new WoodenBlockManager();
+		}
+		else
+		{
+			woodBlockManager.Start();
+		}
     }
 	// Use this for initialization
 	void Start () {
 		targetRotation = transform;
         TimesMoved = 0;
-        woodBlockManager = WoodenBlockManager.instance;
-        if(woodBlockManager == null)
-        {
-            woodBlockManager = new WoodenBlockManager();
-        }
-        else
-        {
-            woodBlockManager.Start();
-        }
+
 	}
 
 	void Update() {
