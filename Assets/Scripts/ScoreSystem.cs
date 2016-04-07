@@ -4,7 +4,9 @@ using UnityEngine.UI;
 using AdvancedInspector;
 public class ScoreSystem : MonoBehaviour
 {
+    [Group("Game UI"), Inspect]
     public int World = 1;
+    [Group("Game UI"), Inspect]
     public int level = 1;
     static ScoreSystem instance;
     [Inspect(InspectorLevel.Advanced)]
@@ -17,7 +19,24 @@ public class ScoreSystem : MonoBehaviour
     [Group("Ranking System"), Inspect]
     public int BronzeRank;
 
+    [Group("On Game Complete"), Inspect]
+    public GameObject gameOver;
+    [Group("On Game Complete"), Inspect]
+    public Image onGameCompleteMedel;
+    [Group("On Game Complete"), Inspect]
+    public Sprite GoldMedal;
+    [Group("On Game Complete"), Inspect]
+    public Sprite SilverMedal;
+    [Group("On Game Complete"), Inspect]
+    public Sprite BronzeMedal;
+    [Group("On Game Complete"), Inspect]
+    public Sprite Aluminum;
+    [Group("On Game Complete"), Inspect]
+    public Text NumberOfMoves;
+
+    [Group("Game UI"), Inspect]
     public Text Level;
+    [Group("Game UI"), Inspect]
     public Text Ranks;
     void Awake()
     {
@@ -33,6 +52,7 @@ public class ScoreSystem : MonoBehaviour
     void Start()
     {
         UpdateTexts();
+        gameOver.SetActive(false);
     }
 
     void OnDestroy()
@@ -72,5 +92,7 @@ public class ScoreSystem : MonoBehaviour
         {
             Debug.Log("You got aluminium");
         }
+        NumberOfMoves.text = "Moves : " + movedUsed.ToString();
+        gameOver.SetActive(true);
     }
 }

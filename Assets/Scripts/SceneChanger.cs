@@ -29,6 +29,11 @@ public class SceneChanger : MonoBehaviour {
         StartCoroutine(loadNextScene(scene));
     }
 
+    public void LoadNextLevel()
+    {
+
+    }
+
     IEnumerator loadNextScene(string scene)
     {
         yield return wait;
