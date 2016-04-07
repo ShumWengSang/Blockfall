@@ -9,8 +9,6 @@ Roland's computer gravity/ block problem. Replicated by left left.
 
 UI (Awaiting Art Assets)
 
-Level selection Scene (Awaiting Approval)
-
 #Shawn
 
 End Level
