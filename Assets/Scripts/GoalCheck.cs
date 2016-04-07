@@ -9,6 +9,7 @@ public class GoalCheck : MonoBehaviour {
 	float unlitEmission = 0.3f;
 	float litEmission = 0.7f;
 	Color origColor;
+	bool goalScored;
 
 	void Start () {
 		foreach (Transform child in transform.parent) { //loop through borders
@@ -18,27 +19,23 @@ public class GoalCheck : MonoBehaviour {
 				break;
 			}
 		}
+
+		goalScored = false;
 	}
 		
-	// Update is called once per frame
-	void Update () {
-		RaycastHit hit;
-		Ray landingRay = new Ray (transform.position, Vector3.forward);
-
-		if (Physics.Raycast (landingRay, out hit, 10f)) {
-			if (hit.collider.tag == "WoodBlock") {
-				SetEmission (litEmission);
-			} else {
-				SetEmission (unlitEmission);
-			}
+	void OnTriggerEnter(Collider col) {
+		if (col.tag == "WoodBlock") {
+			SetEmission (litEmission);
+			goalScored = true;
 		}
-		else {
+	}
+
+	void OnTriggerExit(Collider col) {
+		if (col.tag == "WoodBlock") {
 			SetEmission (unlitEmission);
+			goalScored = false;
 		}
-
-	}//update
-
-
+	}
 
 	void SetEmission(float emissionValue)
 	{
@@ -51,5 +48,4 @@ public class GoalCheck : MonoBehaviour {
 			}
 		}
 	}
-
 }
