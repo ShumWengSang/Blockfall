@@ -97,7 +97,7 @@ public class RotateGrid : MonoBehaviour {
 
     public int MovedTime;
     Camera mainCamera;
-    WoodenBlockManager woodBlockManager;
+    public WoodenBlockManager woodBlockManager;
     Vector2 halfVector = new Vector2(0.5f, 0.5f);
 
 

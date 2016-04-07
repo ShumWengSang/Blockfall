@@ -9,7 +9,7 @@ public class GoalCheck : MonoBehaviour {
 	float unlitEmission = 0.3f;
 	float litEmission = 0.7f;
 	Color origColor;
-	bool goalScored;
+	public bool goalScored;
 
 	void Start () {
 		foreach (Transform child in transform.parent) { //loop through borders
