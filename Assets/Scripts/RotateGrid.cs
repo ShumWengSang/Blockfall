@@ -6,6 +6,68 @@ using Lean;
 using DG.Tweening;
 using AdvancedInspector;
 using UnityEngine.UI;
+
+public class WoodenBlockManager : MonoBehaviour
+{
+    public static WoodenBlockManager instance;
+    Rigidbody[] Blocks;
+    void Awake()
+    {
+        instance = this;
+        GameObject[] listOfGO = GameObject.FindGameObjectsWithTag("WoodBlock");
+        Blocks = new Rigidbody[listOfGO.Length];
+        for (int i = 0; i < listOfGO.Length; i++)
+        {
+            Blocks[i] = listOfGO[i].GetComponent<Rigidbody>();
+        }
+    }
+
+    void OnDestroy()
+    {
+        instance = null;
+    }
+
+    public void SetBlockKinemactics(bool value)
+    {
+        for (int i = 0; i < Blocks.Length; i++)
+        {
+            Blocks[i].isKinematic = value;
+        }
+    }
+
+    public bool areBlocksStationary()
+    {
+        for (int i = 0; i < Blocks.Length; i++)
+        {
+            if (Blocks[i].velocity.magnitude > 0.01)
+                return false;
+        }
+        return true;
+    }
+
+    public bool areBlocksMoving()
+    {
+        for (int i = 0; i < Blocks.Length; i++)
+        {
+            if (Blocks[i].velocity.magnitude == 0)
+                return false;
+        }
+        return true;
+    }
+
+    public void AlignBlocks()
+    {
+        for (int i = 0; i < Blocks.Length; i++)
+        {
+            Vector3 newPosition = Blocks[i].GetComponentInParent<Transform>().position;
+
+            newPosition.x = Mathf.Round(newPosition.x * 2f) * 0.5f;
+            newPosition.y = Mathf.Round(newPosition.y * 2f) * 0.5f;
+
+            Blocks[i].GetComponentInParent<Transform>().position = newPosition;
+        }
+    }
+}
 public class RotateGrid : MonoBehaviour {
     enum GridOrientation
     {
@@ -30,10 +92,9 @@ public class RotateGrid : MonoBehaviour {
 
     public int MovedTime;
     Camera mainCamera;
-
+    WoodenBlockManager woodBlockManager;
     Vector2 halfVector = new Vector2(0.5f, 0.5f);
 
-    Rigidbody[] Blocks;
 
     Tween theTween;
     public Text MovesDone;
@@ -42,37 +103,34 @@ public class RotateGrid : MonoBehaviour {
     {
         LastMoves = new Stack<GridOrientation>();
         mainCamera = Camera.main;
-        GameObject [] listOfGO = GameObject.FindGameObjectsWithTag("WoodBlock");
-        Blocks = new Rigidbody[listOfGO.Length];
-        for(int i = 0; i < listOfGO.Length; i++)
-        {
-            Blocks[i] = listOfGO[i].GetComponent<Rigidbody>();
-        }
     }
 	// Use this for initialization
 	void Start () {
 		targetRotation = transform;
         TimesMoved = 0;
+        woodBlockManager = WoodenBlockManager.instance;
 	}
 
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-			if (areBlocksStationary ()) {
-				SetBlockKinemactics (true);
+            if (woodBlockManager.areBlocksStationary())
+            {
+                woodBlockManager.SetBlockKinemactics(true);
 				RotateLeft ();
 			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.RightArrow)) {
-			if (areBlocksStationary ()) {
-				SetBlockKinemactics (true);
+            if (woodBlockManager.areBlocksStationary())
+            {
+                woodBlockManager.SetBlockKinemactics(true);
 				RotateRight();
 			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space)) {
-			SetBlockKinemactics (true);
-			AlignBlocks();
+            woodBlockManager.SetBlockKinemactics(true);
+            woodBlockManager.AlignBlocks();
 		}
 	}
 
@@ -90,49 +148,12 @@ public class RotateGrid : MonoBehaviour {
         LeanTouch.OnFingerSwipe -= OnFingerSwipe;
     }
 
-    void OnFingerUp(LeanFinger finger)
-    {
-
-    }
-    void OnFingerDown(LeanFinger finger)
-    {
-        
-    }
-
-    void SetBlockKinemactics(bool value)
-    {
-        for (int i = 0; i < Blocks.Length; i++)
-        {
-            Blocks[i].isKinematic = value;
-        }
-    }
-
-    bool areBlocksStationary()
-    {
-        for (int i = 0; i < Blocks.Length; i++)
-        {
-            if (Blocks[i].velocity.magnitude > 0.01)
-                return false;
-        }
-        return true;
-    }
-
-    bool areBlocksMoving()
-    {
-        for (int i = 0; i < Blocks.Length; i++)
-        {
-            if (Blocks[i].velocity.magnitude == 0)
-                return false;
-        }
-        return true;
-    }
-
     void OnFingerSwipe(LeanFinger finger)
     {
-        if (!areBlocksStationary())
+        if (!woodBlockManager.areBlocksStationary())
             return;
-		
-		SetBlockKinemactics(true);
+
+        woodBlockManager.SetBlockKinemactics(true);
 
         var StartViewPos = mainCamera.ScreenToViewportPoint(finger.StartScreenPosition);
         var EndViewPos = mainCamera.ScreenToViewportPoint(finger.LastScreenPosition);
@@ -168,29 +189,15 @@ public class RotateGrid : MonoBehaviour {
 
             else
             {
-                SetBlockKinemactics(false);
+                woodBlockManager.SetBlockKinemactics(false);
             }
         }
     }
-
-	void AlignBlocks()
-	{
-		for (int i = 0; i < Blocks.Length; i++)
-		{
-			Vector3 newPosition = Blocks[i].GetComponentInParent<Transform>().position;
-
-			newPosition.x = Mathf.Round(newPosition.x * 2f) * 0.5f;
-			newPosition.y = Mathf.Round(newPosition.y * 2f) * 0.5f;
-
-			Blocks[i].GetComponentInParent<Transform>().position = newPosition;
-		}
-	}
-
     void RotateLeft()
     {
         if (theTween == null)
         {
-            AlignBlocks();
+            woodBlockManager.AlignBlocks();
             {
                 TimesMoved++;
                 LastMoves.Push(GridOrientation.Left);
@@ -203,7 +210,7 @@ public class RotateGrid : MonoBehaviour {
     {
         if (theTween == null)
         {
-            AlignBlocks();
+            woodBlockManager.AlignBlocks();
             {
                 TimesMoved++;
                 LastMoves.Push(GridOrientation.Right);
@@ -214,7 +221,7 @@ public class RotateGrid : MonoBehaviour {
 
     void OnTweenComplete()
     {
-        SetBlockKinemactics(false);
+        woodBlockManager.SetBlockKinemactics(false);
         theTween = null;
     }
 
@@ -229,12 +236,12 @@ public class RotateGrid : MonoBehaviour {
 
         Physics.gravity = -Physics.gravity;
         yield return new WaitForSeconds(0.5f);
-        while(!areBlocksStationary())
+        while (!woodBlockManager.areBlocksStationary())
         {
             yield return null;
         }
         Physics.gravity = -Physics.gravity;
-        SetBlockKinemactics(true);
+        woodBlockManager.SetBlockKinemactics(true);
         Vector3 targetVector;
         GridOrientation currentOrientation = LastMoves.Pop();
         if(currentOrientation == GridOrientation.Left)
