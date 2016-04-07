@@ -6,26 +6,34 @@ public class BlockMovement : MonoBehaviour {
 
 	public Vector3 blockVel;
 
+	Vector3 origBoxColSize;
+
+	Vector3 fallingBoxColSize;
+
+	public float fallSpeedThreshold; //Must exceed falling speed before shrinking collision box
+
+
 	// Use this for initialization
 	void Start () {
-	
+		origBoxColSize = GetComponent<BoxCollider>().size;
+
+		fallingBoxColSize = GetComponent<BoxCollider>().size;
+		fallingBoxColSize.x = 0.98f;
+		fallingBoxColSize.y = 0.98f;
+
+		fallSpeedThreshold = 0.1f;
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 		blockVel = GetComponent<Rigidbody>().velocity;
-		/*
-		if (blockVel.x == 0 && blockVel.y == 0) {
-			Vector3 positionVec = transform.position;
-			positionVec.x = (float)Math.Round(positionVec.x, MidpointRounding.AwayFromZero) / 2;
-			positionVec.y = (float)Math.Round(positionVec.x, MidpointRounding.AwayFromZero) / 2;
 
-			transform.position = positionVec;
-		}
-		*/
-
-		if ((Math.Abs (blockVel.x) < 0.01) && (Math.Abs (blockVel.y) < 0.01)) {
-			
+		if (Math.Abs(blockVel.y) > fallSpeedThreshold) {
+			GetComponent<BoxCollider>().size = fallingBoxColSize;
+		} 
+		else {
+			GetComponent<BoxCollider>().size = origBoxColSize;
 		}
 	}
 }
