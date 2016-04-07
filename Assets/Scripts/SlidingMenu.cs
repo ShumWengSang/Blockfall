@@ -75,24 +75,34 @@ public class SlidingMenu : MonoBehaviour {
         }
     }
 
+    bool MoveParent = false;
     void OnFingerDown(LeanFinger finger)
     {
-        fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
-        if (DOTween.IsTweening(ContentParent))
+        if (!LeanTouch.GuiInUse)
         {
-            ContentParent.DOKill();
+            MoveParent = true;
+            fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
+            if (DOTween.IsTweening(ContentParent))
+            {
+                ContentParent.DOKill();
+            }
+            ContentParent.SetParent(fingerHover);
         }
-        ContentParent.SetParent(fingerHover);
     }
 
     void OnFingerSet(LeanFinger finger)
     {
-        fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
+        if(MoveParent)
+            fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
     }
 
     void OnFingerUp(LeanFinger finger)
     {
-        ContentParent.SetParent(parentOrigParent);
+        if (MoveParent)
+        {
+            ContentParent.SetParent(parentOrigParent);
+            MoveParent = false;
+        }
     }
 
 
