@@ -30,6 +30,13 @@ public class GoalCheck : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerStay(Collider col) {
+		if (col.tag == "WoodBlock") {
+			SetEmission (litEmission);
+			goalScored = true;
+		}
+	}
+
 	void OnTriggerExit(Collider col) {
 		if (col.tag == "WoodBlock") {
 			SetEmission (unlitEmission);
