@@ -4,6 +4,8 @@ using AdvancedInspector;
 using Lean;
 using DG.Tweening;
 public class SlidingMenu : MonoBehaviour {
+
+    public bool IgnoreGUI = false;
     [Descriptor("Model Rect", "Use this rect as the model object for all the slides to follow. Usually the first slide. Set its position properly.")]
     public RectTransform DefaultRect;
      [Descriptor("Slide Parent", "Parent Transform that holds all the slides")]
@@ -78,7 +80,7 @@ public class SlidingMenu : MonoBehaviour {
     bool MoveParent = false;
     void OnFingerDown(LeanFinger finger)
     {
-        if (!LeanTouch.GuiInUse)
+        if (!IgnoreGUI || !LeanTouch.GuiInUse)
         {
             MoveParent = true;
             fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
@@ -102,6 +104,12 @@ public class SlidingMenu : MonoBehaviour {
         {
             ContentParent.SetParent(parentOrigParent);
             MoveParent = false;
+            if (finger.GetScaledSnapshotDelta(LeanTouch.Instance.TapThreshold).magnitude <= LeanTouch.Instance.SwipeThreshold)
+            {
+                //Not a swipe.
+                float newPosX = Steps[(int)InternalCounter];
+                ContentParent.DOLocalMoveX(newPosX, MoveTime).SetEase(Ease.InQuad);
+            }
         }
     }
 
