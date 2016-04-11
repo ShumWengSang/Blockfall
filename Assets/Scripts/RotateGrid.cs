@@ -108,6 +108,7 @@ public class RotateGrid : MonoBehaviour {
     Vector2 halfVector = new Vector2(0.5f, 0.5f);
 
 	public float rotationTime = 1.0f;
+    bool GameOver = false;
 
     [Inspect(InspectorLevel.Debug)]
     public int TimesMoved
@@ -147,19 +148,25 @@ public class RotateGrid : MonoBehaviour {
 
     public void ButtonLeft()
     {
-        if (woodBlockManager.areBlocksStationary())
+        if (!GameOver)
         {
-            woodBlockManager.SetBlockKinemactics(true);
-            RotateLeft();
+            if (woodBlockManager.areBlocksStationary())
+            {
+                woodBlockManager.SetBlockKinemactics(true);
+                RotateLeft();
+            }
         }
     }
 
     public void ButtonRight()
     {
-        if (woodBlockManager.areBlocksStationary())
+        if (!GameOver)
         {
-            woodBlockManager.SetBlockKinemactics(true);
-            RotateRight();
+            if (woodBlockManager.areBlocksStationary())
+            {
+                woodBlockManager.SetBlockKinemactics(true);
+                RotateRight();
+            }
         }
     }
 
@@ -225,30 +232,6 @@ public class RotateGrid : MonoBehaviour {
         {
             HandleQuadrant(Quadrant.Second, finger);
         }
-
-
-        //{
-        //    //We check the direction of the swipe here to determine if it is a left or right swipe.
-        //    //If it is a up or down swipe we ignore.
-        //    var swipe = finger.SwipeDelta;
-
-        //    if (swipe.x < -Mathf.Abs(swipe.y))
-        //    {
-        //        //Swipe left
-        //        RotateLeft();
-        //    }
-
-        //    else if (swipe.x > Mathf.Abs(swipe.y))
-        //    {
-        //        //Swipe right
-        //        RotateRight();
-        //    }
-
-        //    else
-        //    {
-        //        woodBlockManager.SetBlockKinemactics(false);
-        //    }
-        //}
     }
 
     void HandleQuadrant(Quadrant theQuad, LeanFinger finger)
@@ -422,5 +405,6 @@ public class RotateGrid : MonoBehaviour {
     void OnGameComplete()
     {
         LeanTouch.Instance.enabled = false;
+        GameOver = true;
     }
 }

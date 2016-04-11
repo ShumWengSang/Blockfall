@@ -15,12 +15,10 @@ public class SnapObject : MonoBehaviour {
         if (IsThisInteger(newPosition.x))
         {
             // do stuff
-            Debug.Log("Here 1");
             newPosition.x += 0.5f;
         } 
         if(IsThisInteger(newPosition.y))
         {
-            Debug.Log("Here 2");
             newPosition.y += 0.5f;
             //do stuff
         }
