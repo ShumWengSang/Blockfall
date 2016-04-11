@@ -84,6 +84,21 @@ public class RotateGrid : MonoBehaviour {
         Left,
         Right
     }
+    enum Direction
+    {
+        Up,
+        Down,
+        Left,
+        Right,
+        None
+    }
+    enum Quadrant
+    {
+        First,
+        Second,
+        Third,
+        Fourth
+    }
     Stack<GridOrientation> LastMoves;
 	Transform targetRotation;
     Camera mainCamera;
@@ -129,6 +144,24 @@ public class RotateGrid : MonoBehaviour {
         TimesMoved = 0;
 
 	}
+
+    public void ButtonLeft()
+    {
+        if (woodBlockManager.areBlocksStationary())
+        {
+            woodBlockManager.SetBlockKinemactics(true);
+            RotateLeft();
+        }
+    }
+
+    public void ButtonRight()
+    {
+        if (woodBlockManager.areBlocksStationary())
+        {
+            woodBlockManager.SetBlockKinemactics(true);
+            RotateRight();
+        }
+    }
 
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
@@ -176,40 +209,152 @@ public class RotateGrid : MonoBehaviour {
         var StartViewPos = mainCamera.ScreenToViewportPoint(finger.StartScreenPosition);
         var EndViewPos = mainCamera.ScreenToViewportPoint(finger.LastScreenPosition);
 
-        if(StartViewPos.x >= 0.5f && EndViewPos.x >= 0.5f)
+        if(StartViewPos.x < 0.5f && StartViewPos.y < 0.5f)
         {
-            //Both are greater. This means its oing to the right.
-            Debug.Log("Rotating right");
-            RotateRight();
+            HandleQuadrant(Quadrant.Fourth, finger);
         }
-        else if(StartViewPos.x < 0.5f && EndViewPos.x < 0.5f)
+        else if(StartViewPos.x < 0.5f && StartViewPos.y >= 0.5f)
         {
-            Debug.Log("Rotating left");
-            RotateLeft();
+            HandleQuadrant(Quadrant.First, finger);
         }
-        else
+        else if(StartViewPos.x >= 0.5f && StartViewPos.y < 0.5f)
         {
-            //We check the direction of the swipe here to determine if it is a left or right swipe.
-            //If it is a up or down swipe we ignore.
-            var swipe = finger.SwipeDelta;
-
-            if (swipe.x < -Mathf.Abs(swipe.y))
-            {
-                //Swipe left
-                RotateLeft();
-            }
-
-            else if (swipe.x > Mathf.Abs(swipe.y))
-            {
-                //Swipe right
-                RotateRight();
-            }
-
-            else
-            {
-                woodBlockManager.SetBlockKinemactics(false);
-            }
+            HandleQuadrant(Quadrant.Third, finger);
         }
+        else if(StartViewPos.x >= 0.5f && StartViewPos.y >= 0.5f)
+        {
+            HandleQuadrant(Quadrant.Second, finger);
+        }
+
+
+        //{
+        //    //We check the direction of the swipe here to determine if it is a left or right swipe.
+        //    //If it is a up or down swipe we ignore.
+        //    var swipe = finger.SwipeDelta;
+
+        //    if (swipe.x < -Mathf.Abs(swipe.y))
+        //    {
+        //        //Swipe left
+        //        RotateLeft();
+        //    }
+
+        //    else if (swipe.x > Mathf.Abs(swipe.y))
+        //    {
+        //        //Swipe right
+        //        RotateRight();
+        //    }
+
+        //    else
+        //    {
+        //        woodBlockManager.SetBlockKinemactics(false);
+        //    }
+        //}
+    }
+
+    void HandleQuadrant(Quadrant theQuad, LeanFinger finger)
+    {
+        Direction swipeDirection = DetermineSwipeDirection(finger);
+        if(swipeDirection == Direction.None)
+        {
+            Debug.LogWarning("Direction si null");
+            return;
+        }
+        switch(theQuad)
+        {
+                //Top Half
+            case Quadrant.First:
+            case Quadrant.Second:
+                if(swipeDirection == Direction.Up)
+                {
+                    if(theQuad == Quadrant.Second)
+                    {
+                        RotateLeft();
+                    }
+                    else
+                    {
+                        RotateRight();
+                    }
+                }
+                else if(swipeDirection == Direction.Down)
+                {
+                    if (theQuad == Quadrant.Second)
+                    {
+                        RotateRight();
+                    }
+                    else
+                    {
+                        RotateLeft();
+                    }
+                }
+                else if(swipeDirection == Direction.Left)
+                {
+                    RotateLeft();
+                }
+                else if(swipeDirection == Direction.Right)
+                {
+                    RotateRight();
+                }
+                break;
+                //Bottom Half
+            case Quadrant.Third:
+            case Quadrant.Fourth:
+                if(swipeDirection == Direction.Up)
+                {
+                    if(theQuad == Quadrant.Third)
+                    {
+                        RotateLeft();
+                    }
+                    else
+                    {
+                        RotateRight();
+                    }
+                }
+                else if(swipeDirection == Direction.Down)
+                {
+                    if (theQuad == Quadrant.Fourth)
+                    {
+                        RotateLeft();
+                    }
+                    else
+                    {
+                        RotateRight();
+                    }
+                }
+                else if(swipeDirection == Direction.Left)
+                {
+                    RotateRight();
+                }
+                else if(swipeDirection == Direction.Right)
+                {
+                    RotateLeft();
+                }
+                break;
+        }
+    }
+    Direction DetermineSwipeDirection(LeanFinger finger)
+    {
+        var swipe = finger.SwipeDelta;
+
+        if (swipe.x < -Mathf.Abs(swipe.y))
+        {
+            return Direction.Left;
+        }
+
+        if (swipe.x > Mathf.Abs(swipe.y))
+        {
+            return Direction.Right;
+        }
+
+        if (swipe.y < -Mathf.Abs(swipe.x))
+        {
+            return Direction.Down;
+        }
+
+        if (swipe.y > Mathf.Abs(swipe.x))
+        {
+            return Direction.Up;
+        }
+        return Direction.None;
     }
     void RotateLeft()
     {

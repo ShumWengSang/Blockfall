@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SnapObject : MonoBehaviour {
-    [AdvancedInspector.Inspect]
+    [AdvancedInspector.Inspect, AdvancedInspector.Method(AdvancedInspector.MethodDisplay.Invoke)]
     public void SnapTheObject()
     {
         Vector3 newPosition = transform.position;
