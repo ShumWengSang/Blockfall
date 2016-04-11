@@ -81,9 +81,66 @@ public class OneWayBlock : MonoBehaviour {
         }
     }
 
-    void OnTriggerExit()
+    void OnTriggerExit(Collider collider)
     {
         collisionBox.enabled = false;
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        collisionBox.enabled = false;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Collider collider = collision.collider;
+        Rigidbody rb = collider.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            Direction BlockDirection = Direction.none; ;
+            Vector2 vel = transform.InverseTransformDirection(rb.velocity);
+            vel.Normalize();
+            Debug.Log("Vel is " + vel);
+            if (!MathHelper.VectorFloatIsZero(vel.x))
+            {
+                if (vel.x > 0.0f)
+                {
+                    Debug.Log("Moving right");
+                    BlockDirection = Direction.Right;
+                }
+                else if (vel.x < 0.0f)
+                {
+                    Debug.Log("Moving left");
+                    BlockDirection = Direction.Left;
+                }
+            }
+            else if (!MathHelper.VectorFloatIsZero(vel.y))
+            {
+                if (vel.y > 0.0f)
+                {
+                    Debug.Log("Moving up");
+                    BlockDirection = Direction.Up;
+                }
+                else if (vel.y < 0.0f)
+                {
+                    BlockDirection = Direction.Down;
+                    Debug.Log("Moving down");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("blockdirection is null");
+                return;
+            }
+            if (BlockDirection == currentDirection)
+            {
+                collisionBox.enabled = false;
+            }
+            else
+            {
+                collisionBox.enabled = true;
+            }
+        }
     }
 }
 
