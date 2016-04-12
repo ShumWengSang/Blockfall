@@ -86,11 +86,6 @@ public class OneWayBlock : MonoBehaviour {
         collisionBox.enabled = false;
     }
 
-    void OnCollisionExit(Collision collision)
-    {
-        collisionBox.enabled = false;
-    }
-
     void OnCollisionEnter(Collision collision)
     {
         Collider collider = collision.collider;
@@ -134,11 +129,11 @@ public class OneWayBlock : MonoBehaviour {
             }
             if (BlockDirection == currentDirection)
             {
-                collisionBox.enabled = false;
+                collisionBox.isTrigger = false;
             }
             else
             {
-                collisionBox.enabled = true;
+                collisionBox.isTrigger = true;
             }
         }
     }
