@@ -123,8 +123,6 @@ public class RotateGrid : MonoBehaviour {
 
     public int MovedTime;
 
-
-
     void Awake()
     {
         LastMoves = new Stack<GridOrientation>();
@@ -345,6 +343,8 @@ public class RotateGrid : MonoBehaviour {
         {
             woodBlockManager.AlignBlocks();
             {
+				this.GetComponent<PrintAnswer>().AddMoveToList("Left");
+
                 TimesMoved++;
                 LastMoves.Push(GridOrientation.Left);
                 theTween = targetRotation.DORotate(new Vector3(0, 0, 90), rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
@@ -358,6 +358,8 @@ public class RotateGrid : MonoBehaviour {
         {
             woodBlockManager.AlignBlocks();
             {
+				this.GetComponent<PrintAnswer>().AddMoveToList("Right");
+
                 TimesMoved++;
                 LastMoves.Push(GridOrientation.Right);
                 theTween = targetRotation.DORotate(new Vector3(0, 0, -90), rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
