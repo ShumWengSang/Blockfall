@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor.SceneManagement;
 
 public class GoalChecker : MonoBehaviour {
 
@@ -36,8 +37,10 @@ public class GoalChecker : MonoBehaviour {
 	void Update () {
 		if (manager.areBlocksStationary ()) {
 			if (areGoalsScored ()) {
-                if(OnFinishedGame != null)
-                    OnFinishedGame();
+				if (OnFinishedGame != null) {
+					OnFinishedGame ();
+					this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + EditorSceneManager.GetActiveScene().name + ".txt");
+				}
 			}
 		}
 	}
