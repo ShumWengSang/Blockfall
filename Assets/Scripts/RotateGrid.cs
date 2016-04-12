@@ -49,7 +49,7 @@ public class WoodenBlockManager
     {
         for (int i = 0; i < Blocks.Length; i++)
         {
-            if (Blocks[i].velocity.magnitude > 0.01)
+            if (Blocks[i].velocity.magnitude > 0.05f)
                 return false;
         }
         return true;
@@ -151,7 +151,6 @@ public class RotateGrid : MonoBehaviour {
         {
             if (woodBlockManager.areBlocksStationary())
             {
-                expandAnimator.SetTrigger("MoveLeft");
                 woodBlockManager.SetBlockKinemactics(true);
                 RotateLeft();
             }
@@ -164,7 +163,6 @@ public class RotateGrid : MonoBehaviour {
         {
             if (woodBlockManager.areBlocksStationary())
             {
-                expandAnimator.SetTrigger("MoveRight");
                 woodBlockManager.SetBlockKinemactics(true);
                 RotateRight();
             }
@@ -346,6 +344,7 @@ public class RotateGrid : MonoBehaviour {
         {
             woodBlockManager.AlignBlocks();
             {
+                expandAnimator.SetTrigger("MoveLeft");
 				this.GetComponent<PrintAnswer>().AddMoveToList("Left");
 
                 TimesMoved++;
@@ -361,8 +360,8 @@ public class RotateGrid : MonoBehaviour {
         {
             woodBlockManager.AlignBlocks();
             {
+                expandAnimator.SetTrigger("MoveRight");
 				this.GetComponent<PrintAnswer>().AddMoveToList("Right");
-
                 TimesMoved++;
                 LastMoves.Push(GridOrientation.Right);
                 theTween = targetRotation.DORotate(new Vector3(0, 0, -90), rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
