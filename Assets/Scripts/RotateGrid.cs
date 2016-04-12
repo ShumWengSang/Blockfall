@@ -110,6 +110,7 @@ public class RotateGrid : MonoBehaviour {
 	public float rotationTime = 1.0f;
     bool GameOver = false;
 
+    public Animator expandAnimator;
     [Inspect(InspectorLevel.Debug)]
     public int TimesMoved
     {
@@ -122,7 +123,6 @@ public class RotateGrid : MonoBehaviour {
     }
 
     public int MovedTime;
-
 
 
     void Awake()
@@ -152,6 +152,7 @@ public class RotateGrid : MonoBehaviour {
         {
             if (woodBlockManager.areBlocksStationary())
             {
+                expandAnimator.SetTrigger("MoveLeft");
                 woodBlockManager.SetBlockKinemactics(true);
                 RotateLeft();
             }
@@ -164,6 +165,7 @@ public class RotateGrid : MonoBehaviour {
         {
             if (woodBlockManager.areBlocksStationary())
             {
+                expandAnimator.SetTrigger("MoveRight");
                 woodBlockManager.SetBlockKinemactics(true);
                 RotateRight();
             }
