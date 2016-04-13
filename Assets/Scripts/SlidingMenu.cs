@@ -103,6 +103,7 @@ public class SlidingMenu : MonoBehaviour {
         if (MoveParent)
         {
             ContentParent.SetParent(parentOrigParent);
+            ContentParent.SetSiblingIndex(1);
             MoveParent = false;
             if (finger.GetScaledSnapshotDelta(LeanTouch.Instance.TapThreshold).magnitude <= LeanTouch.Instance.SwipeThreshold)
             {

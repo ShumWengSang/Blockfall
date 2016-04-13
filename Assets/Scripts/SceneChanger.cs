@@ -24,6 +24,7 @@ public class SceneChanger : MonoBehaviour {
 
     public void ChangeScene(string scene)
     {
+        screenTransAnim.transform.SetAsLastSibling();
         screenManager.CloseCurrent(scene);
         StartCoroutine(loadNextScene(scene));
     }
@@ -35,7 +36,10 @@ public class SceneChanger : MonoBehaviour {
 
     IEnumerator loadNextScene(string scene)
     {
-        yield return wait;
-        SceneManager.LoadSceneAsync(scene);
+        while(screenTransAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !screenTransAnim.IsInTransition(0))
+        {
+            yield return null;
+        }
+        yield return SceneManager.LoadSceneAsync(scene);
     }
 }
