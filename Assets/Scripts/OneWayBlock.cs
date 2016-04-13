@@ -90,12 +90,16 @@ public class OneWayBlock : MonoBehaviour {
             if (!PassedBlocks.Contains(col))
             {
                 PassedBlocks.Add(col);
-                
+                DisableCollider(collisionBox);
                 if (--BlocksPassThrough < 0)
                 {
                     EnableCollider(collisionBox);
                 }
             }
+        }
+        else
+        {
+            EnableCollider(collisionBox);
         }
     }
 
