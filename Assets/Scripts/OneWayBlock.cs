@@ -224,4 +224,16 @@ public static class MathHelper
 
         return bRet;
     }
+
+    static public bool IsFloatBetween(float value, float max, float min)
+    {
+        bool bRet = false;
+
+        if ((value < max) && (value > min))
+        {
+            bRet = true;
+        }
+
+        return bRet;
+    }
 }

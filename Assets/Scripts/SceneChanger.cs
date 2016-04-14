@@ -29,6 +29,11 @@ public class SceneChanger : MonoBehaviour {
         StartCoroutine(loadNextScene(scene));
     }
 
+    public void LoadMainMenu()
+    {
+        ChangeScene("LevelSelection");
+    }
+
     public void LoadNextLevel()
     {
 

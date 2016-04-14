@@ -82,6 +82,7 @@ public class RotateGrid : MonoBehaviour {
 
     public delegate void GamePhase();
     public static event GamePhase OnFinishedRotating;
+    public static event GamePhase OnStartFalling;
     enum GridOrientation
     {
         Left,
@@ -376,6 +377,7 @@ public class RotateGrid : MonoBehaviour {
     {
         if (OnFinishedRotating != null) OnFinishedRotating();
         woodBlockManager.SetBlockKinemactics(false);
+        if (OnStartFalling != null) OnStartFalling();
         theTween = null;
     }
 
