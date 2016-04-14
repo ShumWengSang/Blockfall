@@ -11,8 +11,10 @@ public class GoalChecker : MonoBehaviour {
     public delegate void GameComplete();
     public static event GameComplete OnFinishedGame;
 
+    bool SentFinishedGame = false;
 	// Use this for initialization
 	void Start () {
+        SentFinishedGame = false;
         GameObject[] goals = GameObject.FindGameObjectsWithTag("GoalZone");
         goalCheck = new GoalCheck [goals.Length];
         for(int i = 0; i < goalCheck.Length; i++)
@@ -36,8 +38,10 @@ public class GoalChecker : MonoBehaviour {
 	void Update () {
 		if (manager.areBlocksStationary ()) {
 			if (areGoalsScored ()) {
-				if (OnFinishedGame != null) {
+                if (OnFinishedGame != null && !SentFinishedGame)
+                {
 					OnFinishedGame ();
+                    SentFinishedGame = true;
                     this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
 				}
 			}

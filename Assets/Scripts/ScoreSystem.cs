@@ -62,19 +62,16 @@ public class ScoreSystem : MonoBehaviour
     
     void OnEnable()
     {
-        GoalChecker.OnFinishedGame += OnGameOver;
+        GoalChecker.OnFinishedGame += OnFinishedGame;
     }
 
     void OnDisable()
     {
-        GoalChecker.GameComplete del = OnGameOver;
-        if(del != null)
-            GoalChecker.OnFinishedGame -= OnGameOver;
+        GoalChecker.OnFinishedGame -= OnFinishedGame;
     }
 
-    void OnGameOver()
+    void OnFinishedGame()
     {
-        GoalChecker.OnFinishedGame -= OnGameOver;
         var movedUsed = rotateScript.TimesMoved;
         if(movedUsed <= GoldRank)
         {

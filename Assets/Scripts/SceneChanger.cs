@@ -62,12 +62,12 @@ public class SceneChanger : MonoBehaviour {
             currentWorldInt = int.Parse(currentWorldString);
             currentWorldInt += 1;
 
-            SceneManager.LoadScene("Level" + currentWorldInt.ToString() + "-1");
+            ChangeScene("Level" + currentWorldInt.ToString() + "-1");
         }
         else
         {
             Debug.Log("Level" + currentWorldString + "-" + nextLevelInt.ToString());
-            SceneManager.LoadScene("Level" + currentWorldString + "-" + nextLevelInt.ToString());
+            ChangeScene("Level" + currentWorldString + "-" + nextLevelInt.ToString());
         }
     }
 
