@@ -7,7 +7,7 @@ public class VortexBox : MonoBehaviour {
     Transform currentObject;
     Rigidbody currentRb;
     IEnumerator holdObject;
-    public Vector3 collisionBoxWorldSize;
+    public Vector3 collisionCenter;
     BoxCollider collider;
     List<Transform> CheckedItems;
     void Start()
@@ -31,13 +31,13 @@ public class VortexBox : MonoBehaviour {
 
     void OnCompleteRotate()
     {
-        Vector3 size = transform.InverseTransformVector(collisionBoxWorldSize);
-        collider.size = new Vector3(Mathf.Abs(size.x), Mathf.Abs(size.y), 1);
+        Vector3 size = transform.InverseTransformVector(collisionCenter);
+        collider.center = new Vector3((size.x), (size.y), -1);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggering other object is " + other);
+        Debug.Log("Name of entering item is " + other.name);
         if(CheckedItems.Contains(other.transform) || currentObject == other.transform)
         {
             Debug.LogWarning("Found stuff not supposed tob e here");
@@ -50,8 +50,6 @@ public class VortexBox : MonoBehaviour {
         currentRb = other.GetComponent<Rigidbody>();
         if (currentRb != null)
         {
-
-            Debug.Log("Swapping");
             CheckedItems.Add(other.transform);
             currentObject = other.transform;
             StopAllCoroutines();
@@ -67,10 +65,8 @@ public class VortexBox : MonoBehaviour {
         do
         {
             distance = Vector2.Distance(transform.position, currentObject.transform.position);
-            Debug.Log("Distance is " + distance);
             yield return new WaitForFixedUpdate();
         } while (!MathHelper.IsFloatBetween(distance, 0.1f, 0f));
-        Debug.Log("I'm out");
         SnapObject.SnapTheObject(currentObject);
         currentObject.GetComponent<Rigidbody>().isKinematic = true;
         holdObject = null;
@@ -81,9 +77,16 @@ public class VortexBox : MonoBehaviour {
         CheckedItems.Clear();
         if (currentObject != null)
         {
-            currentObject.GetComponent<Rigidbody>().isKinematic = true;
-            CheckedItems.Add(currentObject);
+            //1 << LayerMask.NameToLayer("Default"))
+            RaycastHit hit;
+            Physics.Raycast(transform.position, Vector3.back, out hit, 2f ,1 << LayerMask.NameToLayer("Default"));
+            if (hit.collider != null)
+            {
+                Debug.Log("Adding " + currentObject.name + " to checked items");
+                currentObject = hit.collider.transform;
+                currentObject.GetComponent<Rigidbody>().isKinematic = true;
+                CheckedItems.Add(currentObject);
+            }
         }
-
     }
 }
