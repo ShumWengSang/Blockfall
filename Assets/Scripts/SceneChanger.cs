@@ -35,6 +35,11 @@ public class SceneChanger : MonoBehaviour {
         ChangeScene("LevelSelection");
     }
 
+    public void ReloadScene()
+    {
+        ChangeScene(SceneManager.GetActiveScene().name);
+    }
+
     public void LoadNextLevel()
     {
         string currentSceneString = SceneManager.GetActiveScene().name;
