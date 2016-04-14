@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
-
+using UnityEngine.SceneManagement;
 public class GoalChecker : MonoBehaviour {
 
 	//public RotateGrid grid;
@@ -39,7 +38,7 @@ public class GoalChecker : MonoBehaviour {
 			if (areGoalsScored ()) {
 				if (OnFinishedGame != null) {
 					OnFinishedGame ();
-					this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + EditorSceneManager.GetActiveScene().name + ".txt");
+                    this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
 				}
 			}
 		}
