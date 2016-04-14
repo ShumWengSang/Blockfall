@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
 
 public class SceneChanger : MonoBehaviour {
     ScreenManager screenManager;
@@ -38,7 +37,7 @@ public class SceneChanger : MonoBehaviour {
 
     public void LoadNextLevel()
     {
-        string currentSceneString = EditorSceneManager.GetActiveScene().name;
+        string currentSceneString = SceneManager.GetActiveScene().name;
 
         int posOfDash = currentSceneString.IndexOf("-");
 
