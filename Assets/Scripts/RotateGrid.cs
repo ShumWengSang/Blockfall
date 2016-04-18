@@ -25,10 +25,15 @@ public class WoodenBlockManager
     public void Start()
     {
         GameObject[] listOfGO = GameObject.FindGameObjectsWithTag("WoodBlock");
-        Blocks = new Rigidbody[listOfGO.Length];
+        GameObject[] ironBlocks = GameObject.FindGameObjectsWithTag("Iron Block");
+        Blocks = new Rigidbody[listOfGO.Length + ironBlocks.Length];
         for (int i = 0; i < listOfGO.Length; i++)
         {
             Blocks[i] = listOfGO[i].GetComponent<Rigidbody>();
+        }
+        for(int i = 0; i < ironBlocks.Length; i++)
+        {
+            Blocks[i + listOfGO.Length] = ironBlocks[i].GetComponent<Rigidbody>();
         }
     }
 

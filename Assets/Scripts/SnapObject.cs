@@ -55,4 +55,9 @@ public class SnapObject : MonoBehaviour {
         return Mathf.Approximately(myFloat, Mathf.RoundToInt(myFloat));
     }
 
+    void Start()
+    {
+        Destroy(this);
+    }
+
 }
