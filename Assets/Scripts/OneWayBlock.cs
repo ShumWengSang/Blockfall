@@ -59,6 +59,7 @@ public class OneWayBlock : MonoBehaviour {
                 direction = Vector2.up;
                 break;
         }
+        OnStartFalling();
     }
 
     [Inspect, Method(MethodDisplay.Invoke)]
