@@ -1,9 +1,21 @@
 fileFormatVersion: 2
 guid: 5fe58b40a3dbeb149bd686a519d57503
-timeCreated: 1461039054
+timeCreated: 1461040744
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: LevelSelect_Buttons_0
+    21300002: LevelSelect_Buttons_1
+    21300004: LevelSelect_Buttons_2
+    21300006: LevelSelect_Buttons_3
+    21300008: LevelSelect_Buttons_4
+    21300010: LevelSelect_Buttons_5
+    21300012: LevelSelect_Buttons_6
+    21300014: LevelSelect_Buttons_7
+    21300016: LevelSelect_Buttons_8
+    21300018: LevelSelect_Buttons_9
+    21300020: LevelSelect_Buttons_10
+    21300022: LevelSelect_Buttons_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,10 +39,10 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 2048
+  maxTextureSize: 512
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +50,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +61,199 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: LevelSelect_Buttons_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 781
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_1
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 781
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_2
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 781
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_3
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 525
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 525
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_5
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 525
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_6
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 269
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_7
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 269
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_8
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 269
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_9
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 13
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_10
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 13
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
+    - name: LevelSelect_Buttons_11
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 13
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 57.5}
+        - {x: -57, y: 54.5}
+        - {x: -57, y: -56.5}
+        - {x: 58, y: -56.5}
+        - {x: 58, y: 57.5}
     outline: []
   spritePackingTag: 
   userData: 
