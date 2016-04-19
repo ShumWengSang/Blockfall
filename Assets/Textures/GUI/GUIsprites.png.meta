@@ -1,9 +1,37 @@
 fileFormatVersion: 2
 guid: 229bd3905ac480e4f9d7bc6d335d438a
-timeCreated: 1461039051
+timeCreated: 1461040920
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: GUIsprites_0
+    21300002: GUIsprites_1
+    21300004: GUIsprites_2
+    21300006: GUIsprites_3
+    21300008: GUIsprites_5
+    21300010: GUIsprites_6
+    21300012: GUIsprites_7
+    21300014: GUIsprites_8
+    21300016: GUIsprites_9
+    21300018: GUIsprites_10
+    21300020: GUIsprites_11
+    21300022: GUIsprites_12
+    21300024: GUIsprites_13
+    21300026: GUIsprites_14
+    21300028: GUIsprites_15
+    21300030: GUIsprites_16
+    21300032: GUIsprites_17
+    21300034: GUIsprites_18
+    21300036: GUIsprites_19
+    21300038: GUIsprites_20
+    21300040: GUIsprites_21
+    21300042: GUIsprites_22
+    21300044: GUIsprites_23
+    21300046: GUIsprites_24
+    21300048: GUIsprites_25
+    21300050: GUIsprites_29
+    21300052: GUIsprites_26
+    21300054: GUIsprites_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,10 +55,10 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 2048
+  maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
-    aniso: -1
+    filterMode: 1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +66,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +77,651 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: GUIsprites_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1010
+        width: 424
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: GUIsprites_1
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 798
+        width: 228
+        height: 226
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 114, y: 35}
+        - {x: 99, y: 66}
+        - {x: 75, y: 93}
+        - {x: 40, y: 113}
+        - {x: -40, y: 113}
+        - {x: -92, y: 87}
+        - {x: -114, y: 34}
+        - {x: -114, y: -28}
+        - {x: -113, y: -34}
+        - {x: -100, y: -66}
+        - {x: -61, y: -103}
+        - {x: -38, y: -113}
+        - {x: 31, y: -113}
+        - {x: 67, y: -99}
+        - {x: 96, y: -75}
+        - {x: 114, y: -34}
+      - - {x: -4, y: 6}
+        - {x: -1, y: 7}
+        - {x: -1, y: 10}
+        - {x: -4, y: 11}
+        - {x: -6, y: 9}
+    - name: GUIsprites_2
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 868
+        width: 140
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 78}
+        - {x: -38, y: 67}
+        - {x: -70, y: 42}
+        - {x: -70, y: -37}
+        - {x: -62, y: -73}
+        - {x: -38, y: -78}
+        - {x: 20, y: -78}
+        - {x: 70, y: -38}
+        - {x: 70, y: 24}
+        - {x: 39, y: 78}
+    - name: GUIsprites_3
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 276
+        width: 82
+        height: 748
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 41, y: -126}
+        - {x: 35, y: -66}
+        - {x: 36, y: 187}
+        - {x: 41, y: 272}
+        - {x: 41, y: 374}
+        - {x: -29, y: 374}
+        - {x: -35, y: 372}
+        - {x: -41, y: 354}
+        - {x: -41, y: 320}
+        - {x: -36, y: 292}
+        - {x: -35, y: 291}
+        - {x: -35, y: -23}
+        - {x: -37, y: -23}
+        - {x: -41, y: -64}
+        - {x: -41, y: -362}
+        - {x: -30, y: -374}
+        - {x: 25, y: -374}
+        - {x: 41, y: -358}
+    - name: GUIsprites_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 924
+        width: 264
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -132, y: 42}
+        - {x: -132, y: -42}
+        - {x: 131, y: -42}
+        - {x: 132, y: -38}
+        - {x: 132, y: 41}
+        - {x: 131, y: 42}
+    - name: GUIsprites_6
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 851
+        width: 140
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55, y: 78.5}
+        - {x: -70, y: 54.5}
+        - {x: -70, y: 10.5}
+        - {x: -62, y: 0.5}
+        - {x: -63, y: -48.5}
+        - {x: -62, y: -73.5}
+        - {x: -52, y: -78.5}
+        - {x: 53, y: -78.5}
+        - {x: 70, y: -49.5}
+        - {x: 70, y: 76.5}
+        - {x: 69, y: 78.5}
+    - name: GUIsprites_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 838
+        width: 264
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -132, y: 42}
+        - {x: -132, y: -42}
+        - {x: 131, y: -42}
+        - {x: 132, y: -38}
+        - {x: 132, y: 41}
+        - {x: 131, y: 42}
+    - name: GUIsprites_8
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 707
+        width: 140
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55, y: 78.5}
+        - {x: -70, y: 54.5}
+        - {x: -70, y: 10.5}
+        - {x: -62, y: 0.5}
+        - {x: -63, y: -48.5}
+        - {x: -62, y: -73.5}
+        - {x: -52, y: -78.5}
+        - {x: 53, y: -78.5}
+        - {x: 70, y: -49.5}
+        - {x: 70, y: 76.5}
+        - {x: 69, y: 78.5}
+    - name: GUIsprites_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 611
+        width: 226
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113, y: 107.5}
+        - {x: 112, y: 108.5}
+        - {x: 111, y: 112.5}
+        - {x: -108, y: 112.5}
+        - {x: -108, y: 111.5}
+        - {x: -113, y: 106.5}
+        - {x: -113, y: -106.5}
+        - {x: -109, y: -111.5}
+        - {x: -107, y: -112.5}
+        - {x: 108, y: -112.5}
+        - {x: 108, y: -111.5}
+        - {x: 112, y: -107.5}
+        - {x: 113, y: -107.5}
+    - name: GUIsprites_10
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 609
+        width: 228
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 94, y: 75.5}
+        - {x: 75, y: 94.5}
+        - {x: 34, y: 113.5}
+        - {x: -29, y: 113.5}
+        - {x: -45, y: 110.5}
+        - {x: -88, y: 82.5}
+        - {x: -113, y: 44.5}
+        - {x: -114, y: 35.5}
+        - {x: -114, y: -32.5}
+        - {x: -95, y: -75.5}
+        - {x: -61, y: -101.5}
+        - {x: -38, y: -113.5}
+        - {x: 32, y: -113.5}
+        - {x: 67, y: -102.5}
+        - {x: 114, y: -46.5}
+        - {x: 114, y: 33.5}
+      - - {x: -5, y: 5.5}
+        - {x: -2, y: 6.5}
+        - {x: -2, y: 9.5}
+        - {x: -5, y: 10.5}
+        - {x: -7, y: 8.5}
+    - name: GUIsprites_11
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 570
+        width: 227
+        height: 226
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113.5, y: -107}
+        - {x: 113.5, y: 108}
+        - {x: 112.5, y: 109}
+        - {x: 111.5, y: 113}
+        - {x: -107.5, y: 113}
+        - {x: -107.5, y: 112}
+        - {x: -112.5, y: 107}
+        - {x: -113.5, y: 107}
+        - {x: -113.5, y: -106}
+        - {x: -112.5, y: -106}
+        - {x: -108.5, y: -111}
+        - {x: -105.5, y: -113}
+        - {x: 107.5, y: -113}
+        - {x: 108.5, y: -112}
+        - {x: 108.5, y: -111}
+        - {x: 112.5, y: -107}
+    - name: GUIsprites_12
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 546
+        width: 140
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55, y: 78.5}
+        - {x: -70, y: 54.5}
+        - {x: -70, y: 10.5}
+        - {x: -62, y: 0.5}
+        - {x: -63, y: -48.5}
+        - {x: -62, y: -73.5}
+        - {x: -52, y: -78.5}
+        - {x: 53, y: -78.5}
+        - {x: 70, y: -49.5}
+        - {x: 70, y: 76.5}
+        - {x: 69, y: 78.5}
+    - name: GUIsprites_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 226
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113, y: 107.5}
+        - {x: 112, y: 108.5}
+        - {x: 111, y: 112.5}
+        - {x: -108, y: 112.5}
+        - {x: -108, y: 111.5}
+        - {x: -113, y: 106.5}
+        - {x: -113, y: -106.5}
+        - {x: -109, y: -111.5}
+        - {x: -107, y: -112.5}
+        - {x: 108, y: -112.5}
+        - {x: 108, y: -111.5}
+        - {x: 112, y: -107.5}
+        - {x: 113, y: -107.5}
+    - name: GUIsprites_14
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 382
+        width: 227
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113.5, y: 107.5}
+        - {x: 112.5, y: 108.5}
+        - {x: 111.5, y: 112.5}
+        - {x: -107.5, y: 112.5}
+        - {x: -107.5, y: 111.5}
+        - {x: -112.5, y: 106.5}
+        - {x: -113.5, y: 106.5}
+        - {x: -113.5, y: -106.5}
+        - {x: -112.5, y: -106.5}
+        - {x: -108.5, y: -111.5}
+        - {x: -106.5, y: -112.5}
+        - {x: 108.5, y: -112.5}
+        - {x: 108.5, y: -111.5}
+        - {x: 112.5, y: -107.5}
+        - {x: 113.5, y: -107.5}
+    - name: GUIsprites_15
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 391
+        width: 134
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 75.5}
+        - {x: -67, y: -68.5}
+        - {x: -52, y: -73.5}
+        - {x: -39, y: -75.5}
+        - {x: 20, y: -75.5}
+        - {x: 67, y: -50.5}
+        - {x: 67, y: 27.5}
+        - {x: 50, y: 75.5}
+    - name: GUIsprites_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 157
+        width: 226
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113, y: 107.5}
+        - {x: 112, y: 108.5}
+        - {x: 111, y: 112.5}
+        - {x: -108, y: 112.5}
+        - {x: -108, y: 111.5}
+        - {x: -113, y: 106.5}
+        - {x: -113, y: -106.5}
+        - {x: -109, y: -111.5}
+        - {x: -107, y: -112.5}
+        - {x: 108, y: -112.5}
+        - {x: 108, y: -111.5}
+        - {x: 112, y: -107.5}
+        - {x: 113, y: -107.5}
+    - name: GUIsprites_17
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 155
+        width: 227
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113.5, y: 107.5}
+        - {x: 112.5, y: 108.5}
+        - {x: 111.5, y: 112.5}
+        - {x: -107.5, y: 112.5}
+        - {x: -107.5, y: 111.5}
+        - {x: -112.5, y: 106.5}
+        - {x: -113.5, y: 106.5}
+        - {x: -113.5, y: -106.5}
+        - {x: -112.5, y: -106.5}
+        - {x: -108.5, y: -111.5}
+        - {x: -106.5, y: -112.5}
+        - {x: 108.5, y: -112.5}
+        - {x: 108.5, y: -111.5}
+        - {x: 112.5, y: -107.5}
+        - {x: 113.5, y: -107.5}
+    - name: GUIsprites_18
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 113
+        width: 228
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 114, y: 30.5}
+        - {x: 101, y: 66.5}
+        - {x: 76, y: 94.5}
+        - {x: 34, y: 113.5}
+        - {x: -30, y: 113.5}
+        - {x: -66, y: 99.5}
+        - {x: -90, y: 84.5}
+        - {x: -114, y: 41.5}
+        - {x: -114, y: -31.5}
+        - {x: -103, y: -69.5}
+        - {x: -61, y: -103.5}
+        - {x: -38, y: -113.5}
+        - {x: 31, y: -113.5}
+        - {x: 67, y: -99.5}
+        - {x: 93, y: -73.5}
+        - {x: 114, y: -38.5}
+      - - {x: 4, y: 5.5}
+        - {x: 7, y: 6.5}
+        - {x: 7, y: 9.5}
+        - {x: 4, y: 10.5}
+        - {x: 2, y: 8.5}
+    - name: GUIsprites_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 41
+        width: 112
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56, y: 56}
+        - {x: -56, y: -35}
+        - {x: -39, y: -52}
+        - {x: -28, y: -56}
+        - {x: 47, y: -56}
+        - {x: 56, y: -28}
+        - {x: 56, y: 55}
+        - {x: 51, y: 56}
+    - name: GUIsprites_20
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 54
+        width: 101
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.5, y: 28.5}
+        - {x: -38.5, y: 28.5}
+        - {x: -50.5, y: 11.5}
+        - {x: -50.5, y: -10.5}
+        - {x: -39.5, y: -28.5}
+        - {x: -18.5, y: -28.5}
+        - {x: 50.5, y: -3.5}
+        - {x: 50.5, y: 1.5}
+        - {x: 46.5, y: 4.5}
+    - name: GUIsprites_21
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 21
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45, y: 45}
+        - {x: -45, y: -45}
+        - {x: 24, y: -45}
+        - {x: 45, y: -27}
+        - {x: 45, y: 33}
+        - {x: 19, y: 45}
+    - name: GUIsprites_22
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 21
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45, y: 45}
+        - {x: -45, y: -45}
+        - {x: 24, y: -45}
+        - {x: 45, y: -27}
+        - {x: 45, y: 33}
+        - {x: 19, y: 45}
+    - name: GUIsprites_23
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 21
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45, y: 45}
+        - {x: -45, y: -45}
+        - {x: 24, y: -45}
+        - {x: 45, y: -27}
+        - {x: 45, y: 33}
+        - {x: 19, y: 45}
+    - name: GUIsprites_24
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 20
+        width: 92
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38, y: -45.5}
+        - {x: 23, y: -45.5}
+        - {x: 46, y: -29.5}
+        - {x: 46, y: 16.5}
+        - {x: 35, y: 45.5}
+        - {x: -46, y: 45.5}
+        - {x: -46, y: -39.5}
+    - name: GUIsprites_25
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 24
+        width: 88
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 43.5}
+        - {x: -44, y: 18.5}
+        - {x: -44, y: -16.5}
+        - {x: -2, y: -43.5}
+        - {x: 6, y: -43.5}
+        - {x: 17, y: -17.5}
+        - {x: 17, y: 21.5}
+        - {x: 13, y: 43.5}
+      - - {x: 33, y: 26.5}
+        - {x: 31, y: 24.5}
+        - {x: 30, y: 1.5}
+        - {x: 30, y: -26.5}
+        - {x: 32, y: -27.5}
+        - {x: 40, y: -27.5}
+        - {x: 44, y: -24.5}
+        - {x: 44, y: 20.5}
+        - {x: 43, y: 26.5}
+      - - {x: 25, y: 23.5}
+        - {x: 20, y: 23.5}
+        - {x: 18, y: 22.5}
+        - {x: 18, y: -21.5}
+        - {x: 20, y: -23.5}
+        - {x: 25, y: -23.5}
+        - {x: 31, y: -11.5}
+        - {x: 31, y: 15.5}
+    - name: GUIsprites_29
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 4
+        width: 83
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -33.5, y: 23}
+        - {x: -41.5, y: 15}
+        - {x: -41.5, y: -18}
+        - {x: -37.5, y: -23}
+        - {x: 33.5, y: -23}
+        - {x: 41.5, y: -15}
+        - {x: 41.5, y: 19}
+        - {x: 37.5, y: 23}
+    - name: GUIsprites_26
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 18
+        width: 70
+        height: 92
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 35, y: 38}
+        - {x: 35, y: 46}
+        - {x: 21, y: 46}
+        - {x: -19, y: 24}
+        - {x: -35, y: -17}
+        - {x: -35, y: -40}
+        - {x: -31, y: -46}
+        - {x: -14, y: -46}
+        - {x: -9, y: -34}
+        - {x: 22, y: -27}
+        - {x: 32, y: -13}
+    - name: GUIsprites_4
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 341
+        width: 229
+        height: 229
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 111.5, y: 44.5}
+        - {x: 100.5, y: 67.5}
+        - {x: 52.5, y: 110.5}
+        - {x: 26.5, y: 114.5}
+        - {x: -23.5, y: 114.5}
+        - {x: -66.5, y: 99.5}
+        - {x: -98.5, y: 65.5}
+        - {x: -108.5, y: 43.5}
+        - {x: -114.5, y: 27.5}
+        - {x: -114.5, y: -37.5}
+        - {x: -77.5, y: -97.5}
+        - {x: -33.5, y: -114.5}
+        - {x: 40.5, y: -114.5}
+        - {x: 97.5, y: -77.5}
+        - {x: 114.5, y: -35.5}
+        - {x: 114.5, y: 29.5}
+      - - {x: 3.5, y: 5.5}
+        - {x: 6.5, y: 6.5}
+        - {x: 6.5, y: 9.5}
+        - {x: 3.5, y: 10.5}
+        - {x: 1.5, y: 8.5}
     outline: []
   spritePackingTag: 
   userData: 
