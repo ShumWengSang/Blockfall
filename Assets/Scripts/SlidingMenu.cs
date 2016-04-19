@@ -3,6 +3,7 @@ using System.Collections;
 using AdvancedInspector;
 using Lean;
 using DG.Tweening;
+using UnityEngine.UI;
 public class SlidingMenu : MonoBehaviour {
 
     public bool IgnoreGUI = false;
@@ -19,12 +20,28 @@ public class SlidingMenu : MonoBehaviour {
     public Transform fingerHover;
     public Transform parentOrigParent;
 
+    private float BoxCounter = 0;
+
+    public Image[] transparentBoxes;
+
     [Inspect(InspectorLevel.Debug)]
     private float Step = 0;
     [Inspect(InspectorLevel.Debug)]
     private Vector3 DisplayPosition;
     [Inspect(InspectorLevel.Debug)]
-    private float InternalCounter = 0;
+    private float InternalCounter
+    {
+        get { return BoxCounter; }
+        set
+        {
+            Debug.Log("counter is " + (int)BoxCounter + " " + BoxCounter);
+            int range = Mathf.Clamp((int)BoxCounter, 0, transparentBoxes.Length - 1);
+            transparentBoxes[range].CrossFadeAlpha(0.3f, 0.5f, true);
+            BoxCounter = value;
+            range = Mathf.Clamp((int)BoxCounter, 0, transparentBoxes.Length - 1);
+            transparentBoxes[range].CrossFadeAlpha(0.8f, 0.5f, true);
+        }
+    }
     [Inspect(InspectorLevel.Debug)]
     float []Steps;
     WaitForEndOfFrame EndFrame;
@@ -34,6 +51,11 @@ public class SlidingMenu : MonoBehaviour {
     {
         GenerateContentParent();
         EndFrame = new WaitForEndOfFrame();
+        for(int i = 0; i < transparentBoxes.Length; i++)
+        {
+            transparentBoxes[i].CrossFadeAlpha(0.3f, 0.0f, true);
+        }
+        InternalCounter = 0;
         //seq = DOTween.Sequence();
 	}
 
@@ -69,7 +91,6 @@ public class SlidingMenu : MonoBehaviour {
         }
         Step = Mathf.Round(Width / Content.Length) + margin;
         DisplayPosition = DefaultRect.localPosition;
-        InternalCounter = 0;
         Steps = new float[Content.Length];
         for(int i = 0; i < Steps.Length; i++)
         {
