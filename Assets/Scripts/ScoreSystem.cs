@@ -2,11 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 using AdvancedInspector;
+using UnityEngine.SceneManagement;
 public class ScoreSystem : MonoBehaviour
 {
-    [Group("Game UI"), Inspect]
+    //[Group("Game UI"), Inspect]
     public int World = 1;
-    [Group("Game UI"), Inspect]
+    //[Group("Game UI"), Inspect]
     public int level = 1;
     static ScoreSystem instance;
     [Inspect(InspectorLevel.Advanced)]
@@ -51,6 +52,22 @@ public class ScoreSystem : MonoBehaviour
     }
     void Start()
     {
+        string currentSceneString = SceneManager.GetActiveScene().name;
+
+        int posOfDash = currentSceneString.IndexOf("-");
+
+        //Parse current world in string form
+        int firstWorldDigit = currentSceneString.IndexOf("l") + 1;
+        string currentWorldString = currentSceneString.Substring(firstWorldDigit, posOfDash - firstWorldDigit); //This is in case we have world in double digits. 
+        int currentWorldInt = int.Parse(currentWorldString);
+
+        //Parse current level in string then int form
+        string currentLevelString = currentSceneString.Substring(posOfDash + 1);
+        int currentLevelInt = int.Parse(currentLevelString);
+
+        World = currentWorldInt;
+        level = currentLevelInt;
+
         UpdateTexts();
         gameOver.SetActive(false);
     }
@@ -73,23 +90,34 @@ public class ScoreSystem : MonoBehaviour
     void OnFinishedGame()
     {
         var movedUsed = rotateScript.TimesMoved;
+        int result = 1;
         if(movedUsed <= GoldRank)
         {
+            result = 4;
             Debug.Log("You get gold rank");
         }
         else if(movedUsed <= SilverRank)
         {
+            result = 3;
             Debug.Log("You got silver rank");
         }
         else if(movedUsed <= BronzeRank)
         {
+            result = 2;
             Debug.Log("You got bronze");
         }
         else
         {
+            result = 1;
             Debug.Log("You got aluminium");
         }
         NumberOfMoves.text = "Moves : " + movedUsed.ToString();
         gameOver.SetActive(true);
+        FinishedPuzzle(result);
+    }
+
+    void FinishedPuzzle(int result)
+    {
+        PlayerPrefs.SetInt("Level" + World + "-" + level, result);
     }
 }

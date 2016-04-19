@@ -32,6 +32,7 @@ public class LevelSelection : MonoBehaviour
                 WorldButtons[k, i] = WorldBGs[k].GetChild(i);
                 WorldButtons[k, i].GetComponentInChildren<Text>().text = (i + 1).ToString();
                 int Pref = PlayerPrefs.GetInt("Level" + k + "-" + i);
+                Debug.Log("Working on " + k + " : " + i + " Prefs is : " + Pref);
                 if (Pref >= 1)
                 {
                     //Level finished.
@@ -84,6 +85,13 @@ public class LevelSelection : MonoBehaviour
         PlayerPrefs.DeleteAll();
         for(int i = 0; i < FakeWorld; i++)
         {
+            if(i != FakeWorld - 1)
+            {
+                for (int j = 0; j < 15; j++)
+                {
+                    PlayerPrefs.SetInt("Level" + i.ToString() + "-" + j.ToString(), TrophyNumber);
+                }
+            }
             for(int j = 0; j < FakeLevel; j++)
             {
                 PlayerPrefs.SetInt("Level" + i.ToString() + "-" + j.ToString(), TrophyNumber);

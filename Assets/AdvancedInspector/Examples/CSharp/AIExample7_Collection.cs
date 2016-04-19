@@ -61,8 +61,6 @@ public class AIExample7_Collection : MonoBehaviour
     {
         return items;
     }
-
-    public Camera[] cameras;
 }
 
 // When binding an enum with a collection, the values should be in a zero-based 1 increment order, similar to the index of the collection.

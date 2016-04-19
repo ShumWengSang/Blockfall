@@ -420,13 +420,20 @@ Take a look at the video for more information. It's an example of what the AI ca
 [CHANGES]
 - New option in the preferences; ability to disable the expansion of references. The exception being ComponentMonoBehaviour.
 - New option in the preferences; ability to change the naming pattern of collection. 
-- Selected tabs are now persistant. 
+- Selected tabs are now persistent. 
 [FIXES]
-- Clean up all the example to remove most of the [AdvancedInspector] attributes or redudant [Inspect]
+- Clean up all the example to remove most of the [AdvancedInspector] attributes or redundant [Inspect]
 - Hide the ComponentMonoBehaviour's owner. It wasn't supposed to be displayed in the inspector.
-- Make float written with a "," automaticly convert to "."
+- Make float written with a "," automatically convert to "."
 - Fixed an issue when Inspect Default Items is false, and the inspector would remember some item as being expanded.
 - Fixed issue with Collection in DropDown or Button mode while displaying value type.
+
+1.66:
+[FIXES]
+- Removed Light shadow warning about Unity Pro.
+- Removed HDR limitation on camera, it's no longer valid.
+- Performance issue fixed on the Selection Tracker while duplicating large selection of GameObject.
+- Performance issue when entering/exiting play and reloading context.
 
 1.60 and above is only supported on Unity 5.2+
 You may require to disable custom Advanced Inspector if you wish to use 1.60 on 5.1x.

@@ -25,7 +25,6 @@ namespace AdvancedInspector
             SerializedObject so = new SerializedObject(Instances.Cast<UnityEngine.Object>().ToArray());
 
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("type"),
-                new HelpAttribute(new HelpAttribute.HelpDelegate(HelpLightType)),
                 new DescriptorAttribute("Type", "The type of the light.", "http://docs.unity3d.com/ScriptReference/Light-type.html")));
 
             m_Lightmapping = so.FindProperty("m_Lightmapping");
@@ -60,7 +59,6 @@ namespace AdvancedInspector
             //Acts like a group
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("shadows"),
                 new InspectAttribute(new InspectAttribute.InspectDelegate(IsNotArea)),
-                new HelpAttribute(new HelpAttribute.HelpDelegate(HelpShadowPro)),
                 new DescriptorAttribute("Shadow Type", "How this light casts shadows", "http://docs.unity3d.com/ScriptReference/Light-shadows.html")));
 
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("shadowStrength"),
@@ -159,22 +157,6 @@ namespace AdvancedInspector
         {
             if (((Light)Instances[0]).bounceIntensity > 0 && IsPointOrSpot() && m_Lightmapping.intValue != 2)
                 return new HelpItem(HelpType.Warning, "Currently realtime indirect bounce light shadowing for spot and point lights is not supported.");
-
-            return null;
-        }
-
-        public HelpItem HelpShadowPro()
-        {
-            if (HasShadow() && IsPointOrSpot() && !UnityEditorInternal.InternalEditorUtility.HasPro())
-                return new HelpItem(HelpType.Warning, "Real time shadow for point and spot lights requires Unity Pro.");
-
-            return null;
-        }
-
-        public HelpItem HelpLightType()
-        {
-            if (IsArea() && !UnityEditorInternal.InternalEditorUtility.HasPro())
-                return new HelpItem(HelpType.Warning, "Area lights require Unity Pro.");
 
             return null;
         }

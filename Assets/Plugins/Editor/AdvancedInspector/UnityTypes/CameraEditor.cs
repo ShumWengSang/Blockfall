@@ -55,7 +55,7 @@ namespace AdvancedInspector
                 new DescriptorAttribute("Render Texture", "Destination render texture (Unity Pro only).", "http://docs.unity3d.com/ScriptReference/Camera-targetTexture.html")));
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("useOcclusionCulling"),
                 new DescriptorAttribute("Occlusion Culling", "Whether or not the Camera will use occlusion culling during rendering.", "http://docs.unity3d.com/ScriptReference/Camera-useOcclusionCulling.html")));
-            Fields.Add(new InspectorField(type, Instances, type.GetProperty("hdr"), new ReadOnlyAttribute(new ReadOnlyAttribute.ReadOnlyDelegate(IsHDRAvailable)),
+            Fields.Add(new InspectorField(type, Instances, type.GetProperty("hdr"),
                 new DescriptorAttribute("HDR", "High dynamic range rendering.", "http://docs.unity3d.com/ScriptReference/Camera-hdr.html")));
 
             Fields.Add(new InspectorField(null, new UnityEngine.Object[] { this }, new object[] { this }, this.GetType().GetMethod("TakeScreenshot"),
@@ -243,11 +243,6 @@ namespace AdvancedInspector
             }
 
             return true;
-        }
-
-        private bool IsHDRAvailable()
-        {
-            return !UnityEditorInternal.InternalEditorUtility.HasPro();
         }
 
         private HelpItem RenderingHelp()

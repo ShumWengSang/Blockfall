@@ -5,7 +5,7 @@ using AdvancedInspector;
 public class AIExample12_Group : MonoBehaviour 
 {
     // Item can be grouped using the Group attribute;
-    [Group("My First Group")]
+    [Group("My First Group", 0, 0, 1)]
     public float myFirstField;
 
     [Group("My First Group")]
