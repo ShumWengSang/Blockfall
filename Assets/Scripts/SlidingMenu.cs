@@ -23,7 +23,6 @@ public class SlidingMenu : MonoBehaviour {
     private float BoxCounter = 0;
 
     public Image[] transparentBoxes;
-
     [Inspect(InspectorLevel.Debug)]
     private float Step = 0;
     [Inspect(InspectorLevel.Debug)]
@@ -34,7 +33,6 @@ public class SlidingMenu : MonoBehaviour {
         get { return BoxCounter; }
         set
         {
-            Debug.Log("counter is " + (int)BoxCounter + " " + BoxCounter);
             int range = Mathf.Clamp((int)BoxCounter, 0, transparentBoxes.Length - 1);
             transparentBoxes[range].CrossFadeAlpha(0.3f, 0.5f, true);
             BoxCounter = value;
@@ -188,6 +186,7 @@ public class SlidingMenu : MonoBehaviour {
             float newPosX = Steps[(int)InternalCounter];
             ContentParent.DOLocalMoveX(newPosX, MoveTime).SetEase(Ease.InQuad);
         }
+
     }
 
     void MoveRight()

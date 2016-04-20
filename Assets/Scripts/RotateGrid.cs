@@ -88,6 +88,14 @@ public class RotateGrid : MonoBehaviour {
     public delegate void GamePhase();
     public static event GamePhase OnFinishedRotating;
     public static event GamePhase OnStartFalling;
+
+    public Button LeftButton;
+    public Button RightButton;
+    void SetButtonInteractable(bool interact)
+    {
+        LeftButton.interactable = interact;
+        RightButton.interactable = interact;
+    }
     enum GridOrientation
     {
         Left,
@@ -151,6 +159,7 @@ public class RotateGrid : MonoBehaviour {
 	void Start () {
 		targetRotation = transform;
         TimesMoved = 0;
+        SetButtonInteractable(true);
 
 	}
 
@@ -349,6 +358,7 @@ public class RotateGrid : MonoBehaviour {
     }
     void RotateLeft()
     {
+        SetButtonInteractable(false);
         if (theTween == null)
         {
             woodBlockManager.AlignBlocks();
@@ -365,6 +375,7 @@ public class RotateGrid : MonoBehaviour {
 
     void RotateRight()
     {
+        SetButtonInteractable(false);
         if (theTween == null)
         {
             woodBlockManager.AlignBlocks();
@@ -384,6 +395,7 @@ public class RotateGrid : MonoBehaviour {
         woodBlockManager.SetBlockKinemactics(false);
         if (OnStartFalling != null) OnStartFalling();
         theTween = null;
+        SetButtonInteractable(true);
     }
 
     public void UndoLastMove()
