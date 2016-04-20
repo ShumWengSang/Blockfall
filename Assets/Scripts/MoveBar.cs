@@ -21,6 +21,8 @@ public class MoveBar : MonoBehaviour {
 
     public GameObject ScoreManager;
 
+    public Text MovesMade;
+
     [Inspect(InspectorLevel.Advanced)]
     public RotateGrid rotateScript;
 
@@ -49,5 +51,31 @@ public class MoveBar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         ProgressBar.GetComponent<Image>().fillAmount = (float)rotateScript.GetComponent<RotateGrid>().TimesMoved / bronzeRank;
-	}
+        MovesMade.GetComponent<Text>().text = rotateScript.GetComponent<RotateGrid>().TimesMoved.ToString();
+
+        if (rotateScript.GetComponent<RotateGrid>().TimesMoved <= goldRank)
+        {
+            GoldMarker.GetComponent<Image>().color = Color.white;
+            SilverMarker.GetComponent<Image>().color = Color.black;
+            BronzeMarker.GetComponent<Image>().color = Color.black;
+        }
+        else if (rotateScript.GetComponent<RotateGrid>().TimesMoved <= silverRank)
+        {
+            GoldMarker.GetComponent<Image>().color = Color.black;
+            SilverMarker.GetComponent<Image>().color = Color.white;
+            BronzeMarker.GetComponent<Image>().color = Color.black;
+        }
+        else if (rotateScript.GetComponent<RotateGrid>().TimesMoved <= bronzeRank)
+        {
+            GoldMarker.GetComponent<Image>().color = Color.black;
+            SilverMarker.GetComponent<Image>().color = Color.black;
+            BronzeMarker.GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            GoldMarker.GetComponent<Image>().color = Color.black;
+            SilverMarker.GetComponent<Image>().color = Color.black;
+            BronzeMarker.GetComponent<Image>().color = Color.black;
+        }
+    }
 }
