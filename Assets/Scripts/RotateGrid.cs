@@ -88,6 +88,7 @@ public class RotateGrid : MonoBehaviour {
     public delegate void GamePhase();
     public static event GamePhase OnFinishedRotating;
     public static event GamePhase OnStartFalling;
+    public static event GamePhase OnFinishedFalling;
 
     public Button LeftButton;
     public Button RightButton;
@@ -126,6 +127,7 @@ public class RotateGrid : MonoBehaviour {
 
 	public float rotationTime = 1.0f;
     bool GameOver = false;
+    bool FinishedFalling;
 
     public Animator expandAnimator;
     [Inspect(InspectorLevel.Debug)]
@@ -208,18 +210,28 @@ public class RotateGrid : MonoBehaviour {
             woodBlockManager.SetBlockKinemactics(true);
             woodBlockManager.AlignBlocks();
 		}
+
+        if (woodBlockManager.areBlocksStationary() && !FinishedFalling)
+        {
+            Debug.Log("Calling here");
+            FinishedFalling = true;
+            OnFinishedFalling();
+        }
+
 	}
 
     void OnEnable()
     {
         LeanTouch.OnFingerSwipe += OnFingerSwipe;
         GoalChecker.OnFinishedGame += OnGameComplete;
+        RotateGrid.OnFinishedFalling += OnFinishedFallingDown;
     }
 
     void OnDisable()
     {
         LeanTouch.OnFingerSwipe -= OnFingerSwipe;
-        //GoalChecker.OnFinishedGame -= OnGameComplete;
+        RotateGrid.OnFinishedFalling -= OnFinishedFallingDown;
+        GoalChecker.OnFinishedGame -= OnGameComplete;
     }
 
 
@@ -395,7 +407,7 @@ public class RotateGrid : MonoBehaviour {
         woodBlockManager.SetBlockKinemactics(false);
         if (OnStartFalling != null) OnStartFalling();
         theTween = null;
-        SetButtonInteractable(true);
+        FinishedFalling = false;
     }
 
     public void UndoLastMove()
@@ -433,5 +445,10 @@ public class RotateGrid : MonoBehaviour {
     {
         LeanTouch.Instance.enabled = false;
         GameOver = true;
+    }
+
+    void OnFinishedFallingDown()
+    {
+        SetButtonInteractable(true);
     }
 }
