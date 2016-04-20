@@ -40,6 +40,10 @@ public class MoveBar : MonoBehaviour {
         Vector3 silPos = SilverMarker.localPosition;
         silPos.x = silverRank / bronzeRank * barLength;
         SilverMarker.anchoredPosition = silPos;
+
+        GoldMarker.GetChild(1).GetComponent<Text>().text = goldRank.ToString();
+        SilverMarker.GetChild(1).GetComponent<Text>().text = silverRank.ToString();
+        BronzeMarker.GetChild(1).GetComponent<Text>().text = bronzeRank.ToString();
     }
 	
 	// Update is called once per frame
