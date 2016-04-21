@@ -27,6 +27,8 @@ public class MoveBar : MonoBehaviour {
 
     public Text MovesMade;
 
+    public float progressRate; //How fast the bar fills out when you make a move
+
     [Inspect(InspectorLevel.Advanced)]
     public RotateGrid rotateScript;
 
@@ -56,11 +58,18 @@ public class MoveBar : MonoBehaviour {
         GoldMarker.GetChild(1).GetComponent<Text>().text = goldRank.ToString();
         SilverMarker.GetChild(1).GetComponent<Text>().text = silverRank.ToString();
         BronzeMarker.GetChild(1).GetComponent<Text>().text = bronzeRank.ToString();
+
+        progressRate = 0.005f;
+        ProgressBar.fillAmount = 0;
     }
-	
+
 	// Update is called once per frame
 	void Update () {
-        ProgressBar.fillAmount = (float)rotateScript.TimesMoved / bronzeRank;
+        if (ProgressBar.fillAmount < (float)rotateScript.TimesMoved / bronzeRank)
+        {
+            ProgressBar.fillAmount += progressRate;
+        }
+
         MovesMade.text = rotateScript.TimesMoved.ToString();
 
         if (rotateScript.TimesMoved <= goldRank)
