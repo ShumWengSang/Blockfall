@@ -12,7 +12,7 @@ public class ReCalcCubeTexture : MonoBehaviour
 
     private void Update()
     {
-        Calculate();
+        //Calculate();
     }
 
     public void Calculate()
@@ -24,11 +24,12 @@ public class ReCalcCubeTexture : MonoBehaviour
         var mesh = GetMesh();
         mesh.uv = SetupUvMap(mesh.uv);
         mesh.name = "Cube Instance";
-
-        if (GetComponent<Renderer>().sharedMaterial.mainTexture.wrapMode != TextureWrapMode.Repeat)
+        /*
+        if (GetComponent<MeshRenderer>().renderer.mater.wrapMode != TextureWrapMode.Repeat)
         {
-            GetComponent<Renderer>().sharedMaterial.mainTexture.wrapMode = TextureWrapMode.Repeat;
+            GetComponent<MeshRenderer>().material.mainTexture.wrapMode = TextureWrapMode.Repeat;
         }
+        */
     }
 
     private Mesh GetMesh()
