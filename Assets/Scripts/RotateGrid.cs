@@ -54,7 +54,7 @@ public class WoodenBlockManager
     {
         for (int i = 0; i < Blocks.Length; i++)
         {
-            if (Blocks[i].velocity.magnitude > 0.05f)
+            if (Blocks[i].velocity.sqrMagnitude > 0.05f)
                 return false;
         }
         return true;
@@ -188,6 +188,7 @@ public class RotateGrid : MonoBehaviour {
             }
         }
     }
+    float timeLeft = 0.1f;
 
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
@@ -213,9 +214,13 @@ public class RotateGrid : MonoBehaviour {
 
         if (woodBlockManager.areBlocksStationary() && !FinishedFalling)
         {
-            Debug.Log("Calling here");
-            FinishedFalling = true;
-            OnFinishedFalling();
+            timeLeft -= Time.deltaTime;
+            if (timeLeft <= 0)
+            {
+                FinishedFalling = true;
+                OnFinishedFalling();
+                timeLeft = 0.1f;
+            }
         }
 
 	}
