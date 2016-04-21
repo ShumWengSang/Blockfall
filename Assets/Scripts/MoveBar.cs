@@ -19,6 +19,10 @@ public class MoveBar : MonoBehaviour {
 
     public Image ProgressBar; //Part that scales
 
+    private Image GoldImage;
+    private Image SilverImage;
+    private Image BronzeImage;
+
     public GameObject ScoreManager;
 
     public Text MovesMade;
@@ -30,9 +34,15 @@ public class MoveBar : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        goldRank = ScoreManager.GetComponent<ScoreSystem>().GoldRank;
-        silverRank = ScoreManager.GetComponent<ScoreSystem>().SilverRank;
-        bronzeRank = ScoreManager.GetComponent<ScoreSystem>().BronzeRank;
+
+        GoldImage = GoldMarker.GetComponent<Image>();
+        SilverImage = SilverMarker.GetComponent<Image>();
+        BronzeImage = BronzeMarker.GetComponent<Image>();
+
+        ScoreSystem sys = ScoreManager.GetComponent<ScoreSystem>();
+        goldRank = sys.GoldRank;
+        silverRank = sys.SilverRank;
+        bronzeRank = sys.BronzeRank;
         barLength = GoldMarker.parent.GetComponent<RectTransform>().rect.width;
 
         Vector3 goldPos = GoldMarker.localPosition;
@@ -50,32 +60,32 @@ public class MoveBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        ProgressBar.GetComponent<Image>().fillAmount = (float)rotateScript.GetComponent<RotateGrid>().TimesMoved / bronzeRank;
-        MovesMade.GetComponent<Text>().text = rotateScript.GetComponent<RotateGrid>().TimesMoved.ToString();
+        ProgressBar.fillAmount = (float)rotateScript.TimesMoved / bronzeRank;
+        MovesMade.text = rotateScript.TimesMoved.ToString();
 
-        if (rotateScript.GetComponent<RotateGrid>().TimesMoved <= goldRank)
+        if (rotateScript.TimesMoved <= goldRank)
         {
-            GoldMarker.GetComponent<Image>().color = Color.white;
-            SilverMarker.GetComponent<Image>().color = Color.black;
-            BronzeMarker.GetComponent<Image>().color = Color.black;
+            GoldImage.color = Color.white;
+            SilverImage.color = Color.black;
+            BronzeImage.color = Color.black;
         }
-        else if (rotateScript.GetComponent<RotateGrid>().TimesMoved <= silverRank)
+        else if (rotateScript.TimesMoved <= silverRank)
         {
-            GoldMarker.GetComponent<Image>().color = Color.black;
-            SilverMarker.GetComponent<Image>().color = Color.white;
-            BronzeMarker.GetComponent<Image>().color = Color.black;
+            GoldImage.color = Color.black;
+            SilverImage.color = Color.white;
+            BronzeImage.color = Color.black;
         }
-        else if (rotateScript.GetComponent<RotateGrid>().TimesMoved <= bronzeRank)
+        else if (rotateScript.TimesMoved <= bronzeRank)
         {
-            GoldMarker.GetComponent<Image>().color = Color.black;
-            SilverMarker.GetComponent<Image>().color = Color.black;
-            BronzeMarker.GetComponent<Image>().color = Color.white;
+            GoldImage.color = Color.black;
+            SilverImage.color = Color.black;
+            BronzeImage.color = Color.white;
         }
         else
         {
-            GoldMarker.GetComponent<Image>().color = Color.black;
-            SilverMarker.GetComponent<Image>().color = Color.black;
-            BronzeMarker.GetComponent<Image>().color = Color.black;
+            GoldImage.color = Color.black;
+            SilverImage.color = Color.black;
+            BronzeImage.color = Color.black;
         }
     }
 }
