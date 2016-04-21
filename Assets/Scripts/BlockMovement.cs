@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-
+using DG.Tweening;
 public class BlockMovement : MonoBehaviour {
 
 	public Vector3 blockVel;
@@ -18,6 +18,7 @@ public class BlockMovement : MonoBehaviour {
         box = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
         origBoxColSize = box.size;
+        transform.DOBlendableScaleBy(new Vector3(0.05f,0.05f,0f), 5f).SetEase(Ease.InOutElastic).SetLoops(-1, LoopType.Yoyo);
 	}
 
 
