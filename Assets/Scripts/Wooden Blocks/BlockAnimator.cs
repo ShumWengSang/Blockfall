@@ -14,9 +14,11 @@ public class BlockAnimator : MonoBehaviour {
     void OnEnable()
     {
         RotateGrid.OnStartFalling += OnStartFalling;
+        RotateGrid.OnFinishedFalling += OnFinishFalling;
     }
     void OnDisable()
     {
+        RotateGrid.OnFinishedFalling -= OnFinishFalling;
         RotateGrid.OnStartFalling -= OnStartFalling;
     }
 
@@ -45,11 +47,12 @@ public class BlockAnimator : MonoBehaviour {
         while(isFalling)
         {  
             isGrounded(out info);
+            
             if (info.collider == null)
             {
                 OnStartFalling();
             }
-            else if (info.collider.CompareTag("Wall"))
+            else if (info.collider.CompareTag("Wall") || info.collider.CompareTag("PlacedWallBlock"))
             {
                 OnEndFalling();
             }
@@ -95,6 +98,13 @@ public class BlockAnimator : MonoBehaviour {
         {
             return this;
         }
+    }
+
+    void OnFinishFalling()
+    {
+        Debug.Log("Calling onfinishfalling");
+        StopAllCoroutines();
+        Falling = false;
     }
 
     void OnEndFalling()
