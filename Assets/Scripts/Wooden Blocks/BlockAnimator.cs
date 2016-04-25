@@ -10,6 +10,7 @@ public class BlockAnimator : MonoBehaviour {
     Transform thisTransform;
 
     public BlockAnimator otherBlockAnimator;
+    public bool PlayAnimator = true;
 
     void OnEnable()
     {
@@ -32,14 +33,22 @@ public class BlockAnimator : MonoBehaviour {
         isFalling = false;
         thisTransform = transform;
         sr = GetComponent<SpriteRenderer>();
-        distToGround = sr.sprite.bounds.extents.y;
+        if (sr != null)
+        {
+            distToGround = sr.sprite.bounds.extents.y;
+        }
+        else
+        {
+            distToGround = 0.5f;
+        }
         animator = GetComponent<Animator>();
     }
 
     RaycastHit info;
 	// Update is called once per frame
 	void Update () {
-        thisTransform.rotation = Quaternion.identity;
+        if (PlayAnimator)
+            thisTransform.rotation = Quaternion.identity;
     }
 
     IEnumerator fallingUpdate()
@@ -68,7 +77,7 @@ public class BlockAnimator : MonoBehaviour {
                     OnStartFalling();
                 }
             }
-            else if (info.collider.CompareTag("WoodBlock"))
+            else if (info.collider.CompareTag("WoodBlock") || info.collider.CompareTag("Iron Block"))
             {
                 otherBlockAnimator = info.collider.transform.GetComponentInChildren<BlockAnimator>();
                 if (!GetNextScript().isFalling)
@@ -109,7 +118,8 @@ public class BlockAnimator : MonoBehaviour {
 
     void OnEndFalling()
     {
-        animator.SetTrigger("Impact");
+        if(PlayAnimator)
+            animator.SetTrigger("Impact");
         Falling = false;
         isFalling = false;
     }
@@ -121,7 +131,8 @@ public class BlockAnimator : MonoBehaviour {
         {
             Falling = true;
             isFalling = true;
-            animator.SetTrigger("Fall");
+            if(PlayAnimator)
+                animator.SetTrigger("Fall");
             StartCoroutine(fallingUpdate());
             otherBlockAnimator = null;
         }
