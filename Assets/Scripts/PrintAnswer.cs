@@ -5,7 +5,7 @@ using System.IO;
 
 public class PrintAnswer : MonoBehaviour {
 
-	List<string> movesMadeList = new List<string>();
+	public List<string> movesMadeList = new List<string>();
 
 	public void AddMoveToList(string move)
 	{
@@ -22,6 +22,24 @@ public class PrintAnswer : MonoBehaviour {
 				sw.WriteLine (movesMadeList[i]);
 			}
 		}
+	}
+
+	public int GetNumberOfMoves(string filename)
+	{
+        Debug.Log("Num");
+        int count = 0;
+        string line;
+
+		StreamReader sr = new StreamReader("Answers/" + filename);
+
+        while ((line = sr.ReadLine()) != null)
+        {
+            count++;
+        }
+
+        sr.Close();
+
+        return count;
 	}
 	/*
 	// Use this for initialization

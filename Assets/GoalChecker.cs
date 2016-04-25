@@ -53,7 +53,20 @@ public class GoalChecker : MonoBehaviour {
             {
                 OnFinishedGame();
                 SentFinishedGame = true;
-                this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
+
+                if (System.IO.File.Exists("Answers/" + SceneManager.GetActiveScene().name + ".txt")) //if file exists
+                {
+                    //check if current answer is shorter
+                    int prevAnsMoves = this.GetComponent<PrintAnswer>().GetNumberOfMoves(SceneManager.GetActiveScene().name + ".txt");
+                    int currentAnsMoves = this.GetComponent<PrintAnswer>().movesMadeList.Count;
+
+                    if (currentAnsMoves < prevAnsMoves)
+                        this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
+                }
+                else
+                {
+                    this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
+                }           
             }
         }
     }
