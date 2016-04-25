@@ -27,6 +27,7 @@ public class GoalCheck : MonoBehaviour {
 		if (col.CompareTag("WoodBlock")) {
 			SetEmission (litEmission);
 			goalScored = true;
+            col.GetComponentInChildren<Animator>().SetTrigger("EndZone");
 		}
 	}
 
