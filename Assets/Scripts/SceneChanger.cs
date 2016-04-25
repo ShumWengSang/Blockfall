@@ -19,7 +19,6 @@ public class SceneChanger : MonoBehaviour {
     }
     void OnLevelWasLoaded(int index)
     {
-        Debug.Log("Loading level");
         screenManager.OpenPanel(screenTransAnim);
     }
 

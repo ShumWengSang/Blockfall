@@ -12,6 +12,17 @@ public class GoalChecker : MonoBehaviour {
     public static event GameComplete OnFinishedGame;
 
     bool SentFinishedGame = false;
+
+    void OnEnable()
+    {
+        RotateGrid.OnFinishedFalling += OnFinishFalling;
+    }
+
+    void OnDisable()
+    {
+        RotateGrid.OnFinishedFalling -= OnFinishFalling;
+    }
+
 	// Use this for initialization
 	void Start () {
         SentFinishedGame = false;
@@ -34,17 +45,16 @@ public class GoalChecker : MonoBehaviour {
 		return true;
 	}
 
-	// Update is called once per frame
-	void Update () {
-		if (manager.areBlocksStationary ()) {
-			if (areGoalsScored ()) {
-                if (OnFinishedGame != null && !SentFinishedGame)
-                {
-					OnFinishedGame ();
-                    SentFinishedGame = true;
-                    this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
-				}
-			}
-		}
-	}
+    void OnFinishFalling()
+    {
+        if (areGoalsScored())
+        {
+            if (OnFinishedGame != null && !SentFinishedGame)
+            {
+                OnFinishedGame();
+                SentFinishedGame = true;
+                this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
+            }
+        }
+    }
 }
