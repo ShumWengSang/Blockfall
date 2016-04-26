@@ -26,7 +26,6 @@ public class PrintAnswer : MonoBehaviour {
 
 	public int GetNumberOfMoves(string filename)
 	{
-        Debug.Log("Num");
         int count = 0;
         string line;
 
