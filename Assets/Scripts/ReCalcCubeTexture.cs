@@ -35,19 +35,19 @@ public class ReCalcCubeTexture : MonoBehaviour
     private Mesh GetMesh()
     {
         Mesh mesh;
-
-#if UNITY_EDITOR
+        /*
+#if UNITY_EDITOR*/
 
         var meshFilter = GetComponent<MeshFilter>();
         var meshCopy = Instantiate(meshFilter.sharedMesh);
         mesh = meshFilter.mesh = meshCopy;
-
+/*
 #else
         
         mesh = GetComponent<MeshFilter>().mesh
 
 #endif
-
+        */
         return mesh;
     }
 
