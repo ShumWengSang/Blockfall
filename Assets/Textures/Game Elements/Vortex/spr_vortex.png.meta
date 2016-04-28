@@ -1,0 +1,319 @@
+fileFormatVersion: 2
+guid: 47153391027aff549a7a25a66714eb5c
+timeCreated: 1461818753
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: spr_vortex_0
+    21300002: spr_vortex_1
+    21300004: spr_vortex_2
+    21300006: spr_vortex_3
+    21300008: spr_vortex_4
+    21300010: spr_vortex_5
+    21300012: spr_vortex_6
+    21300014: spr_vortex_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 256
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: spr_vortex_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 103, y: 86}
+        - {x: 95, y: 96}
+        - {x: 75, y: 109}
+        - {x: 39, y: 127}
+        - {x: 29, y: 128}
+        - {x: -33, y: 128}
+        - {x: -62, y: 119}
+        - {x: -114, y: 64}
+        - {x: -128, y: 38}
+        - {x: -128, y: 6}
+        - {x: -120, y: -8}
+        - {x: -113, y: -62}
+        - {x: -80, y: -102}
+        - {x: -61, y: -111}
+        - {x: -15, y: -120}
+        - {x: 2, y: -121}
+        - {x: 64, y: -121}
+        - {x: 101, y: -114}
+        - {x: 127, y: -61}
+        - {x: 128, y: -48}
+        - {x: 128, y: 16}
+    - name: spr_vortex_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: 12}
+        - {x: 114, y: 69}
+        - {x: 95, y: 98}
+        - {x: 45, y: 123}
+        - {x: 5, y: 127}
+        - {x: -35, y: 127}
+        - {x: -80, y: 119}
+        - {x: -102, y: 108}
+        - {x: -109, y: 102}
+        - {x: -104, y: 85}
+        - {x: -93, y: 85}
+        - {x: -122, y: 59}
+        - {x: -128, y: 46}
+        - {x: -128, y: -28}
+        - {x: -125, y: -30}
+        - {x: -101, y: -77}
+        - {x: -81, y: -103}
+        - {x: -48, y: -128}
+        - {x: 5, y: -128}
+        - {x: 91, y: -118}
+        - {x: 119, y: -85}
+        - {x: 128, y: -40}
+    - name: spr_vortex_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -40}
+        - {x: 128, y: 38}
+        - {x: 127, y: 50}
+        - {x: 104, y: 80}
+        - {x: 95, y: 94}
+        - {x: 31, y: 128}
+        - {x: -55, y: 128}
+        - {x: -62, y: 113}
+        - {x: -89, y: 89}
+        - {x: -115, y: 53}
+        - {x: -120, y: 25}
+        - {x: -120, y: -13}
+        - {x: -119, y: -35}
+        - {x: -107, y: -99}
+        - {x: -71, y: -123}
+        - {x: -32, y: -124}
+        - {x: 35, y: -124}
+        - {x: 65, y: -122}
+        - {x: 91, y: -118}
+        - {x: 119, y: -85}
+        - {x: 124, y: -61}
+    - name: spr_vortex_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: 32}
+        - {x: 95, y: 110}
+        - {x: 60, y: 128}
+        - {x: 22, y: 128}
+        - {x: 20, y: 124}
+        - {x: 20, y: 115}
+        - {x: 21, y: 112}
+        - {x: 25, y: 109}
+        - {x: -9, y: 108}
+        - {x: -57, y: 114}
+        - {x: -116, y: 63}
+        - {x: -119, y: 49}
+        - {x: -119, y: -22}
+        - {x: -115, y: -60}
+        - {x: -82, y: -104}
+        - {x: -2, y: -124}
+        - {x: 43, y: -124}
+        - {x: 65, y: -122}
+        - {x: 100, y: -112}
+        - {x: 128, y: -61}
+    - name: spr_vortex_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 126, y: 35}
+        - {x: 109, y: 67}
+        - {x: 94, y: 91}
+        - {x: 90, y: 92}
+        - {x: 76, y: 103}
+        - {x: 56, y: 111}
+        - {x: 20, y: 116}
+        - {x: -29, y: 116}
+        - {x: -55, y: 109}
+        - {x: -78, y: 104}
+        - {x: -120, y: 56}
+        - {x: -120, y: -11}
+        - {x: -114, y: -54}
+        - {x: -82, y: -104}
+        - {x: -22, y: -123}
+        - {x: 97, y: -123}
+        - {x: 128, y: -70}
+        - {x: 128, y: 17}
+    - name: spr_vortex_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: -61}
+        - {x: 128, y: -41}
+        - {x: 128, y: 25}
+        - {x: 127, y: 34}
+        - {x: 112, y: 69}
+        - {x: 92, y: 97}
+        - {x: 18, y: 125}
+        - {x: -22, y: 125}
+        - {x: -50, y: 120}
+        - {x: -95, y: 80}
+        - {x: -111, y: 52}
+        - {x: -119, y: 21}
+        - {x: -119, y: -15}
+        - {x: -110, y: -58}
+        - {x: -92, y: -89}
+        - {x: -70, y: -115}
+        - {x: -41, y: -128}
+        - {x: 1, y: -128}
+        - {x: 54, y: -123}
+        - {x: 91, y: -118}
+        - {x: 119, y: -85}
+    - name: spr_vortex_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: -61}
+        - {x: 128, y: -31}
+        - {x: 128, y: 7}
+        - {x: 121, y: 53}
+        - {x: 101, y: 93}
+        - {x: 74, y: 112}
+        - {x: 69, y: 115}
+        - {x: 5, y: 121}
+        - {x: -28, y: 121}
+        - {x: -55, y: 107}
+        - {x: -91, y: 87}
+        - {x: -113, y: 52}
+        - {x: -125, y: 10}
+        - {x: -125, y: -21}
+        - {x: -119, y: -60}
+        - {x: -81, y: -103}
+        - {x: -47, y: -116}
+        - {x: 8, y: -127}
+        - {x: 33, y: -127}
+        - {x: 46, y: -125}
+        - {x: 91, y: -118}
+        - {x: 119, y: -85}
+    - name: spr_vortex_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 128, y: -29}
+        - {x: 128, y: 1}
+        - {x: 122, y: 35}
+        - {x: 111, y: 68}
+        - {x: 91, y: 97}
+        - {x: 29, y: 128}
+        - {x: -27, y: 128}
+        - {x: -40, y: 127}
+        - {x: -104, y: 93}
+        - {x: -104, y: 79}
+        - {x: -123, y: 49}
+        - {x: -124, y: 7}
+        - {x: -124, y: -46}
+        - {x: -110, y: -83}
+        - {x: -80, y: -102}
+        - {x: -44, y: -120}
+        - {x: -20, y: -122}
+        - {x: 63, y: -122}
+        - {x: 91, y: -118}
+        - {x: 119, y: -85}
+        - {x: 124, y: -61}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
