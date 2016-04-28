@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using AdvancedInspector;
 public class OneWayBlock : MonoBehaviour {
-
+    public bool Debug_b = false;
     int oldLayer = -1;
     int voidLayer;
     int BlocksPassThrough = 0;
@@ -84,72 +84,84 @@ public class OneWayBlock : MonoBehaviour {
         Rigidbody rb = col.GetComponent<Rigidbody>();
         if (rb == null)
             return;
+        if (Debug_b)
+        {
+            Debug.Log("Object passing through me is " + col.name);
+        }
         Vector2 vel = transform.InverseTransformDirection(rb.velocity);
         Direction velDir = DetermineDirection(vel);
         if (velDir == currentDirection)
         {
+            if (Debug_b)
+            {
+                Debug.Log("Letting object through after direction check ");
+            }
             if (!PassedBlocks.Contains(col))
             {
                 PassedBlocks.Add(col);
                 DisableCollider(collisionBox);
                 if (--BlocksPassThrough < 0)
                 {
+                    if (Debug_b)
+                    {
+                        Debug.Log("BlocksPassThrough amount is " + BlocksPassThrough);
+                    }
                     EnableCollider(collisionBox);
                 }
             }
         }
         else
         {
+            if (Debug_b)
+            {
+                Debug.Log("Enabling collider as direction is wrong. The direction of col is " + velDir + " while mine is " + currentDirection + " with velocity being " + rb.velocity + " and transformed vel is " + vel);
+            }
             EnableCollider(collisionBox);
         }
     }
 
+    static Vector3[] compass = new Vector3[] { Vector3.left, Vector3.right, Vector3.up, Vector3.down };
     Direction DetermineDirection(Vector2 vel)
     {
-        if (!MathHelper.VectorFloatIsZero(vel.x))
+        var maxDot = -Mathf.Infinity;
+        var ret = Vector3.zero;
+
+        for(int i = 0; i < compass.Length; i++)
         {
-            if (vel.x > 0.0f)
+            var temp = Vector3.Dot(vel, compass[i]);
+            if(temp > maxDot)
             {
-                Debug.Log("Moving right");
-                return Direction.Right;
-            }
-            else if (vel.x < 0.0f)
-            {
-                Debug.Log("Moving left");
-                return Direction.Left;
+                ret = compass[i];
+                maxDot = temp;
             }
         }
-        else if (!MathHelper.VectorFloatIsZero(vel.y))
+        if(ret == Vector3.left)
         {
-            if (vel.y > 0.0f)
-            {
-                Debug.Log("Moving up");
-                return Direction.Up;
-            }
-            else if (vel.y < 0.0f)
-            {
-                return Direction.Down;
-                Debug.Log("Moving down");
-            }
+            return Direction.Left;
         }
-        return Direction.none;
+        else if(ret == Vector3.right)
+        {
+            return Direction.Right;
+        }
+        else if(ret == Vector3.up)
+        {
+            return Direction.Up;
+        }
+        else if(ret == Vector3.down)
+        {
+            return Direction.Down;
+        }
+        else
+        {
+            return Direction.none;
+        }
+
+
     }
 
     void OnStartFalling()
     {
         PassedBlocks.Clear();
-        //int AmountOfWoodBlocks = 0;
-        //RaycastHit[] hit = Physics.RaycastAll(transform.position, direction);
-        //Collider[] WoodBlocks;
-        //for (int i = 0; i < hit.Length; i++)
-        //{
-        //    if (hit[i].collider.CompareTag("WoodBlock"))
-        //    {
-        //        AmountOfWoodBlocks++;
-        //    }
-        //}
-
-        //Debug.Log("Amount of wood above is that I can allow through is " + AmountOfWoodBlocks);
 
         RaycastHit []hit = Physics.RaycastAll(transform.position, Vector2.down);
         int WoodBelowMe = 0;
@@ -168,10 +180,14 @@ public class OneWayBlock : MonoBehaviour {
         if(wall != null)
         {
             int YDifference = Mathf.RoundToInt(Mathf.Abs(transform.position.y - wall.position.y)) - 1;
-            Debug.Log("Y difference is " + YDifference);
-            Debug.Log("Amount of wood below me is " + WoodBelowMe);
+            if (Debug_b)
+            {
+                Debug.Log("Y difference is " + YDifference);
+                Debug.Log("Amount of wood below me is " + WoodBelowMe);
+            }
             BlocksPassThrough = YDifference - WoodBelowMe;
-            Debug.Log("Amount of blocks i will allow through are " + BlocksPassThrough);
+            if (Debug_b)
+                Debug.Log("Amount of blocks i will allow through are " + BlocksPassThrough);
             if(BlocksPassThrough > 0)
             {
                 DisableCollider(collisionBox);
