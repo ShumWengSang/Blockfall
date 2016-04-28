@@ -111,7 +111,6 @@ public class BlockAnimator : MonoBehaviour {
 
     void OnFinishFalling()
     {
-        Debug.Log("Calling onfinishfalling");
         StopAllCoroutines();
         Falling = false;
     }
