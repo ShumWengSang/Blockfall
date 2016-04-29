@@ -191,6 +191,8 @@ public class RotateGrid : MonoBehaviour {
     float timeLeft = 0.1f;
 
 	void Update() {
+
+#if UNITY_EDITOR
 		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             if (woodBlockManager.areBlocksStationary())
             {
@@ -211,6 +213,7 @@ public class RotateGrid : MonoBehaviour {
             woodBlockManager.SetBlockKinemactics(true);
             woodBlockManager.AlignBlocks();
 		}
+#endif
 
         if (woodBlockManager.areBlocksStationary() && !FinishedFalling)
         {
