@@ -6,6 +6,7 @@ using Lean;
 using DG.Tweening;
 using AdvancedInspector;
 using UnityEngine.UI;
+using System.Linq;
 
 public class WoodenBlockManager
 {
@@ -40,6 +41,17 @@ public class WoodenBlockManager
     void OnDestroy()
     {
         instance = null;
+    }
+
+    public void ChangeBlocksMass()
+    {
+        //Not used anymore.
+        Rigidbody[] orderedBlocks = Blocks.OrderBy(block => block.transform.position.y).ToArray();
+        float mass = 1;
+        for (int i = orderedBlocks.Length - 1; i >= 0; i--)
+        {
+            orderedBlocks[i].mass = ++mass;
+        }
     }
 
     public void SetBlockKinemactics(bool value)
@@ -415,6 +427,7 @@ public class RotateGrid : MonoBehaviour {
         if (OnFinishedRotating != null) OnFinishedRotating();
         woodBlockManager.AlignBlocks();
         woodBlockManager.SetBlockKinemactics(false);
+        //woodBlockManager.ChangeBlocksMass();
         if (OnStartFalling != null) OnStartFalling();
         theTween = null;
         FinishedFalling = false;
