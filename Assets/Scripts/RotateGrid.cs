@@ -44,12 +44,13 @@ public class WoodenBlockManager
 
     public void SetBlockKinemactics(bool value)
     {
+        
         for (int i = 0; i < Blocks.Length; i++)
         {
             Blocks[i].isKinematic = value;
         }
     }
-
+    
     public bool areBlocksStationary()
     {
         for (int i = 0; i < Blocks.Length; i++)
@@ -412,6 +413,7 @@ public class RotateGrid : MonoBehaviour {
     void OnTweenComplete()
     {
         if (OnFinishedRotating != null) OnFinishedRotating();
+        woodBlockManager.AlignBlocks();
         woodBlockManager.SetBlockKinemactics(false);
         if (OnStartFalling != null) OnStartFalling();
         theTween = null;

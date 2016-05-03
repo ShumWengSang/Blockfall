@@ -122,6 +122,7 @@ public class ScoreSystem : MonoBehaviour
 
     void FinishedPuzzle(int result)
     {
+        Debug.Log("Level: " + World + "-" + level + " result is " + result);
         PlayerPrefs.SetInt("Level" + World + "-" + level, result);
     }
 }

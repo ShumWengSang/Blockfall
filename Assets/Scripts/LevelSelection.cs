@@ -25,12 +25,12 @@ public class LevelSelection : MonoBehaviour
     {
         bool FinishedLastLevel = true;
         WorldButtons = new Transform[WorldBGs.Length, WorldBGs[0].childCount];
-        for (int k = 0; k < WorldBGs.Length; k++)
+        for (int k = 1; k < WorldBGs.Length + 1; k++)
         {
-            for (int i = 0; i < WorldBGs[k].childCount; i++)
+            for (int i = 1; i < WorldBGs[k - 1].childCount + 1; i++)
             {
-                WorldButtons[k, i] = WorldBGs[k].GetChild(i);
-                WorldButtons[k, i].GetComponentInChildren<Text>().text = (i + 1).ToString();
+                WorldButtons[k - 1, i - 1] = WorldBGs[k - 1].GetChild(i - 1);
+                WorldButtons[k - 1, i - 1].GetComponentInChildren<Text>().text = (i).ToString();
                 int Pref = PlayerPrefs.GetInt("Level" + k + "-" + i);
                 Debug.Log("Working on " + k + " : " + i + " Prefs is : " + Pref);
                 if (Pref >= 1)
@@ -41,32 +41,32 @@ public class LevelSelection : MonoBehaviour
                     switch (Pref)
                     {
                         case 1:
-                            WorldButtons[k, i].GetChild(1).GetComponent<Image>().sprite = TrashTrophy;
+                            WorldButtons[k - 1, i - 1].GetChild(1).GetComponent<Image>().sprite = TrashTrophy;
                             break;
                         case 2:
-                            WorldButtons[k, i].GetChild(1).GetComponent<Image>().sprite = BronzeTrophy;
+                            WorldButtons[k - 1, i - 1].GetChild(1).GetComponent<Image>().sprite = BronzeTrophy;
                             break;
                         case 3:
-                            WorldButtons[k, i].GetChild(1).GetComponent<Image>().sprite = SilverTrophy;
+                            WorldButtons[k - 1, i - 1].GetChild(1).GetComponent<Image>().sprite = SilverTrophy;
                             break;
                         case 4:
-                            WorldButtons[k, i].GetChild(1).GetComponent<Image>().sprite = GoldTrophy;
+                            WorldButtons[k - 1, i - 1].GetChild(1).GetComponent<Image>().sprite = GoldTrophy;
                             break;
                     }
 
-                    WorldButtons[k, i].GetComponent<Button>().interactable = true;
+                    WorldButtons[k - 1, i - 1].GetComponent<Button>().interactable = true;
                 }
                 else
                 {
-                    WorldButtons[k, i].GetChild(1).GetComponent<Image>().sprite = NoTrophy;
+                    WorldButtons[k - 1, i - 1].GetChild(1).GetComponent<Image>().sprite = NoTrophy;
                     if(FinishedLastLevel)
                     {
                         FinishedLastLevel = false;
-                        WorldButtons[k, i].GetComponent<Button>().interactable = true;
+                        WorldButtons[k - 1, i - 1].GetComponent<Button>().interactable = true;
                     }
                     else
                     {
-                        WorldButtons[k, i].GetComponent<Button>().interactable = false;
+                        WorldButtons[k - 1, i - 1].GetComponent<Button>().interactable = false;
                     }
                 }
             }
