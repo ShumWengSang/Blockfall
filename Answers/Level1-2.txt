@@ -2,5 +2,3 @@
 01 Right
 02 Left
 03 Right
-04 Left
-05 Right

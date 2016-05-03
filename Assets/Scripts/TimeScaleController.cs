@@ -21,6 +21,6 @@ public class TimeScaleController : MonoBehaviour {
 
     void OnFinishedGame()
     {
-        timeScale = 1f;
+        Time.timeScale = 1f;
     }
 }
