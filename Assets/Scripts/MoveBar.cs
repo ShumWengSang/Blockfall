@@ -22,7 +22,7 @@ public class MoveBar : MonoBehaviour {
     private Image GoldImage;
     private Image SilverImage;
     private Image BronzeImage;
-
+    
     public GameObject ScoreManager;
 
     public Text MovesMade;
@@ -60,14 +60,21 @@ public class MoveBar : MonoBehaviour {
         BronzeMarker.GetChild(1).GetComponent<Text>().text = bronzeRank.ToString();
 
         progressRate = 0.005f;
-        ProgressBar.fillAmount = 0;
+        ProgressBar.fillAmount = 1;
     }
 
 	// Update is called once per frame
 	void Update () {
+        /*
         if (ProgressBar.fillAmount < (float)rotateScript.TimesMoved / bronzeRank)
         {
             ProgressBar.fillAmount += progressRate;
+        }
+        */
+
+        if (ProgressBar.fillAmount > (bronzeRank - (float)rotateScript.TimesMoved) / bronzeRank )
+        {
+            ProgressBar.fillAmount -= progressRate;
         }
 
         MovesMade.text = rotateScript.TimesMoved.ToString();

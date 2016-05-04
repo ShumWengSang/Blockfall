@@ -101,6 +101,7 @@ public class LevelSelection : MonoBehaviour
 
     void Start()
     {
+        FakePlayerPrefData();
         SetButtons();
     }
 	
