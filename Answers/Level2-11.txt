@@ -5,5 +5,3 @@
 04 Right
 05 Right
 06 Right
-07 Right
-08 Right
