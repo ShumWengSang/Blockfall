@@ -1,0 +1,14 @@
+00 Left
+01 Left
+02 Right
+03 Right
+04 Left
+05 Left
+06 Left
+07 Left
+08 Left
+09 Right
+10 Right
+11 Left
+12 Left
+13 Left
