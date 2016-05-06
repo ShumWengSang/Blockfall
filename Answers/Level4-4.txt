@@ -1,0 +1,4 @@
+00 Left
+01 Left
+02 Right
+03 Left
