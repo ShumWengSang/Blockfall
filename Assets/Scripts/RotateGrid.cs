@@ -260,7 +260,7 @@ public class RotateGrid : MonoBehaviour {
     {
         if (!woodBlockManager.areBlocksStationary())
             return;
-
+        Ray fingerRay = finger.GetStartRay();
         woodBlockManager.SetBlockKinemactics(true);
 
         var StartViewPos = mainCamera.ScreenToViewportPoint(finger.StartScreenPosition);
@@ -422,6 +422,11 @@ public class RotateGrid : MonoBehaviour {
         }
     }
 
+    void OnUndoTweenComplete()
+    {
+        woodBlockManager.AlignBlocks();
+    }
+
     void OnTweenComplete()
     {
         if (OnFinishedRotating != null) OnFinishedRotating();
@@ -461,8 +466,10 @@ public class RotateGrid : MonoBehaviour {
         {
             targetVector = new Vector3(0, 0, 90);
         }
-        theTween = targetRotation.DORotate(targetVector, rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();
+        theTween = targetRotation.DORotate(targetVector, rotationTime).SetEase(Ease.OutSine).OnComplete(OnUndoTweenComplete).SetRelative();
     }
+
+
 
     void OnGameComplete()
     {

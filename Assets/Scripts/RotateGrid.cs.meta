@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: f7c75d9e769fc8042a70e01c92382d09
-timeCreated: 1459766620
+timeCreated: 1462525092
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - LeftButton: {fileID: 11495598, guid: 33527e4b1a349ae4aaf17fe3baaf5740, type: 2}
+  - RightButton: {fileID: 11449924, guid: 33527e4b1a349ae4aaf17fe3baaf5740, type: 2}
+  - MovesDone: {instanceID: 0}
+  - expandAnimator: {fileID: 9580274, guid: e02168788a0f0f54aa72820c257c7171, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
