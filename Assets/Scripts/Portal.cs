@@ -3,21 +3,73 @@ using System.Collections;
 
 public class Portal : MonoBehaviour {
 
-    public GameObject OtherPortal;
-
-    void OnTriggerEnter(Collider other)
+    public Portal OtherPortal;
+    public GameObject lastObject
     {
-        if (other.transform.position.y - transform.position.y > 0) //Check if above
-            other.transform.position = OtherPortal.transform.position;
+        get
+        {
+            return theObject;
+        }
+        set
+        {
+            theObject = value;
+            OtherPortal.theObject = value;
+        }
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    private GameObject theObject;
+
+    void OnEnable()
+    {
+        RotateGrid.OnUndoStart += OnStartUndo;
+        RotateGrid.OnFinishedFalling += OnFinishFalling;
+        RotateGrid.OnUndoFinish += OnFinishUndo;
+    }
+
+    void OnDisable()
+    {
+        RotateGrid.OnFinishedFalling -= OnFinishFalling;
+        RotateGrid.OnUndoStart -= OnStartUndo;
+        RotateGrid.OnUndoFinish -= OnFinishUndo;
+    }
+
+    bool Undoing = false;
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Entering trigger area");
+        if (lastObject != other.gameObject)
+        {
+            OtherPortal.lastObject = other.gameObject;
+            lastObject = other.gameObject;
+
+            other.transform.position = OtherPortal.transform.position;
+            BlockUndoModule undo = other.GetComponent<BlockUndoModule>();
+            undo.OnFinishedRotating();
+            Debug.Log("Coming here.");
+        }
+        if(Undoing)
+        {
+
+            BlockUndoModule undo = other.GetComponent<BlockUndoModule>();
+            RotateGrid.undoWaitExtra = 1.0f;
+            undo.MoveToLastPosition();
+        }
+    }
+
+    void OnStartUndo()
+    {
+        Undoing = true;
+        lastObject = null;
+    }
+
+    void OnFinishUndo()
+    {
+        Undoing = false;
+        lastObject = null;
+    }
+
+    void OnFinishFalling()
+    {
+        lastObject = null;
+    }
 }

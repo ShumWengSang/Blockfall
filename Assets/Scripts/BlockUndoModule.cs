@@ -6,6 +6,7 @@ using DG.Tweening;
 public class BlockUndoModule : MonoBehaviour {
     static List<BlockUndoModule> ListOfUndoModules = new List<BlockUndoModule>();
     public static float undoTime = 1.0f;
+    [AdvancedInspector.Inspect]
     Stack<Vector3> BlockLastPosition = new Stack<Vector3>();
 
     Rigidbody rb;
@@ -53,12 +54,12 @@ public class BlockUndoModule : MonoBehaviour {
         ListOfUndoModules.Remove(this);
     }
 
-    void OnFinishedRotating()
+    public void OnFinishedRotating()
     {
         BlockLastPosition.Push(transform.position);
     }
 
-    void MoveToLastPosition(bool changeKinematics = false)
+    public void MoveToLastPosition(bool changeKinematics = false)
     {
         if (changeKinematics)
             rb.isKinematic = true;

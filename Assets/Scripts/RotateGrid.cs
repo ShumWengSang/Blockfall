@@ -454,13 +454,16 @@ public class RotateGrid : MonoBehaviour {
             StartCoroutine(undoMove());
     }
 
+    static public float undoWaitExtra = 0.0f;
     IEnumerator undoMove()
     {
         if(OnUndoStart != null) OnUndoStart();
         woodBlockManager.SetBlockKinemactics(true);
         BlockUndoModule.UndoAllBlocks();
         yield return waitUndo;
-
+        yield return new WaitForSeconds(undoWaitExtra);
+        Debug.Log("End waiting for extra");
+        undoWaitExtra = 0.0f;
         Vector3 targetVector;
         GridOrientation currentOrientation = LastMoves.Pop();
         if(currentOrientation == GridOrientation.Left)
