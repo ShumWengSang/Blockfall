@@ -21,12 +21,16 @@ public class VortexBox : MonoBehaviour {
     {
         RotateGrid.OnFinishedRotating += OnCompleteRotate;
         RotateGrid.OnStartFalling += OnStartFalling;
+        RotateGrid.OnUndoStart += OnUndoStart;
+        RotateGrid.OnUndoFinish += OnUndoFinish;
     }
 
     void OnDisable()
     {
         RotateGrid.OnFinishedRotating -= OnCompleteRotate;
         RotateGrid.OnStartFalling -= OnStartFalling;
+        RotateGrid.OnUndoStart -= OnUndoStart;
+        RotateGrid.OnUndoFinish -= OnUndoFinish;
     }
 
     void OnCompleteRotate()
@@ -87,6 +91,26 @@ public class VortexBox : MonoBehaviour {
                 currentObject.GetComponent<Rigidbody>().isKinematic = true;
                 CheckedItems.Add(currentObject);
             }
+        }
+    }
+
+    void OnUndoStart()
+    {
+        OnCompleteRotate();
+        currentObject = null;
+        CheckedItems.Clear();
+    }
+
+    void OnUndoFinish()
+    {
+        RaycastHit hit;
+        Physics.Raycast(transform.position, Vector3.back, out hit, 2f, 1 << LayerMask.NameToLayer("Default"));
+        if (hit.collider != null)
+        {
+            Debug.Log("Adding " + currentObject.name + " to checked items");
+            currentObject = hit.collider.transform;
+            currentObject.GetComponent<Rigidbody>().isKinematic = true;
+            CheckedItems.Add(currentObject);
         }
     }
 }

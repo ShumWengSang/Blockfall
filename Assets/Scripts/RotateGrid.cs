@@ -12,7 +12,6 @@ public class WoodenBlockManager
 {
     public static WoodenBlockManager instance;
     public Rigidbody[] Blocks;
-
     public WoodenBlockManager ()
     {
         Awake();
@@ -102,6 +101,8 @@ public class RotateGrid : MonoBehaviour {
     public static event GamePhase OnFinishedRotating;
     public static event GamePhase OnStartFalling;
     public static event GamePhase OnFinishedFalling;
+    public static event GamePhase OnUndoFinish;
+    public static event GamePhase OnUndoStart;
 
     public Button LeftButton;
     public Button RightButton;
@@ -130,6 +131,8 @@ public class RotateGrid : MonoBehaviour {
         Third,
         Fourth
     }
+
+    WaitForSeconds waitUndo;
     Stack<GridOrientation> LastMoves;
 	Transform targetRotation;
     Camera mainCamera;
@@ -158,6 +161,8 @@ public class RotateGrid : MonoBehaviour {
 
     void Awake()
     {
+
+        waitUndo = new WaitForSeconds(BlockUndoModule.undoTime);
         LastMoves = new Stack<GridOrientation>();
         mainCamera = Camera.main;
 		woodBlockManager = WoodenBlockManager.instance;
@@ -424,7 +429,12 @@ public class RotateGrid : MonoBehaviour {
 
     void OnUndoTweenComplete()
     {
+
         woodBlockManager.AlignBlocks();
+        theTween = null;
+        woodBlockManager.SetBlockKinemactics(false);
+        TimesMoved--;
+        if (OnUndoFinish != null) OnUndoFinish();
     }
 
     void OnTweenComplete()
@@ -440,21 +450,17 @@ public class RotateGrid : MonoBehaviour {
 
     public void UndoLastMove()
     {
-        if(LastMoves.Count > 1)
+        if(LastMoves.Count > 0)
             StartCoroutine(undoMove());
     }
 
     IEnumerator undoMove()
     {
-
-        Physics.gravity = -Physics.gravity;
-        yield return new WaitForSeconds(0.5f);
-        while (!woodBlockManager.areBlocksStationary())
-        {
-            yield return null;
-        }
-        Physics.gravity = -Physics.gravity;
+        if(OnUndoStart != null) OnUndoStart();
         woodBlockManager.SetBlockKinemactics(true);
+        BlockUndoModule.UndoAllBlocks();
+        yield return waitUndo;
+
         Vector3 targetVector;
         GridOrientation currentOrientation = LastMoves.Pop();
         if(currentOrientation == GridOrientation.Left)
