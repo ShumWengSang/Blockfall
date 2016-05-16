@@ -83,16 +83,16 @@ public class LevelSelection : MonoBehaviour
     void FakePlayerPrefData()
     {
         PlayerPrefs.DeleteAll();
-        for(int i = 0; i < FakeWorld; i++)
+        for(int i = 1; i <= FakeWorld; i++)
         {
-            if(i != FakeWorld - 1)
+            if(i != FakeWorld) //If not max fake world set all trophies
             {
-                for (int j = 0; j < 15; j++)
+                for (int j = 1; j <= 12; j++)
                 {
                     PlayerPrefs.SetInt("Level" + i.ToString() + "-" + j.ToString(), TrophyNumber);
                 }
             }
-            for(int j = 0; j < FakeLevel; j++)
+            for(int j = 1; j <= FakeLevel; j++) //else set to fakelevel
             {
                 PlayerPrefs.SetInt("Level" + i.ToString() + "-" + j.ToString(), TrophyNumber);
             }
