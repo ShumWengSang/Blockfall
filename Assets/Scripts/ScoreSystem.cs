@@ -122,7 +122,7 @@ public class ScoreSystem : MonoBehaviour
         {
             result = 1;
             onGameCompleteMedel.sprite = Aluminum;
-            endMedalText = "Runner Up Rank!";
+            endMedalText = "Runner Up!";
             Debug.Log("You got aluminium");
         }
         EndMedalText.text = "Medal : " + endMedalText;

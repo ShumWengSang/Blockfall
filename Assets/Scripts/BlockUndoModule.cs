@@ -39,7 +39,10 @@ public class BlockUndoModule : MonoBehaviour {
 
     void OnEnable(){
         RotateGrid.OnFinishedRotating += OnFinishedRotating;
-        
+        if(ListOfUndoModules == null)
+        {
+            ListOfUndoModules = new List<BlockUndoModule>();
+        }
         ListOfUndoModules.Add(this);
 
         BlockLastPosition.Push(transform.position);
