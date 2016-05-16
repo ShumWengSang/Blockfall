@@ -2,7 +2,10 @@
 01 Left
 02 Left
 03 Left
-04 Right
-05 Right
+04 Left
+05 Left
 06 Left
-07 Left
+07 Right
+08 Right
+09 Right
+10 Right
