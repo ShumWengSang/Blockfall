@@ -5,5 +5,6 @@
 04 Left
 05 Left
 06 Left
-07 Left
-08 Left
+07 Right
+08 Right
+09 Right
