@@ -56,17 +56,20 @@ public class ScoreSystem : MonoBehaviour
 
         int posOfDash = currentSceneString.IndexOf("-");
 
-        //Parse current world in string form
-        int firstWorldDigit = currentSceneString.IndexOf("l") + 1;
-        string currentWorldString = currentSceneString.Substring(firstWorldDigit, posOfDash - firstWorldDigit); //This is in case we have world in double digits. 
-        int currentWorldInt = int.Parse(currentWorldString);
+        if (currentSceneString.Contains("Level"))
+        {
+            //Parse current world in string form
+            int firstWorldDigit = currentSceneString.IndexOf("l") + 1;
+            string currentWorldString = currentSceneString.Substring(firstWorldDigit, posOfDash - firstWorldDigit); //This is in case we have world in double digits. 
+            int currentWorldInt = int.Parse(currentWorldString);
 
-        //Parse current level in string then int form
-        string currentLevelString = currentSceneString.Substring(posOfDash + 1);
-        int currentLevelInt = int.Parse(currentLevelString);
+            //Parse current level in string then int form
+            string currentLevelString = currentSceneString.Substring(posOfDash + 1);
+            int currentLevelInt = int.Parse(currentLevelString);
 
-        World = currentWorldInt;
-        level = currentLevelInt;
+            World = currentWorldInt;
+            level = currentLevelInt;
+        }
 
         UpdateTexts();
         gameOver.SetActive(false);
