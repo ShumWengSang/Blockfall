@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 47acec4c82e1cb949b7e1f2aae5cd7d4
+timeCreated: 1463728177
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - World1Bg: {fileID: 21300000, guid: 71732baf1ff9e594d9adf38176b2d68f, type: 3}
+  - World2Bg: {fileID: 21300000, guid: b6f3fd67f75b8654490e741864a7d683, type: 3}
+  - World3Bg: {fileID: 21300000, guid: ed538753f6a8a5b4b8b1f1d1fce2070f, type: 3}
+  - World4Bg: {fileID: 21300000, guid: 3ad125eea2649a648b860202cf080f27, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

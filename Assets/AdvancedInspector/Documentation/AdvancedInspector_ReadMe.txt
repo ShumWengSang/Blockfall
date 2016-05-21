@@ -435,5 +435,23 @@ Take a look at the video for more information. It's an example of what the AI ca
 - Performance issue fixed on the Selection Tracker while duplicating large selection of GameObject.
 - Performance issue when entering/exiting play and reloading context.
 
+1.67:
+[CHANGES]
+- Added a new attribute; IgnoreBase. Allows deriving from class like Button and ignoring its properties when inspecting.
+- The Method attribute now has a property named "UndoMessageOnClick". This attempt to record a undo when pressing the button.
+- Added support for attribute-bound PropertyDrawers. Note; since they are Serialization bound, they only works with fields, not Property or Methods.
+[FIXES]
+- Reworked how IDataChanged works, fixing an issue where the event would not be raised in a Restrict Attribute in Toolbox mode.
+- Fixed an issue where the IDataChanged flag would be "eaten" by the wrong class.
+- Fixed an issue where tabs would show up in an External Editor where they should not.
+- Latest version became increasingly imcompatible with Windows Phone 8.0. Fixed the reflection issue in ActionBinding and ComponentMonoBehaviour.
+- Insert, Remove, Move Up, Move Down, Move To Top and Move To Bottom on the contextual menu were broken.
+- Exceptions caught by the inspector now returns the proper stack trace in the logged error.
+- Cleanup done in the Undos. Some functions were not flagging proper undo stacks.
+- Rev A: Fixed assert thrown while clicking button of inspected method.
+- Rev B: Fixed a null when drawing a Dictionary's new key field.
+- Rev B: Fixed an issue where attribute-bound property drawer would not have the "attribute" and "fieldInfo" value set properly.
+
+
 1.60 and above is only supported on Unity 5.2+
 You may require to disable custom Advanced Inspector if you wish to use 1.60 on 5.1x.

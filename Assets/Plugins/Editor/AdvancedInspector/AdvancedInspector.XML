@@ -286,6 +286,11 @@
             List of fields held by this inspector.
             </summary>
         </member>
+        <member name="P:AdvancedInspector.InspectorEditor.Changed">
+            <summary>
+            Has any changed occured in the last redraw.
+            </summary>
+        </member>
         <member name="P:AdvancedInspector.InspectorEditor.Expandable">
             <summary>
             Override this if you implement your own inspector and doesn't want it to be expandable.
@@ -629,6 +634,12 @@
             <summary>
             Name of the label of that field.
             Can be modified by Descriptor.
+            </summary>
+        </member>
+        <member name="P:AdvancedInspector.InspectorField.Changed">
+            <summary>
+            Has this field changed in the last redraw?
+            Reading this value reset it to false.
             </summary>
         </member>
         <member name="P:AdvancedInspector.InspectorField.FieldColor">

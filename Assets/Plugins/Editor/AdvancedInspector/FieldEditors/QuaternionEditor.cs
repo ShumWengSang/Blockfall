@@ -41,7 +41,7 @@ namespace AdvancedInspector
                 float result;
                 if (FloatEditor.DrawFloat("X", x, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " X");
+                    field.RecordObjects("Edit " + field.Name + " X");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -53,7 +53,7 @@ namespace AdvancedInspector
 
                 if (FloatEditor.DrawFloat("Y", y, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Y");
+                    field.RecordObjects("Edit " + field.Name + " Y");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -65,7 +65,7 @@ namespace AdvancedInspector
 
                 if (FloatEditor.DrawFloat("Z", z, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Z");
+                    field.RecordObjects("Edit " + field.Name + " Z");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -97,7 +97,7 @@ namespace AdvancedInspector
                 float result;
                 if (FloatEditor.DrawFloat("X", x, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " X");
+                    field.RecordObjects("Edit " + field.Name + " X");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -109,7 +109,7 @@ namespace AdvancedInspector
 
                 if (FloatEditor.DrawFloat("Y", y, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Y");
+                    field.RecordObjects("Edit " + field.Name + " Y");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -124,7 +124,7 @@ namespace AdvancedInspector
 
                 if (FloatEditor.DrawFloat("Z", z, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Z");
+                    field.RecordObjects("Edit " + field.Name + " Z");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -136,7 +136,7 @@ namespace AdvancedInspector
 
                 if (FloatEditor.DrawFloat("W", w, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " W");
+                    field.RecordObjects("Edit " + field.Name + " W");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {

@@ -45,7 +45,7 @@ namespace AdvancedInspector
             EditorGUILayout.LabelField("Center: ", GUILayout.Width(48));
             if (FloatEditor.DrawFloat("X", centerX, style, out result))
             {
-                Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Center X");
+                field.RecordObjects("Edit " + field.Name + " Center X");
 
                 for (int i = 0; i < field.Instances.Length; i++)
                 {
@@ -58,7 +58,7 @@ namespace AdvancedInspector
 
             if (FloatEditor.DrawFloat("Y", centerY, style, out result))
             {
-                Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Center Y");
+                field.RecordObjects("Edit " + field.Name + " Center Y");
 
                 for (int i = 0; i < field.Instances.Length; i++)
                 {
@@ -71,7 +71,7 @@ namespace AdvancedInspector
 
             if (FloatEditor.DrawFloat("Z", centerZ, style, out result))
             {
-                Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Center Z");
+                field.RecordObjects("Edit " + field.Name + " Center Z");
 
                 for (int i = 0; i < field.Instances.Length; i++)
                 {
@@ -87,7 +87,7 @@ namespace AdvancedInspector
             EditorGUILayout.LabelField("Extend: ", GUILayout.Width(48));
             if (FloatEditor.DrawFloat("X", extendX, style, out result))
             {
-                Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Extend X");
+                field.RecordObjects("Edit " + field.Name + " Extend X");
 
                 for (int i = 0; i < field.Instances.Length; i++)
                 {
@@ -100,7 +100,7 @@ namespace AdvancedInspector
 
             if (FloatEditor.DrawFloat("Y", extendY, style, out result))
             {
-                Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Extend Y");
+                field.RecordObjects("Edit " + field.Name + " Extend Y");
 
                 for (int i = 0; i < field.Instances.Length; i++)
                 {
@@ -113,7 +113,7 @@ namespace AdvancedInspector
 
             if (FloatEditor.DrawFloat("Z", extendZ, style, out result))
             {
-                Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Extend Z");
+                field.RecordObjects("Edit " + field.Name + " Extend Z");
 
                 for (int i = 0; i < field.Instances.Length; i++)
                 {

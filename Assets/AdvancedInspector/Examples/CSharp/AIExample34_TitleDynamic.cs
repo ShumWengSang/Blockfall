@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 
-using AdvancedInspector;
-
-public class AIExample34_TitleDynamic : MonoBehaviour
+namespace AdvancedInspector
 {
-    // Similar to other IRuntimeAttribute, Title can be modified at runtime from a bound method.
-    [Title("GetTitle")]
-    public FontStyle style = FontStyle.Bold;
-
-    private TitleAttribute GetTitle()
+    public class AIExample34_TitleDynamic : MonoBehaviour
     {
-        return new TitleAttribute(style, "This Title Is Dynamic");
+        // Similar to other IRuntimeAttribute, Title can be modified at runtime from a bound method.
+        [Title("GetTitle")]
+        public FontStyle style = FontStyle.Bold;
+
+        private TitleAttribute GetTitle()
+        {
+            return new TitleAttribute(style, "This Title Is Dynamic");
+        }
     }
 }

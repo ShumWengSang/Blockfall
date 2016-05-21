@@ -9,12 +9,15 @@ using AdvancedInspector;
 // All the example have that attribute so they work even if you turn that default inspection behaviour.
 // However, you are not required to add it to your class.
 
-// The first optionnal parameter allows the Advanced Inspector to work in the same manner as the default one.
-[AdvancedInspector(true)] // [AdvancedInspector] or [AdvancedInspector(false)]
-public class AIExample1_AdvancedInspector : MonoBehaviour
+namespace AdvancedInspector
 {
-    // Usually Advanced Inspector would not show this item because it lacks the "Inspect" attribute.
-    public float myFloat;
+    // The first optionnal parameter allows the Advanced Inspector to work in the same manner as the default one.
+    [AdvancedInspector(true)] // [AdvancedInspector] or [AdvancedInspector(false)]
+    public class AIExample1_AdvancedInspector : MonoBehaviour
+    {
+        // Usually Advanced Inspector would not show this item because it lacks the "Inspect" attribute.
+        public float myFloat;
+    }
 }
 
 // The AdvancedInspector attribute contains 3 property;

@@ -52,6 +52,7 @@ public class ScoreSystem : MonoBehaviour
         Ranks.text = "Gold: " + GoldRank.ToString() + "\nSilver: " + SilverRank.ToString() + "\nBronze: " + BronzeRank.ToString();
         Level.text = World.ToString() + " - " + level.ToString();
     }
+
     void Start()
     {
         string currentSceneString = SceneManager.GetActiveScene().name;

@@ -34,7 +34,7 @@ namespace AdvancedInspector
             if (IntegerEditor.DrawInt("Days", days, style, out result))
             {
                 result = Mathf.Clamp(result, 0, int.MaxValue);
-                Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Days");
+                field.RecordObjects("Edit " + field.Name + " Days");
 
                 for (int i = 0; i < field.Instances.Length; i++)
                 {
@@ -47,7 +47,7 @@ namespace AdvancedInspector
             if (IntegerEditor.DrawInt("Hours", hours, style, out result))
             {
                 result = Mathf.Clamp(result, 0, int.MaxValue);
-                Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Hours");
+                field.RecordObjects("Edit " + field.Name + " Hours");
 
                 for (int i = 0; i < field.Instances.Length; i++)
                 {
@@ -63,7 +63,7 @@ namespace AdvancedInspector
             if (IntegerEditor.DrawInt("Mins", mins, style, out result))
             {
                 result = Mathf.Clamp(result, 0, int.MaxValue);
-                Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Minutes");
+                field.RecordObjects("Edit " + field.Name + " Minutes");
 
                 for (int i = 0; i < field.Instances.Length; i++)
                 {
@@ -76,7 +76,7 @@ namespace AdvancedInspector
             if (IntegerEditor.DrawInt("Secs", secs, style, out result))
             {
                 result = Mathf.Clamp(result, 0, int.MaxValue);
-                Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Seconds");
+                field.RecordObjects("Edit " + field.Name + " Seconds");
 
                 for (int i = 0; i < field.Instances.Length; i++)
                 {

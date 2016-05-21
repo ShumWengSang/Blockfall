@@ -1,20 +1,22 @@
 ﻿using System;
-
 using UnityEngine;
 
-public class AIExample35_ToString : MonoBehaviour
+namespace AdvancedInspector
 {
-    public Nested[] collection;
-
-    [Serializable]
-    public class Nested
+    public class AIExample35_ToString : MonoBehaviour
     {
-        public string name;
+        public Nested[] collection;
 
-        // When overriding ToString, the AdvancedInspector display that string on the right side of the item when there is no picker.
-        public override string ToString()
+        [Serializable]
+        public class Nested
         {
-            return name;
+            public string name;
+
+            // When overriding ToString, the AdvancedInspector display that string on the right side of the item when there is no picker.
+            public override string ToString()
+            {
+                return name;
+            }
         }
     }
 }

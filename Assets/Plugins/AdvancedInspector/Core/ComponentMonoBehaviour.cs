@@ -103,12 +103,9 @@ namespace AdvancedInspector
 
             Type type = original.GetType();
 
-            if (type == typeof(string))
 #if !NETFX_CORE
+            if (type == typeof(string))
                 return ((string)original).Clone();
-#else
-                return original;
-#endif
             else if (type.Namespace == "System")
                 return original;
             else if (typeof(IList).IsAssignableFrom(type))
@@ -121,12 +118,25 @@ namespace AdvancedInspector
                 return ScriptableObject.Instantiate((ScriptableObject)original);
             else if (typeof(UnityEngine.Object).IsAssignableFrom(type))
                 return original;
-#if !NETFX_CORE
             else if (type.IsClass)
                 return CopyClass(go, owner, original);
             else
                 return original;
 #else
+            if (type == typeof(string))
+                return original;
+            else if (type.Namespace == "System")
+                return original;
+            else if (typeof(IList).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
+                return CopyList(go, owner, (IList)original);
+            else if (typeof(ComponentMonoBehaviour).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()) && ((ComponentMonoBehaviour)original).Owner == owner)
+                return CopyComponent(go, owner, (ComponentMonoBehaviour)original);
+            else if (typeof(Component).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
+                return original;
+            else if (typeof(ScriptableObject).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
+                return ScriptableObject.Instantiate((ScriptableObject)original);
+            else if (typeof(UnityEngine.Object).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
+                return original;
             else
                 return CopyClass(go, owner, original);
 #endif
@@ -190,14 +200,14 @@ namespace AdvancedInspector
 
         private static List<FieldInfo> GetFields(Type type, bool recursive)
         {
-            List<FieldInfo> infos;
+            List<FieldInfo> infos = new List<FieldInfo>();
 
+#if !NETFX_CORE
             if (recursive)
                 infos = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance).ToList();
             else
                 infos = type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy).ToList();
 
-#if !NETFX_CORE
             if (type.BaseType != null && type.BaseType != typeof(object))
                 infos.AddRange(GetFields(type.BaseType, true));
 #endif

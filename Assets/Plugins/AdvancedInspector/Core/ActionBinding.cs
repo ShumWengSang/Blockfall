@@ -99,6 +99,8 @@ namespace AdvancedInspector
         private IList GetMethods()
         {
             List<DescriptionPair> methods = new List<DescriptionPair>();
+
+#if !NETFX_CORE
             if (gameObject == null || component == null)
                 return methods;
 
@@ -128,12 +130,14 @@ namespace AdvancedInspector
 
                 methods.Add(new DescriptionPair(method, new Description(GetParamNames(info.Name, param), "")));
             }
+#endif
 
             return methods;
         }
 
         private bool IsMethodValid(MethodInfo info)
         {
+#if !NETFX_CORE
             ParameterInfo[] param = info.GetParameters();
 
             bool valid = true;
@@ -157,6 +161,9 @@ namespace AdvancedInspector
             }
 
             return valid;
+#else
+            return false;
+#endif
         }
 
         private string GetParamNames(string name, ParameterInfo[] param)
@@ -185,7 +192,7 @@ namespace AdvancedInspector
 #if !NETFX_CORE
             return component.GetType().GetMethod(method, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy, null, types, null);
 #else
-            return component.GetType().GetMethod(method, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
+            return component.GetType().GetTypeInfo().GetDeclaredMethod(method);
 #endif
         }
 
@@ -331,7 +338,11 @@ namespace AdvancedInspector
                         type = BindingValueType.Integer;
                     else if (value == typeof(Rect))
                         type = BindingValueType.Rect;
+#if !NETFX_CORE
                     else if (typeof(UnityEngine.Object).IsAssignableFrom(value))
+#else
+                    else if (typeof(UnityEngine.Object).GetTypeInfo().IsAssignableFrom(value.GetTypeInfo()))
+#endif
                         type = BindingValueType.Reference;
                     else if (value == typeof(string))
                         type = BindingValueType.String;
@@ -396,10 +407,10 @@ namespace AdvancedInspector
                     if (binding == BindingType.External)
                     {
                         object value = Invoke();
+#if !NETFX_CORE
                         if (value.GetType().IsAssignableFrom(Type))
                             return value;
 
-#if !NETFX_CORE
                         System.ComponentModel.TypeConverter converter = System.ComponentModel.TypeDescriptor.GetConverter(Type);
                         return converter.ConvertTo(value, Type);
 #else
@@ -554,6 +565,8 @@ namespace AdvancedInspector
             private IList GetMethods()
             {
                 List<DescriptionPair> methods = new List<DescriptionPair>();
+
+#if !NETFX_CORE
                 if (gameObject == null || component == null)
                     return methods;
 
@@ -581,7 +594,7 @@ namespace AdvancedInspector
                     string paramName = method.ReturnType.Name + " " + info.Name + "()";
                     methods.Add(new DescriptionPair(method, new Description(paramName, "")));
                 }
-
+#endif
                 return methods;
             }
 
@@ -599,7 +612,7 @@ namespace AdvancedInspector
                 if (!Type.IsAssignableFrom(info.ReturnType) && !converter.CanConvertTo(Type))
                     return false;
 #else
-                if (!Type.IsAssignableFrom(info.ReturnType))
+                if (!Type.GetTypeInfo().IsAssignableFrom(info.ReturnType.GetTypeInfo()))
                     return false;
 #endif
 
@@ -611,7 +624,11 @@ namespace AdvancedInspector
                 if (gameObject == null || component == null || string.IsNullOrEmpty(method))
                     return null;
 
+#if !NETFX_CORE
                 return component.GetType().GetMethod(method, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
+#else
+                return component.GetType().GetTypeInfo().GetDeclaredMethod(method);
+#endif
             }
 
             private bool IsStatic()
@@ -650,7 +667,11 @@ namespace AdvancedInspector
                     return true;
                 else if (type == typeof(Rect))
                     return true;
+#if !NETFX_CORE
                 else if (typeof(UnityEngine.Object).IsAssignableFrom(type))
+#else
+                else if (typeof(UnityEngine.Object).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
+#endif
                     return true;
                 else if (type == typeof(string))
                     return true;

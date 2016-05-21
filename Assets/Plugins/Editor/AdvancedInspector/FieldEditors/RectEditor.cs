@@ -45,7 +45,7 @@ namespace AdvancedInspector
                 float result;
                 if (FloatEditor.DrawFloat("X", x, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " X");
+                    field.RecordObjects("Edit " + field.Name + " X");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -56,7 +56,7 @@ namespace AdvancedInspector
 
                 if (FloatEditor.DrawFloat("Y", y, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Y");
+                    field.RecordObjects("Edit " + field.Name + " Y");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -69,7 +69,7 @@ namespace AdvancedInspector
                 GUILayout.BeginHorizontal();
                 if (FloatEditor.DrawFloat("W", width, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Width");
+                    field.RecordObjects("Edit " + field.Name + " Width");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -80,7 +80,7 @@ namespace AdvancedInspector
 
                 if (FloatEditor.DrawFloat("H", height, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Height");
+                    field.RecordObjects("Edit " + field.Name + " Height");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -111,7 +111,7 @@ namespace AdvancedInspector
                 int result;
                 if (IntegerEditor.DrawInt("L", left, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Left");
+                    field.RecordObjects("Edit " + field.Name + " Left");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -122,7 +122,7 @@ namespace AdvancedInspector
 
                 if (IntegerEditor.DrawInt("R", right, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Right");
+                    field.RecordObjects("Edit " + field.Name + " Right");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -135,7 +135,7 @@ namespace AdvancedInspector
                 GUILayout.BeginHorizontal();
                 if (IntegerEditor.DrawInt("T", top, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Top");
+                    field.RecordObjects("Edit " + field.Name + " Top");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {
@@ -146,7 +146,7 @@ namespace AdvancedInspector
 
                 if (IntegerEditor.DrawInt("B", bottom, style, out result))
                 {
-                    Undo.RecordObjects(field.SerializedInstances, "Edit " + field.Name + " Bottom");
+                    field.RecordObjects("Edit " + field.Name + " Bottom");
 
                     for (int i = 0; i < field.Instances.Length; i++)
                     {

@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
-using AdvancedInspector;
-
-public class AIExample36_NoPicker : MonoBehaviour
+namespace AdvancedInspector
 {
-    // No picker disable the picking tool on the left of an object field.
-    [Inspect, NoPicker]
-    public Camera Camera
+    public class AIExample36_NoPicker : MonoBehaviour
     {
-        get { return Camera.main; }
+        // No picker disable the picking tool on the left of an object field.
+        [Inspect, NoPicker]
+        public Camera Camera
+        {
+            get { return Camera.main; }
+        }
     }
 }
