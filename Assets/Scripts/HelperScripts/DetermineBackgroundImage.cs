@@ -18,8 +18,19 @@ public class DetermineBackgroundImage : MonoBehaviour {
         return new List<object>() { 1, 2, 3, 4 };
     }
 
-    void Start()
+    void OnEnable()
     {
+        ScoreSystem.OnParsed += OnParsed;
+    }
+
+    void OnDisable()
+    {
+        ScoreSystem.OnParsed -= OnParsed;
+    }
+
+    void OnParsed(int world, int level)
+    {
+        World = world;
         ChangeToBackground();
     }
 
@@ -43,7 +54,8 @@ public class DetermineBackgroundImage : MonoBehaviour {
                 thisImage.texture = World4Bg.texture;
                 break;
         }
-        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+        if(!Application.isPlaying)
+            EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
     }
 
 }

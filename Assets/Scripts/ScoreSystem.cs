@@ -5,6 +5,9 @@ using AdvancedInspector;
 using UnityEngine.SceneManagement;
 public class ScoreSystem : MonoBehaviour
 {
+    public delegate void OnLevelParsed(int world, int level);
+    public static event OnLevelParsed OnParsed;
+
     //[Group("Game UI"), Inspect]
     public int World = 1;
     //[Group("Game UI"), Inspect]
@@ -72,6 +75,7 @@ public class ScoreSystem : MonoBehaviour
 
             World = currentWorldInt;
             level = currentLevelInt;
+            OnParsed(World, level);
         }
 
         UpdateTexts();

@@ -11,9 +11,12 @@ public class AttachGameSystem : MonoBehaviour {
     void AttachObject()
     {
 
-        Transform grid = GameObject.Find("Grid").transform;
-        if (grid == null)
-            grid = GameObject.Find("Grid (1)").transform;
+        GameObject go_grid = GameObject.Find("Grid");
+        if (go_grid == null)
+            go_grid = GameObject.Find("Grid (1)");
+        if (go_grid == null)
+            go_grid = GameObject.Find("Grid (2)");
+        Transform grid = go_grid.transform;
         DeleteAll(grid);
         Transform[] childArray = new Transform[grid.childCount];
         for(int i = 0; i < grid.childCount; i++)
@@ -31,6 +34,8 @@ public class AttachGameSystem : MonoBehaviour {
         grid = GameObject.Find("Grid").transform;
         if(grid == null)
             grid = GameObject.Find("Grid (1)").transform;
+        if (grid == null)
+            grid = GameObject.Find("Grid (2)").transform;
         Transform[] childArray2 = new Transform[grid.childCount];
         for (int i = 0; i < grid.childCount; i++)
         {
@@ -52,12 +57,13 @@ public class AttachGameSystem : MonoBehaviour {
 
     public void DeleteAll(Transform exception)
     {
-        foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
+        GameObject[] AllObjects = Object.FindObjectsOfType<GameObject>();
+        for (int i = AllObjects.Length - 1; i >= 0; i --)
         {
-            if (o != null)
+            if (AllObjects[i] != null)
             {
-                if (!o.transform.IsChildOf(exception))
-                    DestroyImmediate(o);
+                if (!AllObjects[i].transform.IsChildOf(exception) && !AllObjects[i].transform != exception)
+                    DestroyImmediate(AllObjects[i]);
             }
         }
     }
