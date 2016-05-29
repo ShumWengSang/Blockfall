@@ -75,7 +75,7 @@ public class ScoreSystem : MonoBehaviour
 
             World = currentWorldInt;
             level = currentLevelInt;
-            OnParsed(World, level);
+            if(OnParsed != null) OnParsed(World, level);
         }
 
         UpdateTexts();
