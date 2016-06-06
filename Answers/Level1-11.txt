@@ -1,7 +1,6 @@
-00 Right
-01 Right
-02 Right
+00 Left
+01 Left
+02 Left
 03 Right
-04 Left
+04 Right
 05 Left
-06 Left

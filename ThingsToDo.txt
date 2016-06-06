@@ -1,28 +1,31 @@
 Levels
-	World 5
-	Rebalance Levels
+	World 5		 		(0%)
+	Rebalance Levels 		(50% done (Roland's Worlds)) (0% Shawn's Worlds)
 
 Programming
 	Powerups
-		Undo
-		Solution
-		Hint
-		Move a Block
-	Pause Widget
-		Sound On/Off
-		Speed Multiplier Slider
-		Music On/Off
-		Level Select
-		Skip Level
-		Continue
-	Sound
-	Shop - Microtrans
-	Unity Service
-	Facebook integration.
+		Undo 			(100% done)
+		Solution 		(0%) (need mockup)
+		Hint 			(0%)
+		Move a Block 		(0%)
+	Pause Widget 			(95% done)
+		Sound On/Off 		(100% done)
+		Speed Multiplier Slider (90% done) (Not Linked Yet)
+		Music On/Off 		(100% done)
+		Level Select 		(100% done)
+		Skip Level 		(100% done)
+		Continue 		(100% done)
+	Sound 				(0%) (Require Assets)
+	Unity Service 			(10%) (Imported SDK) 
+	Facebook integration. 		(10%) (Imported SDK) (need inspiration)
 
 UI
-	World 5 buttons for level select.
+	World 5 buttons for level select. (90% done) (Require Assets)
 
-Assets
+Assets	(Require Assets)
 	Rotate Buttons
 	Moving Background
+
+Bugs
+	Goal Texture coloured a bit differently.
+	Old levels come out instead of new levels when using the SceneChanger code
