@@ -5,9 +5,10 @@ public class Pulsating : MonoBehaviour {
 
 	// Use this for initialization
     Tween theTween;
-
+    Vector3 startScale;
     void OnEnable()
     {
+        startScale = transform.localScale;
         RotateGrid.OnFinishedRotating += OnStartFall;
         RotateGrid.OnFinishedFalling += OnEndFall;
     }
@@ -30,7 +31,7 @@ public class Pulsating : MonoBehaviour {
     void OnStartFall()
     {
         theTween.Pause();
-        this.transform.localScale = Vector3.one;
+        this.transform.localScale = startScale;
         SnapObject.SnapTheObject(this.transform);
     }
 

@@ -5,8 +5,8 @@ Levels
 Programming
 	Powerups
 		Undo 			(100% done)
-		Solution 		(0%) (need mockup)
-		Hint 			(0%)
+		Solution 		(50%) (Created script to read answers. Can't move forward due to lack of imagination)
+		Hint 			(50%) (Created script to read answers. Can't move forward due to lack of imagination)
 		Move a Block 		(0%)
 	Pause Widget 			(95% done)
 		Sound On/Off 		(100% done)
