@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using System.Collections;
 using AdvancedInspector;
 using UnityEditor;
@@ -70,3 +71,4 @@ public class AttachGameSystem : MonoBehaviour {
 
 
 }
+#endif

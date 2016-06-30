@@ -1,52 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections;
 using AdvancedInspector;
+[ExecuteInEditMode]
 public class SplitBlock : MonoBehaviour {
     //Usually we want this running on editor time.
     //But just in case we run this at start as wel.
 
 
-    public GameObject BasePrefab;
+    GameObject BasePrefab;
 
     [Inspect, Method(AdvancedInspector.MethodDisplay.Button)]
     void SplitTheBlock()
     {
         if (transform.localScale == Vector3.one)
             return;
+
+        BasePrefab = Resources.Load("Prefabs/Block Prefabs/Wall Bock") as GameObject;
         int FullScaleX = (int)transform.localScale.x;
         int FullScaleY = (int)transform.localScale.y;
         int HalfScaleX = FullScaleX % 2 == 0 ? FullScaleX / 2 : (FullScaleX - 1) / 2;
         int HalfScaleY = FullScaleY % 2 == 0 ? FullScaleY / 2 : (FullScaleY - 1) / 2;
         float OffSetX = FullScaleX % 2 == 0 ? 0.5f : 0.0f;
-        Debug.Log("Half ScaleX is " + HalfScaleX + " and HalfScaleY is " + HalfScaleY);
+        float OffSetY = FullScaleY % 2 == 0 ? 0.5f : 0.0f;
+        Debug.Log("Half ScaleX is " + HalfScaleX + " and HalfScaleY is " + HalfScaleY + " and offset is " + OffSetX);
 
-        for (int i = 0; i < HalfScaleX; i++)
+        float CalculatedTransformStartPosX = transform.position.x - (HalfScaleX - OffSetX);
+        float CalculatedTransformStartPosY = transform.position.y - (HalfScaleY - OffSetY);
+        Debug.Log("Calculated new Transform start is " + CalculatedTransformStartPosX);
+
+
+        for (int i = 0, j = 0; i < FullScaleX; i++)
         {
+            //GameObject obj = Instantiate(BasePrefab, new Vector3(CalculatedTransformStartPosX + i, CalculatedTransformStartPosY + j, transform.position.z), Quaternion.identity) as GameObject;
+            //obj.transform.parent = transform.parent;
 
-            GameObject obj = Instantiate(BasePrefab, new Vector3(transform.position.x + i + 1 + OffSetX, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-            obj.transform.parent = transform.parent;
-        }
-
-        for (int i = 0; i < HalfScaleX; i++)
-        {
-            GameObject obj;
-            if(HalfScaleX % 2 == 0)
+            for (j = 0; j < FullScaleY; j++)
             {
-                obj = Instantiate(BasePrefab, new Vector3(transform.position.x - i + OffSetX, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
-            }
-            else
-            {
-                obj = Instantiate(BasePrefab, new Vector3(transform.position.x - i - 1 + OffSetX, transform.position.y, transform.position.z), Quaternion.identity) as GameObject;
+                GameObject obj2 = Instantiate(BasePrefab, new Vector3(CalculatedTransformStartPosX + i, CalculatedTransformStartPosY + j, transform.position.z), Quaternion.identity) as GameObject;
+                obj2.transform.parent = transform.parent;
             }
 
-            obj.transform.parent = transform.parent;
-
         }
 
-        for (int i = 0; i < transform.localScale.y; i++)
-        {
+        
 
-        }
+
         if (Application.isPlaying)
             Destroy(this.gameObject);
         else
@@ -55,6 +53,7 @@ public class SplitBlock : MonoBehaviour {
 
     void Start()
     {
-        SplitTheBlock();
+        if(!Application.isPlaying)
+            SplitTheBlock();
     }
 }

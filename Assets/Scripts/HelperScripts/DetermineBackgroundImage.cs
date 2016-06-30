@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using System.Collections;
 using AdvancedInspector;
 using UnityEngine.UI;
 using System.Collections.Generic;
+
 using UnityEditor.SceneManagement;
 public class DetermineBackgroundImage : MonoBehaviour {
     public Sprite World1Bg;
@@ -59,3 +61,4 @@ public class DetermineBackgroundImage : MonoBehaviour {
     }
 
 }
+#endif
