@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿#define TESTING
+using UnityEngine;
 using System.Collections;
 using AdvancedInspector;
 using System.Collections.Generic;
 using System.IO;
 public class ReadAnswerFile : MonoBehaviour {
 
+#if !TESTING
     public List<string> List_Answer = new List<string>();
 
     void OnEnable()
@@ -48,4 +50,5 @@ public class ReadAnswerFile : MonoBehaviour {
             Debug.Log(direction);
         }
     }	
+#endif
 }
