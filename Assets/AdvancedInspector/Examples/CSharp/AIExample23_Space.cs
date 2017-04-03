@@ -14,7 +14,7 @@ namespace AdvancedInspector
         public float MyProperty
         {
             get { return myField; }
-            set { myField = value; }
+            set { myField = value; } 
         }
     }
 }

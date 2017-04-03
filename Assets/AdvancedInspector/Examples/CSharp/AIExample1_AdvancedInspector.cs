@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-// Adding the AdvancedInspector namespace is required.
+// Adding the AdvancedInspector namespace is required when using AI's features like the attributes.
 using AdvancedInspector;
 
 // The AdvancedInspector attribute is a switch between Unity inspector and the Advanced Inspector.

@@ -89,14 +89,23 @@ namespace AdvancedInspector
         public GroupAttribute(string name, float r, float g, float b)
             : this(name, "", "", 0, r, g, b, 1) { }
 
+        public GroupAttribute(string name, float r, float g, float b, float a)
+            : this(name, "", "", 0, r, g, b, a) { }
+
         public GroupAttribute(string name, string style, int priority)
             : this(name, "", style, priority, 0, 0, 0, 0) { }
 
         public GroupAttribute(string name, string style, float r, float g, float b)
             : this(name, "", style, 0, r, g, b, 1) { }
 
+        public GroupAttribute(string name, string style, float r, float g, float b, float a)
+            : this(name, "", style, 0, r, g, b, a) { }
+
         public GroupAttribute(string name, string style, int priority, float r, float g, float b)
             : this(name, "", style, priority, r, g, b, 1) { }
+
+        public GroupAttribute(string name, string style, int priority, float r, float g, float b, float a)
+            : this(name, "", style, priority, r, g, b, a) { }
 
         public GroupAttribute(string name, string description, string style, int priority, float r, float g, float b, float a)
         {

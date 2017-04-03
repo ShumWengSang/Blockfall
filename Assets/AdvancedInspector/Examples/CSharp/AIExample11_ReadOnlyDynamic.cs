@@ -8,6 +8,9 @@ namespace AdvancedInspector
         [ReadOnly("IsReadOnly")]
         public bool myVariable;
 
+        [ReadOnly("IsReadOnly", false)]
+        public bool myVariableInverted;
+
         // The function can be private or public, it doesn't matter.
         private bool IsReadOnly()
         {

@@ -16,7 +16,6 @@ namespace AdvancedInspector
             set { myFirstField = value; }
         }
 
-
         [Tab(TabEnum.Second)]
         public float mySecondField;
 
@@ -32,9 +31,21 @@ namespace AdvancedInspector
 
         public enum TabEnum
         {
+            [Descriptor("TabStatic.GetTabName")]
             First,
             Second,
             Third
+        }
+    }
+
+    public class TabStatic
+    {
+        public static Description GetTabName(DescriptorAttribute attribute, object instance, object value)
+        {
+            if (instance is AIExample24_Tabs)
+                return new Description("Tabs!");
+            else
+                return new Description("Not Tabs!");
         }
     }
 }

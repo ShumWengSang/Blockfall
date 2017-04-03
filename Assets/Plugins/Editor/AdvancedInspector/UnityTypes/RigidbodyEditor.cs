@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UnityEditor;
 using UnityEngine;
@@ -46,8 +46,13 @@ namespace AdvancedInspector
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("sleepThreshold"), new InspectAttribute(InspectorLevel.Advanced),
                 new DescriptorAttribute("Sleep Threshold", "The mass-normalized energy threshold, below which objects start going to sleep.", "http://docs.unity3d.com/ScriptReference/Rigidbody-sleepThreshold.html")));
 
+#if UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("solverIterationCount"), new InspectAttribute(InspectorLevel.Advanced),
                 new DescriptorAttribute("Solver Iteration Count", "Allows you to override the solver iteration count per rigidbody", "https://docs.unity3d.com/Documentation/ScriptReference/Rigidbody-solverIterationCount.html")));
+#else
+            Fields.Add(new InspectorField(type, Instances, type.GetProperty("solverIterations"), new InspectAttribute(InspectorLevel.Advanced),
+                new DescriptorAttribute("Solver Iteration Count", "Allows you to override the solver iteration count per rigidbody", "https://docs.unity3d.com/Documentation/ScriptReference/Rigidbody-solverIterationCount.html")));
+#endif
 
             InspectorField debug = new InspectorField("Debug");
             Fields.Add(debug);

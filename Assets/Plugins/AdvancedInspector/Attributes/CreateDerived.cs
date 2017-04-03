@@ -11,5 +11,21 @@ namespace AdvancedInspector
     /// Otherwise, Unity's serialization will kill the polymorphism involved.
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    public class CreateDerivedAttribute : Attribute, IListAttribute { }
+    public class CreateDerivedAttribute : Attribute, IListAttribute
+    {
+        private bool hideClassName = false;
+
+        public bool HideClassName
+        {
+            get { return hideClassName; }
+            set { hideClassName = value; }
+        }
+
+        public CreateDerivedAttribute() { }
+
+        public CreateDerivedAttribute(bool hideClassName)
+        {
+            this.hideClassName = hideClassName;
+        }
+    }
 }

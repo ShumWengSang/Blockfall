@@ -7,14 +7,7 @@ public class OneWayBlock : MonoBehaviour {
     int oldLayer = -1;
     int voidLayer;
     int BlocksPassThrough = 0;
-    public enum Direction
-    {
-        Up,
-        Down,
-        Left,
-        Right,
-        none
-    }
+
     [System.Serializable]
     public class DirectionMaterialDictionary : UDictionary<Direction, Material> { }
     [Inspect]

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System;
+using System.Collections.Generic;
 
 namespace AdvancedInspector
 {
@@ -22,6 +23,11 @@ namespace AdvancedInspector
         public override bool IsExpandable(InspectorField field)
         {
             return true;
+        }
+
+        public override List<InspectorField> GetFields(InspectorField parent, object[] instances, bool inspectDefaultItems, bool bypass)
+        {
+            return new List<InspectorField>();
         }
 
         public override void Draw(InspectorField field, GUIStyle style)

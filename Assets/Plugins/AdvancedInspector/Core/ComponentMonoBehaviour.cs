@@ -56,7 +56,7 @@ namespace AdvancedInspector
         /// </summary>
         public void Erase()
         {
-            foreach (FieldInfo info in GetFields(GetType(), false))
+            foreach (FieldInfo info in TypeUtility.GetFields(GetType()))
             {
                 object value = info.GetValue(this);
 
@@ -64,7 +64,7 @@ namespace AdvancedInspector
                 {
                     ComponentMonoBehaviour component = value as ComponentMonoBehaviour;
 
-                    if (component.Owner == Owner)
+                    if (component.Owner == this)
                         component.Erase();
                 }
             }
@@ -77,7 +77,7 @@ namespace AdvancedInspector
         /// </summary>
         public ComponentMonoBehaviour Instantiate()
         {
-            return Instantiate(gameObject, Owner);
+            return Instantiate(gameObject, owner);
         }
 
         /// <summary>
@@ -103,9 +103,12 @@ namespace AdvancedInspector
 
             Type type = original.GetType();
 
-#if !NETFX_CORE
             if (type == typeof(string))
+#if !NETFX_CORE
                 return ((string)original).Clone();
+#else
+                return original;
+#endif
             else if (type.Namespace == "System")
                 return original;
             else if (typeof(IList).IsAssignableFrom(type))
@@ -118,25 +121,12 @@ namespace AdvancedInspector
                 return ScriptableObject.Instantiate((ScriptableObject)original);
             else if (typeof(UnityEngine.Object).IsAssignableFrom(type))
                 return original;
+#if !NETFX_CORE
             else if (type.IsClass)
                 return CopyClass(go, owner, original);
             else
                 return original;
 #else
-            if (type == typeof(string))
-                return original;
-            else if (type.Namespace == "System")
-                return original;
-            else if (typeof(IList).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
-                return CopyList(go, owner, (IList)original);
-            else if (typeof(ComponentMonoBehaviour).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()) && ((ComponentMonoBehaviour)original).Owner == owner)
-                return CopyComponent(go, owner, (ComponentMonoBehaviour)original);
-            else if (typeof(Component).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
-                return original;
-            else if (typeof(ScriptableObject).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
-                return ScriptableObject.Instantiate((ScriptableObject)original);
-            else if (typeof(UnityEngine.Object).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo()))
-                return original;
             else
                 return CopyClass(go, owner, original);
 #endif
@@ -167,9 +157,9 @@ namespace AdvancedInspector
         private static ComponentMonoBehaviour CopyComponent(GameObject go, MonoBehaviour owner, ComponentMonoBehaviour original)
         {
             Type type = original.GetType();
-            ComponentMonoBehaviour copy = go.AddComponent(original.GetType()) as ComponentMonoBehaviour;
+            ComponentMonoBehaviour copy = go.AddComponent(type) as ComponentMonoBehaviour;
 
-            foreach (FieldInfo info in GetFields(type, false))
+            foreach (FieldInfo info in TypeUtility.GetFields(type))
             {
                 if (info.IsLiteral)
                     continue;
@@ -185,9 +175,9 @@ namespace AdvancedInspector
         private static object CopyClass(GameObject go, MonoBehaviour owner, object original)
         {
             Type type = original.GetType();
-            object copy = Activator.CreateInstance(type);
+            object copy = Activator.CreateInstance(type, true);
 
-            foreach (FieldInfo info in GetFields(type, false))
+            foreach (FieldInfo info in TypeUtility.GetFields(type))
             {
                 if (info.IsLiteral)
                     continue;
@@ -196,23 +186,6 @@ namespace AdvancedInspector
             }
 
             return copy;
-        }
-
-        private static List<FieldInfo> GetFields(Type type, bool recursive)
-        {
-            List<FieldInfo> infos = new List<FieldInfo>();
-
-#if !NETFX_CORE
-            if (recursive)
-                infos = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance).ToList();
-            else
-                infos = type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy).ToList();
-
-            if (type.BaseType != null && type.BaseType != typeof(object))
-                infos.AddRange(GetFields(type.BaseType, true));
-#endif
-
-            return infos;
         }
     }
 }

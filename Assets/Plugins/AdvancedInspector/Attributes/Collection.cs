@@ -73,6 +73,18 @@ namespace AdvancedInspector
             set { maxItemsPerRow = value; }
         }
 
+        private bool alwaysExpanded = false;
+
+        /// <summary>
+        /// The AlwaysExpanded property of the Expandable attribute doesn't work on the root collection, because of the IListAttribute.
+        /// This is the work around to make the collection always expanded.
+        /// </summary>
+        public bool AlwaysExpanded
+        {
+            get { return alwaysExpanded; }
+            set { alwaysExpanded = value; }
+        }
+
         private bool expandElements = false;
 
         /// <summary>

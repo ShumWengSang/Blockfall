@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace AdvancedInspector
 {
@@ -16,7 +14,7 @@ namespace AdvancedInspector
 
         public override Type[] EditedTypes
         {
-            get { return new Type[] { typeof(UnityEditor.MonoScript) }; }
+            get { return new Type[] { typeof(MonoScript) }; }
         }
 
         public override void Draw(InspectorField field, GUIStyle style)
@@ -26,7 +24,12 @@ namespace AdvancedInspector
 
             Type type = field.SerializedInstances[0].GetType();
             if (typeof(ComponentMonoBehaviour).IsAssignableFrom(type))
-                GUILayout.Label(type.Name);
+            {
+                if (GUILayout.Button(type.Name, EditorStyles.label))
+                {
+                    EditorGUIUtility.PingObject(MonoScript.FromMonoBehaviour(field.SerializedInstances[0] as MonoBehaviour));
+                }
+            }
             else
             {
                 EditorGUI.BeginChangeCheck();

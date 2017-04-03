@@ -14,6 +14,9 @@ namespace AdvancedInspector
         [Expandable(Expandable = false)]
         public ExpandableClass notExpandableField;
 
+        [Expandable(AlwaysExpanded = true)]
+        public ExpandableClass alwaysExpanded;
+
         // This class is not expandable by default. 
         public NotExpandableClass notExpandableObject;
 
@@ -31,15 +34,6 @@ namespace AdvancedInspector
         public class NotExpandableClass
         {
             public float myField;
-        }
-
-        public List<HitSoundData> soundData;
-
-        [Serializable, Expandable]
-        public class HitSoundData
-        {
-            public Sprite sprite;
-            public AudioSource sound;
         }
     }
 }

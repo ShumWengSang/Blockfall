@@ -16,6 +16,17 @@ namespace AdvancedInspector
         public delegate bool ReadOnlyDelegate();
         public delegate bool ReadOnlyStaticDelegate(ReadOnlyAttribute readOnly, object instance, object value);
 
+        private bool condition = true;
+
+        /// <summary>
+        /// Inverse the condition used by the IRuntime method.
+        /// </summary>
+        public bool Condition
+        {
+            get { return condition; }
+            set { condition = value; }
+        }
+
         #region IRuntime Implementation
         private string methodName = "";
 
@@ -75,9 +86,18 @@ namespace AdvancedInspector
             if (delegates.Count == 0)
                 return true;
 
-            for (int i = 0; i < delegates.Count; i++)
-                if (Invoke(i, instances[i], values[i]))
-                    return true;
+            if (condition)
+            {
+                for (int i = 0; i < delegates.Count; i++)
+                    if (Invoke(i, instances[i], values[i]))
+                        return true;
+            }
+            else
+            {
+                for (int i = 0; i < delegates.Count; i++)
+                    if (!Invoke(i, instances[i], values[i]))
+                        return true;
+            }
 
             return false;
         }
@@ -85,14 +105,27 @@ namespace AdvancedInspector
 
         public ReadOnlyAttribute() { }
 
+        public ReadOnlyAttribute(bool condition)
+        {
+            this.condition = condition;
+        }
+
         public ReadOnlyAttribute(Delegate method)
+            : this(method, true) { }
+
+        public ReadOnlyAttribute(Delegate method, bool condition)
         {
             this.delegates.Add(method);
+            this.condition = condition;
         }
 
         public ReadOnlyAttribute(string methodName)
+            : this(methodName, true) { }
+
+        public ReadOnlyAttribute(string methodName, bool condition)
         {
             this.methodName = methodName;
+            this.condition = condition;
         }
     }
 }

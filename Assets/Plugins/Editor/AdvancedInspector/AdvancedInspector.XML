@@ -30,6 +30,16 @@
             How the fields are sorted.
             </summary>
         </member>
+        <member name="P:AdvancedInspector.AdvancedInspectorControl.ShowIconPreview">
+            <summary>
+            Should an object field display a preview icon?
+            </summary>
+        </member>
+        <member name="P:AdvancedInspector.AdvancedInspectorControl.IconPreviewSize">
+            <summary>
+            At which size the preview icon should be displayed.
+            </summary>
+        </member>
         <member name="E:AdvancedInspector.AdvancedInspectorControl.SortingChanged">
             <summary>
             Raised if the inspector needs a redraw.
@@ -87,7 +97,7 @@
             Uniformized entry point of inspector drawing.
             </summary>
         </member>
-        <member name="M:AdvancedInspector.AdvancedInspectorControl.Inspect(AdvancedInspector.InspectorEditor,System.Collections.Generic.List{AdvancedInspector.InspectorField},System.Boolean,System.Boolean,System.Boolean,Separator)">
+        <member name="M:AdvancedInspector.AdvancedInspectorControl.Inspect(AdvancedInspector.InspectorEditor,System.Collections.Generic.List{AdvancedInspector.InspectorField},System.Boolean,System.Boolean,System.Boolean,AdvancedInspector.Separator)">
             <summary>
             Called by an Editor to have a collection of InspectorField to be displayed.
             Uniformized entry point of inspector drawing.
@@ -119,7 +129,7 @@
             Draw the "Restricted" enum, which is a runtime list provide by a method.
             </summary>
         </member>
-        <member name="M:AdvancedInspector.AdvancedInspectorControl.DrawDerived(AdvancedInspector.InspectorEditor,AdvancedInspector.InspectorField)">
+        <member name="M:AdvancedInspector.AdvancedInspectorControl.DrawDerived(AdvancedInspector.InspectorEditor,AdvancedInspector.InspectorField,UnityEngine.GUIStyle)">
             <summary>
             Draw the +/- icon to control the creation and deletion of user created object.
             </summary>
@@ -198,7 +208,12 @@
         </member>
         <member name="M:AdvancedInspector.FieldEditor.Draw(AdvancedInspector.InspectorField,UnityEngine.GUIStyle)">
             <summary>
-            The draw call from the Inspector.
+            The draw call from the Inspector when inspecting a specific type.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.FieldEditor.Draw(AdvancedInspector.FieldAttribute,AdvancedInspector.InspectorField)">
+            <summary>
+            The draw call from the Inspector when drawing a FieldAttribute.
             </summary>
         </member>
         <member name="M:AdvancedInspector.FieldEditor.OnLabelDraw(AdvancedInspector.InspectorField,UnityEngine.Rect)">
@@ -239,6 +254,12 @@
             <summary>
             Get the value of a field.
             Flag "Show Mixed Value" automaticly and return null if a multi-selection has different values.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.FieldEditor.GetFields(AdvancedInspector.InspectorField,System.Object[],System.Boolean,System.Boolean)">
+            <summary>
+            Returning null makes Advanced Inspector inspect the object default items.
+            If you want no fields, return an empty list.
             </summary>
         </member>
         <member name="T:AdvancedInspector.InspectorEditor">
@@ -296,7 +317,7 @@
             Override this if you implement your own inspector and doesn't want it to be expandable.
             </summary>
         </member>
-        <member name="F:AdvancedInspector.InspectorEditor.refresh">
+        <member name="F:AdvancedInspector.InspectorEditor.rebuild">
             <summary>
             When a value changed internally, this forces the fields to be refreshed.
             </summary>
@@ -348,12 +369,13 @@
             Preview Settings
             </summary>
         </member>
-        <member name="M:AdvancedInspector.InspectorEditor.Refresh">
+        <member name="M:AdvancedInspector.InspectorEditor.DataChanged">
             <summary>
-            Forces the inspector to rebuild its structure.
+            Call a refresh of this editor, assuming the layout needs to be rebuilt.
+            Expensive operation.
             </summary>
         </member>
-        <member name="M:AdvancedInspector.InspectorEditor.DataChanged">
+        <member name="M:AdvancedInspector.InspectorEditor.DataChanged(System.Boolean)">
             <summary>
             Data Changed, repaint.
             </summary>
@@ -399,6 +421,11 @@
         <member name="M:AdvancedInspector.BehaviourEditor.OnEnable">
             <summary>
             Unity's OnEnable.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.BehaviourEditor.OnInspectorGUI">
+            <summary>
+            Override to display Audio VU
             </summary>
         </member>
         <member name="T:AdvancedInspector.ExternalEditor">
@@ -546,10 +573,15 @@
             Return null otherwise.
             </summary>
         </member>
+        <member name="P:AdvancedInspector.InspectorField.PropertyDrawers">
+            <summary>
+            Associated property drawers, if any.
+            </summary>
+        </member>
         <member name="P:AdvancedInspector.InspectorField.Editor">
             <summary>
-            The Override Editor assigned to this field.
-            No field can be drawn without one.
+            The default FieldEditor associated with this InspectorField type.
+            Null is no FieldEditor found.
             </summary>
         </member>
         <member name="P:AdvancedInspector.InspectorField.Restricted">
@@ -892,27 +924,12 @@
             Get an attribute by type that was applied to the original item.
             </summary>
         </member>
-        <member name="M:AdvancedInspector.InspectorField.GetAttribute(System.Type)">
-            <summary>
-            Get an attribute by type that was applied to the original item.
-            </summary>
-        </member>
         <member name="M:AdvancedInspector.InspectorField.GetAttributes``1">
             <summary>
             Get all the attributes by type that were applied to the original item.
             </summary>
         </member>
-        <member name="M:AdvancedInspector.InspectorField.GetAttributes(System.Type)">
-            <summary>
-            Get all the attributes by type that were applied to the original item.
-            </summary>
-        </member>
         <member name="M:AdvancedInspector.InspectorField.HasAttribute``1">
-            <summary>
-            Return true if the memberinfo of this field is sporting that specific attribute type.
-            </summary>
-        </member>
-        <member name="M:AdvancedInspector.InspectorField.HasAttribute(System.Type)">
             <summary>
             Return true if the memberinfo of this field is sporting that specific attribute type.
             </summary>
@@ -1156,6 +1173,16 @@
             Selected color of the separator.
             </summary>
         </member>
+        <member name="P:AdvancedInspector.InspectorPreferences.BoxDefaultColor">
+            <summary>
+            Selected color of the separator.
+            </summary>
+        </member>
+        <member name="P:AdvancedInspector.InspectorPreferences.BoxPlayColor">
+            <summary>
+            Selected color of the separator.
+            </summary>
+        </member>
         <member name="P:AdvancedInspector.InspectorPreferences.InspectDefaultItems">
             <summary>
             If true, all classes that do not have a Custom Editor are drawn by Advanced Inspector.
@@ -1377,6 +1404,60 @@
             Get currenty Unity's Selection 
             </summary>
         </member>
+        <member name="T:AdvancedInspector.Clipboard">
+            <summary>
+            A copy/paste buffer.
+            Does not use the System buffer, as it's limited to a string and Unity does not provide a uniformed string serialization.
+            </summary>
+        </member>
+        <member name="P:AdvancedInspector.Clipboard.Data">
+            <summary>
+            In case of any normal object, returns deep copy of that object.
+            In case of a Component, returns the original so you can apply it on a GameObject yourself (sorry)
+            In case of a UnityEngine.Object, create a new one and perforce a Serialization Copy.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.Clipboard.CreateInstance(System.Type,UnityEngine.Object)">
+            <summary>
+            Create an instance of type
+            Works with values, list, array, scriptableObject, string
+            Components are ignored.
+            
+            The owner MonoBeahviour is used in case of the creation of a ComponentMonoBehaviour for its internal binding.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.Clipboard.Copy(System.Object,UnityEngine.Object)">
+            <summary>
+            Perform a deep copy if an object.
+            Does not perform copies of Components or GameObject
+            Values are returned as is (ex.: 14)
+            strings are cloned.
+            List/Array are enumerated and copied.
+            Everything else is deep copied by fields.
+            </summary>
+        </member>
+        <member name="P:AdvancedInspector.Clipboard.Type">
+            <summary>
+            Type of the current data in the clipboard.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.Clipboard.TryConvertion(System.Type,System.Object@)">
+            <summary>
+            Test if the current clipboard data can be converted into a specific type.
+            Ex.: int to string
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.Clipboard.TryConvertion``1(``0@)">
+            <summary>
+            Test if the current clipboard data can be converted into a specific type.
+            Ex.: int to string
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.Clipboard.CanConvert(System.Type,System.Object)">
+            <summary>
+            Return true if an object is convertable to a type.
+            </summary>
+        </member>
         <member name="T:AdvancedInspector.IControl">
             <summary>
             Define a control that can be drawn in an EditorWindow.
@@ -1390,6 +1471,72 @@
         <member name="E:AdvancedInspector.IControl.RequestRepaint">
             <summary>
             In the event an internal process of the Control want a repaint of the window outside the Drawing scope.
+            </summary>
+        </member>
+        <member name="T:AdvancedInspector.Separator">
+            <summary>
+            A separator holds two control side by side and divide them with a draggable line.
+            It can be horizontal or vertical.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.Separator.Draw(UnityEngine.Rect)">
+            <summary>
+            Draw the whole region holding the two control and the separator.
+            The separator pass down the proper region to Draw of the sub-controls.
+            Returns true if the window needs to be repainted.
+            </summary>
+        </member>
+        <member name="P:AdvancedInspector.DragEventArgs.Target">
+            <summary>
+            Targeted object
+            </summary>
+        </member>
+        <member name="P:AdvancedInspector.DragEventArgs.InBetween">
+            <summary>
+            Is on top of the target
+            </summary>
+        </member>
+        <member name="P:AdvancedInspector.DragEventArgs.Dragged">
+            <summary>
+            Selecttion dragged
+            </summary>
+        </member>
+        <member name="T:AdvancedInspector.EnumExtension">
+            <summary>
+            Extends Enum with some bitfields related method.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.EnumExtension.Append``1(System.Enum,``0)">
+            <summary>
+            Add a value to a bitfield.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.EnumExtension.Remove``1(System.Enum,``0)">
+            <summary>
+            Remove a value from a bitfield.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.EnumExtension.Has``1(System.Enum,``0)">
+            <summary>
+            Test if a bitfield has a value.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.EnumExtension.GetAttribute``1(System.Enum)">
+            <summary>
+            Gets an attribute on an enum field value
+            </summary>
+            <typeparam name="T">The type of the attribute you want to retrieve</typeparam>
+            <param name="enumVal">The enum value</param>
+            <returns>The attribute of type T that exists on the enum value</returns>
+        </member>
+        <member name="T:AdvancedInspector.TypeExtension">
+            <summary>
+            Extends Enum with some bitfields related method.
+            </summary>
+        </member>
+        <member name="M:AdvancedInspector.TypeExtension.GetBaseGenericType(System.Type)">
+            <summary>
+            Returns the nearest parent class that is generic. 
             </summary>
         </member>
         <member name="T:AdvancedInspector.Helper">
@@ -2028,148 +2175,28 @@
               Looks up a localized resource of type System.Byte[].
             </summary>
         </member>
-        <member name="T:Clipboard">
-            <summary>
-            A copy/paste buffer.
-            Does not use the System buffer, as it's limited to a string and Unity does not provide a uniformed string serialization.
-            </summary>
-        </member>
-        <member name="P:Clipboard.Data">
-            <summary>
-            In case of any normal object, returns deep copy of that object.
-            In case of a Component, returns the original so you can apply it on a GameObject yourself (sorry)
-            In case of a UnityEngine.Object, create a new one and perforce a Serialization Copy.
-            </summary>
-        </member>
-        <member name="M:Clipboard.CreateInstance(System.Type,UnityEngine.Object)">
-            <summary>
-            Create an instance of type
-            Works with values, list, array, scriptableObject, string
-            Components are ignored.
-            
-            The owner MonoBeahviour is used in case of the creation of a ComponentMonoBehaviour for its internal binding.
-            </summary>
-        </member>
-        <member name="M:Clipboard.Copy(System.Object,UnityEngine.Object)">
-            <summary>
-            Perform a deep copy if an object.
-            Does not perform copies of Components or GameObject
-            Values are returned as is (ex.: 14)
-            strings are cloned.
-            List/Array are enumerated and copied.
-            Everything else is deep copied by fields.
-            </summary>
-        </member>
-        <member name="P:Clipboard.Type">
-            <summary>
-            Type of the current data in the clipboard.
-            </summary>
-        </member>
-        <member name="M:Clipboard.TryConvertion(System.Type,System.Object@)">
-            <summary>
-            Test if the current clipboard data can be converted into a specific type.
-            Ex.: int to string
-            </summary>
-        </member>
-        <member name="M:Clipboard.TryConvertion``1(``0@)">
-            <summary>
-            Test if the current clipboard data can be converted into a specific type.
-            Ex.: int to string
-            </summary>
-        </member>
-        <member name="M:Clipboard.CanConvert(System.Type,System.Object)">
-            <summary>
-            Return true if an object is convertable to a type.
-            </summary>
-        </member>
-        <member name="T:Separator">
-            <summary>
-            A separator holds two control side by side and divide them with a draggable line.
-            It can be horizontal or vertical.
-            </summary>
-        </member>
-        <member name="M:Separator.Draw(UnityEngine.Rect)">
-            <summary>
-            Draw the whole region holding the two control and the separator.
-            The separator pass down the proper region to Draw of the sub-controls.
-            Returns true if the window needs to be repainted.
-            </summary>
-        </member>
-        <member name="P:DragEventArgs.Target">
-            <summary>
-            Targeted object
-            </summary>
-        </member>
-        <member name="P:DragEventArgs.InBetween">
-            <summary>
-            Is on top of the target
-            </summary>
-        </member>
-        <member name="P:DragEventArgs.Dragged">
-            <summary>
-            Selecttion dragged
-            </summary>
-        </member>
-        <member name="T:EnumExtension">
-            <summary>
-            Extends Enum with some bitfields related method.
-            </summary>
-        </member>
-        <member name="M:EnumExtension.Append``1(System.Enum,``0)">
-            <summary>
-            Add a value to a bitfield.
-            </summary>
-        </member>
-        <member name="M:EnumExtension.Remove``1(System.Enum,``0)">
-            <summary>
-            Remove a value from a bitfield.
-            </summary>
-        </member>
-        <member name="M:EnumExtension.Has``1(System.Enum,``0)">
-            <summary>
-            Test if a bitfield has a value.
-            </summary>
-        </member>
-        <member name="M:EnumExtension.GetAttribute``1(System.Enum)">
-            <summary>
-            Gets an attribute on an enum field value
-            </summary>
-            <typeparam name="T">The type of the attribute you want to retrieve</typeparam>
-            <param name="enumVal">The enum value</param>
-            <returns>The attribute of type T that exists on the enum value</returns>
-        </member>
-        <member name="T:TypeExtension">
-            <summary>
-            Extends Enum with some bitfields related method.
-            </summary>
-        </member>
-        <member name="M:TypeExtension.GetBaseGenericType(System.Type)">
-            <summary>
-            Returns the nearest parent class that is generic. 
-            </summary>
-        </member>
-        <member name="T:TreeView">
+        <member name="T:AdvancedInspector.TreeView">
             <summary>
             A control that is a list of item that can be nested.
             Support drag and drop, editing and sorting.
             </summary>
         </member>
-        <member name="P:TreeView.Selection">
+        <member name="P:AdvancedInspector.TreeView.Selection">
             <summary>
             Current selected tags.
             </summary>
         </member>
-        <member name="P:TreeView.Count">
+        <member name="P:AdvancedInspector.TreeView.Count">
             <summary>
             Number of visible nodes.
             </summary>
         </member>
-        <member name="M:TreeView.BuildVisibility">
+        <member name="M:AdvancedInspector.TreeView.BuildVisibility">
             <summary>
             Refresh the list of visible item when the items list has changed.
             </summary>
         </member>
-        <member name="M:TreeView.BuildVisibility(System.Collections.Generic.List{TreeViewItem},System.Collections.Generic.List{TreeViewItem})">
+        <member name="M:AdvancedInspector.TreeView.BuildVisibility(System.Collections.Generic.List{AdvancedInspector.TreeViewItem},System.Collections.Generic.List{AdvancedInspector.TreeViewItem})">
             <summary>
             Refresh the list of visible item when the items list has changed.
             </summary>

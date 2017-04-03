@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using AdvancedInspector;
-[ExecuteInEditMode]
 public class SplitBlock : MonoBehaviour {
     //Usually we want this running on editor time.
     //But just in case we run this at start as wel.

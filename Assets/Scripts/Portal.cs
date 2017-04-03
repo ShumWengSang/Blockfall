@@ -1,6 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public class Portal_And_Reference_Pair
+{
+    public Portal_And_Reference_Pair(Portal thisPort, Vector3 refPos)
+    {
+        portal = thisPort;
+        Pos = refPos;
+    }
+    public Portal portal;
+    public Vector3 Pos;
+}
+
 public class Portal : MonoBehaviour {
 
     public Portal OtherPortal;

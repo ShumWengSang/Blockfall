@@ -25,7 +25,37 @@ namespace AdvancedInspector
         private List<TValue> values = new List<TValue>();
 
         [NonSerialized]
-        private Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
+        private Dictionary<TKey, TValue> dictionary;
+
+        public UDictionary()
+        {
+            dictionary = new Dictionary<TKey, TValue>();
+        }
+
+        public UDictionary(IEqualityComparer<TKey> comparer)
+        {
+            dictionary = new Dictionary<TKey, TValue>(comparer);
+        }
+
+        public UDictionary(IDictionary<TKey, TValue> dictionary)
+        {
+            this.dictionary = new Dictionary<TKey, TValue>(dictionary);
+        }
+
+        public UDictionary(int capacity)
+        {
+            dictionary = new Dictionary<TKey, TValue>(capacity);
+        }
+
+        public UDictionary(IDictionary<TKey, TValue> dictionary, IEqualityComparer<TKey> comparer)
+        {
+            this.dictionary = new Dictionary<TKey, TValue>(dictionary, comparer);
+        }
+
+        public UDictionary(int capacity, IEqualityComparer<TKey> comparer)
+        {
+            dictionary = new Dictionary<TKey, TValue>(capacity, comparer);
+        }
 
         #region Implementation of ISerializationCallbackReceiver
         public void OnAfterDeserialize()
@@ -73,9 +103,9 @@ namespace AdvancedInspector
             OnBeforeSerialize();
         }
 #endif
-    #endregion
+        #endregion
 
-    #region Implementation IDictionary
+        #region Implementation IDictionary
         public bool IsFixedSize
         {
             get { return false; }
@@ -179,9 +209,9 @@ namespace AdvancedInspector
         {
             return ((IDictionary)dictionary).GetEnumerator();
         }
-#endregion
+        #endregion
 
-#region Implementation ICollection
+        #region Implementation ICollection
         public int Count
         {
             get { return dictionary.Count; }
@@ -225,9 +255,9 @@ namespace AdvancedInspector
         {
             return dictionary.Remove(item.Key);
         }
-#endregion
+        #endregion
 
-#region Implementation of IEnumerable
+        #region Implementation of IEnumerable
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             return dictionary.GetEnumerator();
@@ -237,6 +267,6 @@ namespace AdvancedInspector
         {
             return dictionary.GetEnumerator();
         }
-#endregion
+        #endregion
     }
 }

@@ -451,7 +451,69 @@ Take a look at the video for more information. It's an example of what the AI ca
 - Rev A: Fixed assert thrown while clicking button of inspected method.
 - Rev B: Fixed a null when drawing a Dictionary's new key field.
 - Rev B: Fixed an issue where attribute-bound property drawer would not have the "attribute" and "fieldInfo" value set properly.
+- Rev C: Managed to shave off 6 pixels off the labels section.
+- Rev C: Fixed an issue that prevented inspecting nested Unity type.
+- Rev C: Use the object type instead of the declaring type for ToString overload test.
 
+1.68:
+[CHANGES]
+- The Method attribute has a new property named "IsCoroutine", which allows you to invoke coroutines in the editor. WaitForSeconds is supported, but not YieldCustom.
+- Added preferences control over the default and playmode color of the inspector boxing, since we cannot access the Unity's one.
+- FieldAttribute added, an attribute-bound FieldEditor. It is like PropertyDrawer, but with far less limitation. See the documentations and examples.
+[FIXES]
+- Support Unity 5.4;
+- Removed some advanced and debug properties from the Animator inspector; Unity had the brilliant idea of spamming warning everytime they are inspected.
+- Update Renderes editor for the new 5.4 features.
+- Disable contextual collection control when read only.
+- Allows custom EditorField being used with CreateDerived fields.
+- Prevent drag'n'dropping ComponentMonoBehaviour on other fields.
+- Fixed an issue where some properties without a setter would not appear as read only.
+- Internal Change; InspectorField.Editor now returns the associated FieldEditor if any.
+- Allow to ping the script from a ComponentMonoBehaviour by clicking on it.
+
+1.69:
+[CHANGES]
+- CreateDerived attribute now has HideClassName property, which hide the class name on the left of the "+" sign. False by default.
+- Don't pass down FieldInfo to PropertyDrawer if it's not a field. Makes some PropertyDrawer works on properties instead of only fields! (See UnityEvent)
+- Added Unity's Audio VU draw at the bottom of MonoBehaviour that have the proper OnAudioFilterRead implementation. Warning; lot of reflection involved.
+[FIXES]
+- Fixed a null exception when applying a Collection attribute on an empty dictionary.
+- Fixed that an object was not properly flagged as dirty when adding a file by drag'n'drop to a inner collection.
+- Fixed an issue where collection of ComponentMonoBehaviour would not duplicate properly in a copy/paste operation.
+- Fixed that multiple version of the same MonoBehaviour on the same GameObject had duplication issues with UnityEvent.
+- Allow copy-pasting objects that don't have a public constructor.
+- Fixed a major performance issue when inspecting deep nesting (level 4+)
+- Major speed boost when selecting very complex object.
+
+1.70:
+[CHANGES]
+- Added the IInspect interface which allows you to inspect extra object. Similar to a MeshRenderer displaying its materials at the bottom.
+- Added a Refresh static method to the AdvancedInspectorAttribute. This can force all AI's editor to be refresh and optionnaly rebuilt.
+- Added a icon preview beside object fields. Option to show/hide and size of the icons are available in the right-click menu.
+- Added an Always Expanded property in the Collection Attribute to make list and dictionary uncollapsable.
+[FIXES]
+- Fixed the UV Meter in Unity 5.4+
+- Fixed a culture variation exception in saving colors in the preferences. 
+- Fixed a null occurring while watching a value.
+
+1.71:
+[CHANGES]
+- Introducing Menu Attribute, a way to add option menu to a field from an attribute.
+- TabAttribute is now a IRuntimeAttribute, which means the tab description can be changed per derived type or as you wish.
+- Derive from "AIStateMachineBehaviour" if you want your StateMachineBehaviour to be displayed by Advanced Inspector.
+[FIXES]
+- Performance improvements; 20% refresh speed boost and -40% memory allocation.
+- Property drawers bound by attributes were not being recongnized anymore. Fixed!
+- Changed how Apply/Revert works with prefabs, since the data was reverted, but not the link to the prefabs. Some issues still need to be resolved.
+- DescriptorAttribute applied directly to Enum can now target a static method delegate.
+- Apply "SetDirty" when a Method attribute has a undo message so that Prefabs can be considered modified.
+- Namespaced some classes that weren't previously.
+- Fixed an issue when a field is UnityEngine.Object and targets is hosting a MonoBehaviour.
+- Added an "inversing" condition similar to Inspect Attribute to the ReadOnly Attribute.
+- Extracted the Selection Tracker from the DLL so that people can change its shortcut, if wanted.
+- Rev A: Mistakingly flagged "AddAttribute" in InspectorField as private.
 
 1.60 and above is only supported on Unity 5.2+
 You may require to disable custom Advanced Inspector if you wish to use 1.60 on 5.1x.
+
+Tested on 5.2, 5.3, 5.4 and partially on 5.5 beta

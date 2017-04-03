@@ -2,20 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using AdvancedInspector;
+
+public enum Direction
+{
+    Up,
+    Down,
+    Left,
+    Right,
+    none
+}
+
 public class OneWayGate : MonoBehaviour
 {
     public bool Debug_b = false;
     int oldLayer = -1;
     int voidLayer;
     int BlocksPassThrough = 0;
-    public enum Direction
-    {
-        Up,
-        Down,
-        Left,
-        Right,
-        none
-    }
+
     [System.Serializable]
     public class DirectionMaterialDictionary : UDictionary<Direction, Material> { }
     [Inspect]

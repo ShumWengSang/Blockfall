@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -37,6 +37,7 @@ namespace AdvancedInspector
 
             transform.Fields.Add(new InspectorField(type, Instances, type.GetProperty("speed"), new InspectAttribute(InspectorLevel.Advanced),
                 new DescriptorAttribute("Speed", "The playback speed of the Animator. 1 is normal playback speed.", "http://docs.unity3d.com/ScriptReference/Animator-speed.html")));
+#if UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3
             transform.Fields.Add(new InspectorField(type, Instances, type.GetProperty("bodyPosition"), new InspectAttribute(InspectorLevel.Advanced), new ReadOnlyAttribute(),
                 new DescriptorAttribute("Body Position", "The position of the body center of mass.", "http://docs.unity3d.com/ScriptReference/Animator-bodyPosition.html")));
             transform.Fields.Add(new InspectorField(type, Instances, type.GetProperty("rootPosition"), new InspectAttribute(InspectorLevel.Advanced), new ReadOnlyAttribute(),
@@ -45,6 +46,7 @@ namespace AdvancedInspector
                 new DescriptorAttribute("Body Rotation", "The rotation of the body center of mass.", "http://docs.unity3d.com/ScriptReference/Animator-bodyRotation.html")));
             transform.Fields.Add(new InspectorField(type, Instances, type.GetProperty("rootRotation"), new InspectAttribute(InspectorLevel.Advanced), new ReadOnlyAttribute(),
                 new DescriptorAttribute("Root Rotation", "The root rotation, the rotation of the game object.", "http://docs.unity3d.com/ScriptReference/Animator-rootRotation.html")));
+#endif
 
             transform.Fields.Add(new InspectorField(type, Instances, type.GetProperty("targetPosition"), new InspectAttribute(InspectorLevel.Debug),
                 new DescriptorAttribute("Target Position", "Returns the position of the target specified by SetTarget(AvatarTarget targetIndex, float targetNormalizedTime)).", "http://docs.unity3d.com/ScriptReference/Animator-targetPosition.html")));
@@ -90,8 +92,11 @@ namespace AdvancedInspector
                 new DescriptorAttribute("Is Matching Target", "If automatic matching is active.", "http://docs.unity3d.com/ScriptReference/Animator-isMatchingTarget.html")));
             debug.Fields.Add(new InspectorField(type, Instances, type.GetProperty("isOptimizable"), new InspectAttribute(InspectorLevel.Debug),
                 new DescriptorAttribute("Is Optimizable", "Returns true if the current rig is optimizable with AnimatorUtility.OptimizeTransformHierarchy.", "http://docs.unity3d.com/ScriptReference/Animator-isOptimizable.html")));
+
+#if UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3
             debug.Fields.Add(new InspectorField(type, Instances, type.GetProperty("layerCount"), new InspectAttribute(InspectorLevel.Debug),
                 new DescriptorAttribute("Layer Count", "The AnimatorController layer count.", "http://docs.unity3d.com/ScriptReference/Animator-layerCount.html")));
+#endif
 
             Fields.Add(transform);
             Fields.Add(feet);

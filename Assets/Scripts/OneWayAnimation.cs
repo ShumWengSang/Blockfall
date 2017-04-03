@@ -11,22 +11,22 @@ public class OneWayAnimation : MonoBehaviour {
     {
         switch (GetComponentInParent<OneWayGate>().currentDirection)
         {
-            case OneWayGate.Direction.Up:
+            case Direction.Up:
                 direction = Quaternion.Euler(0, 0, 180);
                 transform.rotation = direction;
                 break;
 
-            case OneWayGate.Direction.Down:
+            case Direction.Down:
                 direction = Quaternion.Euler(0, 0, 0);
                 transform.rotation = direction;
                 break;
 
-            case OneWayGate.Direction.Left:
+            case Direction.Left:
                 direction = Quaternion.Euler(0, 0, 270);
                 transform.rotation = direction;
                 break;
 
-            case OneWayGate.Direction.Right:
+            case Direction.Right:
                 direction = Quaternion.Euler(0, 0, 90);
                 transform.rotation = direction;
                 break;
@@ -39,21 +39,21 @@ public class OneWayAnimation : MonoBehaviour {
 
         switch (GetComponentInParent<OneWayGate>().currentDirection)
         {
-            case OneWayGate.Direction.Right:
+            case Direction.Right:
                 transform.Rotate(0, 0, 90, Space.World);
                 //transform.rotation = direction;
                 break;
 
-            case OneWayGate.Direction.Left:
+            case Direction.Left:
                 transform.Rotate(0, 0, 270, Space.World);
                 break;
 
-            case OneWayGate.Direction.Up:
+            case Direction.Up:
                 transform.Rotate(0, 0, 180, Space.World);
                 break;
 
             default:
-            case OneWayGate.Direction.Down:
+            case Direction.Down:
                 break;
         }
 

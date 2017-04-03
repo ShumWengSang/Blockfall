@@ -7,6 +7,7 @@ namespace AdvancedInspector
     public class AIExample7_Collection : MonoBehaviour
     {
         // Any collection inspected by Advanced Inspector has the re-ordering controls.
+        [ReadOnly]
         public float[] myArray;
 
         // The collection attribute gives you control on how the collection is displayed.
@@ -61,6 +62,21 @@ namespace AdvancedInspector
         {
             return items;
         }
+
+        [Serializable]
+        public class CollectionContainer
+        {
+            public int integer;
+            public string text;
+
+            public override string ToString()
+            {
+                return text;
+            }
+        }
+
+        [Collection(AlwaysExpanded = true)]
+        public CollectionContainer[] alwaysExpanded;
     }
 
     // When binding an enum with a collection, the values should be in a zero-based 1 increment order, similar to the index of the collection.

@@ -56,7 +56,8 @@ public class ScoreSystem : MonoBehaviour
         Level.text = World.ToString() + " - " + level.ToString();
     }
 
-    void Start()
+    [Inspect]
+    public void UpdateWorldLevelInts()
     {
         string currentSceneString = SceneManager.GetActiveScene().name;
 
@@ -75,8 +76,13 @@ public class ScoreSystem : MonoBehaviour
 
             World = currentWorldInt;
             level = currentLevelInt;
-            if(OnParsed != null) OnParsed(World, level);
+            if (OnParsed != null) OnParsed(World, level);
         }
+    }
+
+    void Start()
+    {
+        UpdateWorldLevelInts();
 
         UpdateTexts();
         gameOver.SetActive(false);

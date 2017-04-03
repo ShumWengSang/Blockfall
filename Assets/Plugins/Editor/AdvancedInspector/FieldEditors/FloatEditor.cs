@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System;
-using System.Collections;
 
 namespace AdvancedInspector
 {
@@ -137,7 +136,7 @@ namespace AdvancedInspector
 
                 Event e = Event.current;
                 Rect labelRect = GUILayoutUtility.GetLastRect();
-                int id = EditorGUIUtility.GetControlID(FocusType.Native, labelRect);
+                int id = EditorGUIUtility.GetControlID(FocusType.Passive, labelRect);
 
                 if (InspectorPreferences.IsDragControl(InspectorPreferences.ValueScroll))
                 {

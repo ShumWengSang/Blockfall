@@ -37,6 +37,8 @@ namespace AdvancedInspector
         private static Type validator = null;
         private static MethodInfo doObjectField = null;
 
+        private static GUIStyle previewIconStyle;
+
         public override bool EditDerived
         {
             get { return true; }
@@ -86,6 +88,45 @@ namespace AdvancedInspector
             EditorGUI.BeginChangeCheck();
                 
             Type type = field.Type;
+
+            if (value != null && AdvancedInspectorControl.ShowIconPreview)
+            {
+                if (previewIconStyle == null)
+                {
+                    previewIconStyle = new GUIStyle();
+                    previewIconStyle.margin = new RectOffset(4, 2, 2, 2);
+                    previewIconStyle.padding = new RectOffset(0, 0, 0, 0);
+                }
+
+                Texture2D preview = AssetPreview.GetAssetPreview(value);
+                if (preview != null)
+                {
+                    int previewSize;
+                    switch (AdvancedInspectorControl.IconPreviewSize)
+                    {
+                        case IconPreviewSize.Smallest:
+                            previewSize = 16;
+                            break;
+                        case IconPreviewSize.Small:
+                            previewSize = 24;
+                            break;
+                        case IconPreviewSize.Normal:
+                            previewSize = 32;
+                            break;
+                        case IconPreviewSize.Large:
+                            previewSize = 48;
+                            break;
+                        case IconPreviewSize.Largest:
+                            previewSize = 64;
+                            break;
+                        default:
+                            previewSize = 16;
+                            break;
+                    }
+
+                    GUILayout.Label(preview, previewIconStyle, GUILayout.Width(previewSize), GUILayout.Height(previewSize));
+                }
+            }
 
             UnityEngine.Object result = null;
 
@@ -170,11 +211,16 @@ namespace AdvancedInspector
 
         private void DrawObjectSelector(InspectorField field)
         {
-            MonoBehaviour behaviour = field.GetValue() as MonoBehaviour;
+            Component behaviour = field.GetValue() as Component;
             if (behaviour == null)
                 return;
 
-            List<Component> components = new List<Component>(behaviour.gameObject.GetComponents(field.BaseType));
+            List<Component> components;
+            if (typeof(Component).IsAssignableFrom(field.BaseType))
+                components = new List<Component>(behaviour.gameObject.GetComponents(field.BaseType));
+            else
+                components = new List<Component>(behaviour.gameObject.GetComponents(behaviour.GetType()));
+
             if (components.Count == 1)
                 return;
 

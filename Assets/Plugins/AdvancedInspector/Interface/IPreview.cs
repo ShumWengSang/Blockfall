@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using UnityEngine;
-
-namespace AdvancedInspector
+﻿namespace AdvancedInspector
 {
     /// <summary>
     /// Implements the method required to display an inspector preview. 

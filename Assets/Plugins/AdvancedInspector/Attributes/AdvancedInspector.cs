@@ -2,6 +2,8 @@
 
 namespace AdvancedInspector
 {
+    public delegate void AdvancedInspectorForceRefresh(bool rebuil);
+
     /// <summary>
     /// Turn off the default Inspector in favor or the Advanced one.
     /// If false, both may be draw if some members are flagged "Inspect", one after the other...
@@ -9,6 +11,23 @@ namespace AdvancedInspector
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Interface, Inherited = true)]
     public class AdvancedInspectorAttribute : Attribute
     {
+        /// <summary>
+        /// The event fired when an out-of-context refresh is requested.
+        /// Honestly, you should be using IDataChanged instead.
+        /// </summary>
+        public static event AdvancedInspectorForceRefresh OnForceRefresh;
+
+        /// <summary>
+        /// Static method use to force an out-of-context refresh of Advanced Inspector.
+        /// If rebuild is true, its rebuilds all the InspectorField. It's a rather expensive operation.
+        /// </summary>
+        /// <param name="rebuild">Rebuild or not the field layout.</param>
+        public static void Refresh(bool rebuild = false)
+        {
+            if (OnForceRefresh != null)
+                OnForceRefresh(rebuild);
+        }
+
         private bool inspectDefaultItems = false;
 
         /// <summary>

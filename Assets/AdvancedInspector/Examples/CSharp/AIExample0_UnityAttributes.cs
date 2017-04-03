@@ -21,7 +21,7 @@ namespace AdvancedInspector
         [Multiline]
         public string multilineField;
 
-        [TextArea]
+        [Inspect, TextArea(3,7)]
         public string textAreaField;
 
         [Angle, RangeValue(0, 360)]
