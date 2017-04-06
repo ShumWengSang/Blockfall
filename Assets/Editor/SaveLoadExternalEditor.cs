@@ -26,6 +26,10 @@ public class SaveLoadExternalEditor : EditorWindow
     private void OnGUI()
     {
         GUILayout.Label("Puzzle saver and loader editor");
+        if(editor == null)
+        {
+            Init();
+        }
         editor.Instances = new object[] { saveload };
         if (editor.Draw(new Rect(0, 16, position.width, position.height - 16)))
             Repaint();

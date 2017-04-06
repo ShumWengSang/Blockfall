@@ -59,25 +59,9 @@ public class ScoreSystem : MonoBehaviour
     [Inspect]
     public void UpdateWorldLevelInts()
     {
-        string currentSceneString = SceneManager.GetActiveScene().name;
-
-        int posOfDash = currentSceneString.IndexOf("-");
-
-        if (currentSceneString.Contains("Level"))
-        {
-            //Parse current world in string form
-            int firstWorldDigit = currentSceneString.IndexOf("l") + 1;
-            string currentWorldString = currentSceneString.Substring(firstWorldDigit, posOfDash - firstWorldDigit); //This is in case we have world in double digits. 
-            int currentWorldInt = int.Parse(currentWorldString);
-
-            //Parse current level in string then int form
-            string currentLevelString = currentSceneString.Substring(posOfDash + 1);
-            int currentLevelInt = int.Parse(currentLevelString);
-
-            World = currentWorldInt;
-            level = currentLevelInt;
-            if (OnParsed != null) OnParsed(World, level);
-        }
+        World = PlayerPrefs.GetInt("CurrentWorld",0);
+        level = PlayerPrefs.GetInt("CurrentLevel",0);
+        if (OnParsed != null) OnParsed(World, level);
     }
 
     void Start()

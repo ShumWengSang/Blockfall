@@ -143,11 +143,11 @@ public class SaveLoadBridge {
             {
                 if (data.type == blockType.one_way_b)
                 {
-                    data.direction = obj.GetComponent<OneWayBlock>().currentDirection;
+                    obj.GetComponent<OneWayBlock>().currentDirection = data.direction;
                 }
                 else if (data.type == blockType.one_way_g)
                 {
-                    data.direction = obj.GetComponent<OneWayGate>().currentDirection;
+                    obj.GetComponent<OneWayGate>().currentDirection = data.direction;
                 }
             }
             if(data.type == blockType.portal)
@@ -178,6 +178,9 @@ public class SaveLoadBridge {
 
         Debug.Log("Successfully loaded");
         Current_World = scene.world; Current_Level = scene.level;
+
+        PlayerPrefs.SetInt("CurrentWorld", Current_World);
+        PlayerPrefs.SetInt("CurrentLevel", Current_Level);
     }
 
     
