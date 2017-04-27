@@ -3,7 +3,9 @@ using System.Collections;
 
 public class TimeScaleController : MonoBehaviour {
 
-    public float timeScale = 2.5f;
+    public float timeScale = 1.75f;
+
+    public float timeScaleModifier = 0;
 	// Use this for initialization
 	void Start () {
         Time.timeScale = timeScale;
@@ -17,6 +19,12 @@ public class TimeScaleController : MonoBehaviour {
     void OnDisable()
     {
         GoalChecker.OnFinishedGame -= OnFinishedGame;
+    }
+
+    public void OnModifyTimeScale(float newTime)
+    {
+        timeScaleModifier = newTime;
+        Time.timeScale = timeScale + timeScaleModifier;
     }
 
     void OnFinishedGame()

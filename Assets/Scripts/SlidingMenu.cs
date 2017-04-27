@@ -42,13 +42,13 @@ public class SlidingMenu : MonoBehaviour {
     }
     [Inspect(InspectorLevel.Debug)]
     float []Steps;
-    WaitForEndOfFrame EndFrame;
+
     Sequence seq;
     // Use this for initialization
     void Start()
     {
         GenerateContentParent();
-        EndFrame = new WaitForEndOfFrame();
+       
         for(int i = 0; i < transparentBoxes.Length; i++)
         {
             transparentBoxes[i].CrossFadeAlpha(0.3f, 0.0f, true);

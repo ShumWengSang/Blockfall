@@ -36,6 +36,12 @@ public class DetermineBackgroundImage : MonoBehaviour {
         ChangeToBackground();
     }
 
+    private void Start()
+    {
+        World = PlayerPrefs.GetInt("CurrentWorld");
+        ChangeToBackground(); 
+    }
+
     [Inspect]
     void ChangeToBackground()
     {
@@ -56,8 +62,10 @@ public class DetermineBackgroundImage : MonoBehaviour {
                 thisImage.texture = World4Bg.texture;
                 break;
         }
+#if UNITY_EDITOR
         if(!Application.isPlaying)
             EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+#endif
     }
 
 }

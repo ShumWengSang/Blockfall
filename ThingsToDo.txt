@@ -1,31 +1,30 @@
 Levels
-	World 5		 		(0%)
-	Rebalance Levels 		(50% done (Roland's Worlds)) (0% Shawn's Worlds)
+					Done. Don't care anymore about this.
 
 Programming
-	Powerups
-		Undo 			(100% done)
-		Solution 		(50%) (Created script to read answers. Can't move forward due to lack of imagination)
-		Hint 			(50%) (Created script to read answers. Can't move forward due to lack of imagination)
+
+	Powerups			!!!(Of all the powerups, only the solution and move a block makes sense to 					implement.)!!!
+		Undo 			(90% done, Portal and special effect blocks seems to have problems. Again, does 						this even make sense?)
+		Solution 		(80%) (Can read and replay answers. Need someone to make the answers all over 							again. After that need to test against portals and vortex, but expected to work 						properly)(Portals do not yet work properly)
+		Hint 			(50%) (Halted. Not sure if this is feasible at all.)
 		Move a Block 		(0%)
 	Pause Widget 			(95% done)
-		Sound On/Off 		(100% done)
-		Speed Multiplier Slider (90% done) (Not Linked Yet)
+		Sound On/Off 		(100% done) (Awaiting sound assets)
+		Speed Multiplier Slider (100% done) (Awaiting sound assets)
 		Music On/Off 		(100% done)
 		Level Select 		(100% done)
 		Skip Level 		(100% done)
 		Continue 		(100% done)
 	Sound 				(0%) (Require Assets)
-	Unity Service 			(10%) (Imported SDK) 
-	Facebook integration. 		(10%) (Imported SDK) (need inspiration)
+	Unity Service 			(0%) 
+	Facebook integration. 		(0%) 
+	Admob				(0%) 
 
-UI
-	World 5 buttons for level select. (90% done) (Require Assets)
 
-Assets	(Require Assets)
-	Rotate Buttons
-	Moving Background
+Assets	Sounds
+	Moving Background(?)
 
 Bugs
-	Goal Texture coloured a bit differently.
-	Old levels come out instead of new levels when using the SceneChanger code
+	Can swipe and turn while in paused mode.
+	Clearing the scene's blocks using save load bridge does not change the scene. When reloading the scene, the blocks return.
+	If MasterGameScene starts with blocks already inside, and loaded from LevelSelection, error will occur and loading of blocks will stop. (Workaround, make sure MasterGameScene no blocks inside using Create New Puzzle).

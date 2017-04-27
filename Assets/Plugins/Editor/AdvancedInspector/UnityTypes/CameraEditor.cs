@@ -55,9 +55,14 @@ namespace AdvancedInspector
                 new DescriptorAttribute("Render Texture", "Destination render texture (Unity Pro only).", "http://docs.unity3d.com/ScriptReference/Camera-targetTexture.html")));
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("useOcclusionCulling"),
                 new DescriptorAttribute("Occlusion Culling", "Whether or not the Camera will use occlusion culling during rendering.", "http://docs.unity3d.com/ScriptReference/Camera-useOcclusionCulling.html")));
+
+#if UNITY_5_6
+            Fields.Add(new InspectorField(type, Instances, type.GetProperty("allowHDR"),
+                new DescriptorAttribute("HDR", "High dynamic range rendering.", "http://docs.unity3d.com/ScriptReference/Camera-hdr.html")));
+#else
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("hdr"),
                 new DescriptorAttribute("HDR", "High dynamic range rendering.", "http://docs.unity3d.com/ScriptReference/Camera-hdr.html")));
-
+#endif
             Fields.Add(new InspectorField(null, new UnityEngine.Object[] { this }, new object[] { this }, this.GetType().GetMethod("TakeScreenshot"),
                 new Attribute[] { new InspectAttribute(InspectorLevel.Advanced) }));
             Fields.Add(new InspectorField(null, new UnityEngine.Object[] { this }, new object[] { this }, null, this.GetType().GetField("screenshotResolution"), false,

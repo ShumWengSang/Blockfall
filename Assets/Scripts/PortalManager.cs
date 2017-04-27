@@ -7,16 +7,7 @@ public class PortalManager : MonoBehaviour {
     public List<Color> portalColors;
     //List<PortalPair> PortalPairs;
     Dictionary<Portal, Portal> DicPortal;
-    class PortalPair
-    {
-        public PortalPair(GameObject one, GameObject two)
-        {
-            portal_one = one;
-            portal_two = two;
-        }
-        GameObject portal_one;
-        GameObject portal_two;
-    }
+
 
 	// Use this for initialization
 	void Start () {
@@ -54,6 +45,10 @@ public class PortalManager : MonoBehaviour {
             portal.Key.GetComponent<SpriteRenderer>().color = portalColors[Counter];
             portal.Value.GetComponent<SpriteRenderer>().color = portalColors[Counter];
             Counter++;
+            if(Counter >= 4)
+            {
+                Counter = 0;
+            }
         }
     }
 }

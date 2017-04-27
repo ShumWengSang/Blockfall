@@ -319,7 +319,11 @@ namespace AdvancedInspector
             bool changed = GUI.changed;
             GUI.changed = false;
 
+#if UNITY_5_6
+            position = Handles.Slider(position, direction, handleSize * 0.03f, new Handles.CapFunction(Handles.DotHandleCap), 0f);
+#else
             position = Handles.Slider(position, direction, handleSize * 0.03f, new Handles.DrawCapFunction(Handles.DotCap), 0f);
+#endif
 
             if (GUI.changed)
                 radius = Vector3.Dot(position - p, direction);

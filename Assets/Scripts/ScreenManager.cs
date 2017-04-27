@@ -131,7 +131,7 @@ public class ScreenManager : MonoBehaviour
 
         //If we are using the keyboard right now, that's all we need to do.
         var standaloneInputModule = EventSystem.current.currentInputModule as StandaloneInputModule;
-        if (standaloneInputModule != null && standaloneInputModule.inputMode == StandaloneInputModule.InputMode.Buttons)
+        if (standaloneInputModule != null /*&& standaloneInputModule.inputMode == StandaloneInputModule.InputMode.Buttons*/)
             return;
 
         //Since we are using a pointer device, we don't want anything selected. 

@@ -6,14 +6,14 @@ public class VortexBox : MonoBehaviour {
     [AdvancedInspector.Inspect(AdvancedInspector.InspectorLevel.Debug)]
     Transform currentObject;
     Rigidbody currentRb;
-    IEnumerator holdObject;
+    //IEnumerator holdObject;
     public Vector3 collisionCenter;
-    BoxCollider collider;
+    BoxCollider theBoxcollider;
     List<Transform> CheckedItems;
     void Start()
     {
         CheckedItems = new List<Transform>();
-        collider = GetComponent<BoxCollider>();
+        theBoxcollider = GetComponent<BoxCollider>();
         OnCompleteRotate();
     }
 
@@ -36,7 +36,7 @@ public class VortexBox : MonoBehaviour {
     void OnCompleteRotate()
     {
         Vector3 size = transform.InverseTransformVector(collisionCenter);
-        collider.center = new Vector3((size.x), (size.y), -1);
+        theBoxcollider.center = new Vector3((size.x), (size.y), -1);
     }
 
     void OnTriggerEnter(Collider other)
@@ -64,7 +64,7 @@ public class VortexBox : MonoBehaviour {
 
     IEnumerator HoldObject()
     {
-        holdObject = HoldObject();
+        //holdObject = HoldObject();
         float distance;
         do
         {
@@ -73,7 +73,7 @@ public class VortexBox : MonoBehaviour {
         } while (!MathHelper.IsFloatBetween(distance, 0.1f, 0f));
         SnapObject.SnapTheObject(currentObject);
         currentObject.GetComponent<Rigidbody>().isKinematic = true;
-        holdObject = null;
+        //holdObject = null;
     }
 
     void OnStartFalling()

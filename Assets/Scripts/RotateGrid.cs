@@ -139,7 +139,6 @@ public class RotateGrid : MonoBehaviour {
     Tween theTween;
     public Text MovesDone;
     public WoodenBlockManager woodBlockManager;
-    Vector2 halfVector = new Vector2(0.5f, 0.5f);
 
 	public float rotationTime = 1.0f;
     bool GameOver = false;
@@ -260,16 +259,17 @@ public class RotateGrid : MonoBehaviour {
         GoalChecker.OnFinishedGame -= OnGameComplete;
     }
 
-
+    public bool pauseFinger = false;
     void OnFingerSwipe(LeanFinger finger)
     {
         if (!woodBlockManager.areBlocksStationary())
             return;
-        Ray fingerRay = finger.GetStartRay();
+        if (pauseFinger)
+            return;
         woodBlockManager.SetBlockKinemactics(true);
 
         var StartViewPos = mainCamera.ScreenToViewportPoint(finger.StartScreenPosition);
-        var EndViewPos = mainCamera.ScreenToViewportPoint(finger.LastScreenPosition);
+        //var EndViewPos = mainCamera.ScreenToViewportPoint(finger.LastScreenPosition);
 
         if(StartViewPos.x < 0.5f && StartViewPos.y < 0.5f)
         {

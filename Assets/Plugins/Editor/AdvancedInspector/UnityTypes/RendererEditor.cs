@@ -16,6 +16,12 @@ namespace AdvancedInspector
                 new DescriptorAttribute("Cast Shadows", "Does this object cast shadows?", "http://docs.unity3d.com/ScriptReference/Renderer-shadowCastingMode.html")));
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("receiveShadows"),
                 new DescriptorAttribute("Receive Shadows", "Does this object receive shadows?", "http://docs.unity3d.com/ScriptReference/Renderer-receiveShadows.html")));
+
+#if UNITY_5_6
+            Fields.Add(new InspectorField(type, Instances, type.GetProperty("motionVectorGenerationMode"),
+                new DescriptorAttribute("Motion Vectors", "Specifies the mode for motion vector rendering.", "https://docs.unity3d.com/ScriptReference/Renderer-motionVectorGenerationMode.html")));
+#endif
+
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("sharedMaterials"),
                 new DescriptorAttribute("Materials", "All the shared materials of this object.", "http://docs.unity3d.com/ScriptReference/Renderer-sharedMaterials.html")));
 #if UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3
@@ -88,6 +94,11 @@ namespace AdvancedInspector
 
             return true;
         }
+
+        /*private bool IsDeferredShading()
+        {
+
+        }*/
 
         private ReflectionProbeBlendInfo[] ReflectionProbes
         {

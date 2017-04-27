@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using AdvancedInspector;
 public class OneWayBlock : MonoBehaviour {
     public bool Debug_b = false;
-    int oldLayer = -1;
-    int voidLayer;
+
     int BlocksPassThrough = 0;
 
     [System.Serializable]
@@ -30,7 +29,7 @@ public class OneWayBlock : MonoBehaviour {
     }
     void Start()
     {
-        voidLayer = LayerMask.NameToLayer("Void");
+        //voidLayer = LayerMask.NameToLayer("Void");
         PassedBlocks = new List<Collider>();
         collisionBox = GetComponent<BoxCollider>();
         DisableCollider(collisionBox);

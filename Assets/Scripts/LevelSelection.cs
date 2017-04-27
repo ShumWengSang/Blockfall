@@ -101,12 +101,7 @@ public class LevelSelection : MonoBehaviour
 
     void Start()
     {
-        FakePlayerPrefData();
+        //FakePlayerPrefData();
         SetButtons();
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

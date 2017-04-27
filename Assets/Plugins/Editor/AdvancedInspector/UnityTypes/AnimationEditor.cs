@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -24,6 +22,9 @@ namespace AdvancedInspector
             base.OnEnable();
 
             Type box = TypeUtility.GetTypeByName("BoxEditor");
+            if (box == null)
+                return;
+
             boxEditor = Activator.CreateInstance(box, true, hash);
             edit = box.GetMethod("OnSceneGUI", new Type[] { typeof(Transform), typeof(Color), typeof(Vector3).MakeByRefType(), typeof(Vector3).MakeByRefType() });
             set = box.GetMethod("SetAlwaysDisplayHandles");
@@ -60,6 +61,9 @@ namespace AdvancedInspector
 
         protected override void OnSceneGUI()
         {
+            if (boxEditor == null)
+                return;
+
             Animation animation = (Animation)target;
 
             if ((animation != null) && ((animation.cullingType == AnimationCullingType.BasedOnRenderers) || (animation.cullingType == AnimationCullingType.BasedOnRenderers)))

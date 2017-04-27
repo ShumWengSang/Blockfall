@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 public class GoalChecker : MonoBehaviour {
 
 	//public RotateGrid grid;
 	GameObject grid;
-    GoalCheck []goalCheck;
-    WoodenBlockManager manager;
+    List<GoalCheck> goalCheck;
+
 
     public delegate void GameComplete();
     public static event GameComplete OnFinishedGame;
 
     bool SentFinishedGame = false;
+
+    public bool RecordAnswer = false;
 
     void OnEnable()
     {
@@ -23,21 +26,29 @@ public class GoalChecker : MonoBehaviour {
         RotateGrid.OnFinishedFalling -= OnFinishFalling;
     }
 
-	// Use this for initialization
-	void Start () {
+    private void Start()
+    {
+        Init();
+    }
+
+    // Use this for initialization
+    void Init () {
         SentFinishedGame = false;
         GameObject[] goals = GameObject.FindGameObjectsWithTag("GoalZone");
-        goalCheck = new GoalCheck [goals.Length];
-        for(int i = 0; i < goalCheck.Length; i++)
+        goalCheck = new List<GoalCheck>();
+        Transform grid = GameObject.Find("Grid").transform;
+        for(int i = 0; i < goals.Length; i++)
         {
-            goalCheck[i] = goals[i].GetComponent<GoalCheck>();
+            if (goals[i].transform.IsChildOf(grid))
+            {
+                goalCheck.Add(goals[i].GetComponent<GoalCheck>());
+            }
         }
-        manager = WoodenBlockManager.instance;
 	}
 
 	public bool areGoalsScored()
 	{
-        for (int i = 0; i < goalCheck.Length; i++)
+        for (int i = 0; i < goalCheck.Count; i++)
 		{
             if (goalCheck[i].goalScored == false)
 				return false;
@@ -53,20 +64,22 @@ public class GoalChecker : MonoBehaviour {
             {
                 OnFinishedGame();
                 SentFinishedGame = true;
-
-                if (System.IO.File.Exists("Answers/" + SceneManager.GetActiveScene().name + ".txt")) //if file exists
+                if (RecordAnswer)
                 {
-                    //check if current answer is shorter
-                    int prevAnsMoves = this.GetComponent<PrintAnswer>().GetNumberOfMoves(SceneManager.GetActiveScene().name + ".txt");
-                    int currentAnsMoves = this.GetComponent<PrintAnswer>().movesMadeList.Count;
+                    if (System.IO.File.Exists("Answers/" + SceneManager.GetActiveScene().name + ".txt")) //if file exists
+                    {
+                        //check if current answer is shorter
+                        int prevAnsMoves = this.GetComponent<PrintAnswer>().GetNumberOfMoves(SceneManager.GetActiveScene().name + ".txt");
+                        int currentAnsMoves = this.GetComponent<PrintAnswer>().movesMadeList.Count;
 
-                    if (currentAnsMoves < prevAnsMoves)
+                        if (currentAnsMoves < prevAnsMoves)
+                            this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
+                    }
+                    else
+                    {
                         this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
-                }
-                else
-                {
-                    this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
-                }           
+                    }
+                }       
             }
         }
     }

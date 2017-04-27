@@ -15,7 +15,7 @@ namespace Data_Blocks
     public class Scene_Block
     {
         [SerializeField]
-        public List<block_data> blocks;
+        public block_data[] blocks;
         public int world, level;
     }
 

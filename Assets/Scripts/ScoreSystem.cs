@@ -5,6 +5,7 @@ using AdvancedInspector;
 using UnityEngine.SceneManagement;
 public class ScoreSystem : MonoBehaviour
 {
+    public bool isReal_testing = false;
     public delegate void OnLevelParsed(int world, int level);
     public static event OnLevelParsed OnParsed;
 
@@ -12,7 +13,7 @@ public class ScoreSystem : MonoBehaviour
     public int World = 1;
     //[Group("Game UI"), Inspect]
     public int level = 1;
-    static ScoreSystem instance;
+
     [Inspect(InspectorLevel.Advanced)]
     public RotateGrid rotateScript;
 
@@ -46,7 +47,7 @@ public class ScoreSystem : MonoBehaviour
     public Text Ranks;
     void Awake()
     {
-        instance = this;
+        UpdateWorldLevelInts();
     }
 
     [Inspect]
@@ -56,17 +57,51 @@ public class ScoreSystem : MonoBehaviour
         Level.text = World.ToString() + " - " + level.ToString();
     }
 
+    public void UpdateWorldValues_OLD()
+    {
+        string currentSceneString = SceneManager.GetActiveScene().name;
+
+        int posOfDash = currentSceneString.IndexOf("-");
+
+        if (currentSceneString.Contains("Level"))
+        {
+            //Parse current world in string form
+            int firstWorldDigit = currentSceneString.IndexOf("l") + 1;
+            string currentWorldString = currentSceneString.Substring(firstWorldDigit, posOfDash - firstWorldDigit); //This is in case we have world in double digits. 
+            int currentWorldInt = int.Parse(currentWorldString);
+
+            //Parse current level in string then int form
+            string currentLevelString = currentSceneString.Substring(posOfDash + 1);
+            int currentLevelInt = int.Parse(currentLevelString);
+
+            World = currentWorldInt;
+            level = currentLevelInt;
+        }
+    }
+
     [Inspect]
     public void UpdateWorldLevelInts()
     {
         World = PlayerPrefs.GetInt("CurrentWorld",0);
         level = PlayerPrefs.GetInt("CurrentLevel",0);
         if (OnParsed != null) OnParsed(World, level);
+       // if (isReal_testing)
+        {
+            //the above condition checks is a condition that we must manually change. Usually should be false, unless we are testing saveloadbridge
+            //or from loading from another scene.
+            //basically using saveloadbridge in realtime
+//#if UNITY_EDITOR_WIN
+            string path = Application.streamingAssetsPath + "/Data/" + World.ToString() + "-" + level.ToString() + ".dat";
+//#elif UNITY_ANDROID
+            //string path = Application.streamingAssetsPath + "/Data/" + World.ToString() + "-" + level.ToString() + ".dat";
+            //string path = "jar:file://" + Application.dataPath + "!/assets/" + "/Data/" + World.ToString() + "-" + level.ToString() + ".dat";
+//#endif
+            SaveLoadBridge.Instance.LoadScene(path);
+        }
     }
 
     void Start()
     {
-        UpdateWorldLevelInts();
 
         UpdateTexts();
         gameOver.SetActive(false);
@@ -74,7 +109,6 @@ public class ScoreSystem : MonoBehaviour
 
     void OnDestroy()
     {
-        instance = null;
     }
     
     void OnEnable()

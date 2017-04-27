@@ -21,7 +21,7 @@ public class SwappingMoveBar : MonoBehaviour {
 
     public RotateGrid rotateScript;
 
-    float goldRank, silverRank, bronzeRank, barLength;
+    float goldRank, silverRank, bronzeRank;
 
     Image currentTrophy;
     float currentTargetMoves;
@@ -35,7 +35,7 @@ public class SwappingMoveBar : MonoBehaviour {
         goldRank = sys.GoldRank;
         silverRank = sys.SilverRank;
         bronzeRank = sys.BronzeRank;
-        barLength = TrophyMarker.parent.GetComponent<RectTransform>().rect.width;
+        //barLength = TrophyMarker.parent.GetComponent<RectTransform>().rect.width;
 
        // TrophyMarker.GetComponent<Image>(). = GoldImage;
         TrophyMarker.GetChild(0).GetComponent<Text>().text = " ≤ " + goldRank.ToString();

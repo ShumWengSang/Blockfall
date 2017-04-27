@@ -513,7 +513,14 @@ Take a look at the video for more information. It's an example of what the AI ca
 - Extracted the Selection Tracker from the DLL so that people can change its shortcut, if wanted.
 - Rev A: Mistakingly flagged "AddAttribute" in InspectorField as private.
 
+1.72:
+[FIXES]
+- Added support for Unity 5.6.
+- Fixed warnings and errors related to Unity 5.6 changes.
+- Added properties for motion vectors in the mesh renderer.
+- For now, it is advised to turn off the MeshRenderer editor if you want to use the new Lightmap settings. Proper support is coming soon.
+
 1.60 and above is only supported on Unity 5.2+
 You may require to disable custom Advanced Inspector if you wish to use 1.60 on 5.1x.
 
-Tested on 5.2, 5.3, 5.4 and partially on 5.5 beta
+Tested on 5.2, 5.3, 5.4, 5.5 and 5.6

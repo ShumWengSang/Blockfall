@@ -27,11 +27,11 @@ public class PrintAnswer : MonoBehaviour {
 	public int GetNumberOfMoves(string filename)
 	{
         int count = 0;
-        string line;
+
 
 		StreamReader sr = new StreamReader("Answers/" + filename);
 
-        while ((line = sr.ReadLine()) != null)
+        while ((sr.ReadLine()) != null)
         {
             count++;
         }

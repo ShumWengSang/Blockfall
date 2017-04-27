@@ -21,6 +21,9 @@ namespace AdvancedInspector
             base.OnEnable();
 
             Type box = TypeUtility.GetTypeByName("BoxEditor");
+            if (box == null)
+                return;
+
             boxEditor = Activator.CreateInstance(box, true, hash);
             edit = box.GetMethod("OnSceneGUI", new Type[] { typeof(Transform), typeof(Color), typeof(Vector3).MakeByRefType(), typeof(Vector3).MakeByRefType() });
         }
@@ -53,6 +56,9 @@ namespace AdvancedInspector
             {
                 color = ColliderHandleColorDisabled;
             }
+
+            if (boxEditor == null)
+                return;
 
             object[] arguments = new object[] { boxCollider.transform, color, center, size };
 

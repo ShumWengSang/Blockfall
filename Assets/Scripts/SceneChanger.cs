@@ -6,13 +6,11 @@ public class SceneChanger : MonoBehaviour {
     ScreenManager screenManager;
     public Animator screenTransAnim; 
     public float waitSeconds = 0.5f;
-    WaitForSeconds wait;
     public GameObject WatchAdToContinue;
     public GameObject Background;
     static int InternalResetCounter = 0;
     void Awake()
     {
-        wait = new WaitForSeconds(waitSeconds);
         screenManager = GetComponent<ScreenManager>();
     }
 
@@ -82,33 +80,22 @@ public class SceneChanger : MonoBehaviour {
 
     public void LoadNextLevel()
     {
-        string currentSceneString = SceneManager.GetActiveScene().name;
+        int World = PlayerPrefs.GetInt("CurrentWorld", 0);
+        int level = PlayerPrefs.GetInt("CurrentLevel", 0);
+        int nextLevelInt = level + 1;
+        int currentWorldInt = World;
 
-        int posOfDash = currentSceneString.IndexOf("-");
-
-        //Parse current world in string form
-        int firstWorldDigit = currentSceneString.IndexOf("l") + 1;
-        string currentWorldString = currentSceneString.Substring(firstWorldDigit, posOfDash - firstWorldDigit); //This is in case we have world in double digits. 
-        int currentWorldInt;
-
-        //Parse current level in string then int form
-        string currentLevelString = currentSceneString.Substring(posOfDash + 1);
-        int currentLevelInt = int.Parse(currentLevelString);
-        int nextLevelInt = currentLevelInt += 1;
-
-
-        if (nextLevelInt > 15)
+        if (nextLevelInt < 12)
         {
-            currentWorldInt = int.Parse(currentWorldString);
-            currentWorldInt += 1;
-
-            ChangeScene("Level" + currentWorldInt.ToString() + "-1");
+            //not a new world
+            PlayerPrefs.SetInt("CurrentLevel", nextLevelInt);
         }
         else
         {
-            Debug.Log("Level" + currentWorldString + "-" + nextLevelInt.ToString());
-            ChangeScene("Level" + currentWorldString + "-" + nextLevelInt.ToString());
+            PlayerPrefs.SetInt("CurrentWorld", currentWorldInt + 1);
+            PlayerPrefs.SetInt("CurrentLevel", 1);
         }
+        ChangeScene("MasterGameScene");
     }
 
     IEnumerator loadNextScene(string scene)
@@ -118,5 +105,13 @@ public class SceneChanger : MonoBehaviour {
             yield return null;
         }
         yield return SceneManager.LoadSceneAsync(scene);
+    }
+
+    public void Load_Scene_Directed(int world, int level)
+    {
+        PlayerPrefs.SetInt("CurrentWorld", world);
+        PlayerPrefs.SetInt("CurrentLevel", level);
+
+        ChangeScene("MasterGameScene");
     }
 }
