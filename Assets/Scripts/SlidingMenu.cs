@@ -26,8 +26,6 @@ public class SlidingMenu : MonoBehaviour {
     [Inspect(InspectorLevel.Debug)]
     private float Step = 0;
     [Inspect(InspectorLevel.Debug)]
-    private Vector3 DisplayPosition;
-    [Inspect(InspectorLevel.Debug)]
     private float InternalCounter
     {
         get { return BoxCounter; }
@@ -88,7 +86,6 @@ public class SlidingMenu : MonoBehaviour {
             Content[i].localPosition = new Vector2(newWdith, DefaultRect.localPosition.y);
         }
         Step = Mathf.Round(Width / Content.Length) + margin;
-        DisplayPosition = DefaultRect.localPosition;
         Steps = new float[Content.Length];
         for(int i = 0; i < Steps.Length; i++)
         {

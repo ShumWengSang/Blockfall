@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public class GoalChecker : MonoBehaviour {
 
 	//public RotateGrid grid;
-	GameObject grid;
+	Transform grid;
+    RotateGrid rotateGrid;
     List<GoalCheck> goalCheck;
 
 
@@ -36,14 +37,16 @@ public class GoalChecker : MonoBehaviour {
         SentFinishedGame = false;
         GameObject[] goals = GameObject.FindGameObjectsWithTag("GoalZone");
         goalCheck = new List<GoalCheck>();
-        Transform grid = GameObject.Find("Grid").transform;
-        for(int i = 0; i < goals.Length; i++)
+        grid = GameObject.Find("Grid").transform;
+        rotateGrid = grid.GetComponent<RotateGrid>();
+        for (int i = 0; i < goals.Length; i++)
         {
             if (goals[i].transform.IsChildOf(grid))
             {
                 goalCheck.Add(goals[i].GetComponent<GoalCheck>());
             }
         }
+        
 	}
 
 	public bool areGoalsScored()
@@ -56,7 +59,16 @@ public class GoalChecker : MonoBehaviour {
 		return true;
 	}
 
-    void OnFinishFalling()
+    //Hack to make sure goal is called since not sure where bug where goal is not called orginates from.
+    IEnumerator checkGoalsAgain()
+    {
+        WaitForSeconds eachSecond = new WaitForSeconds(3f);
+        yield return eachSecond;
+        if(rotateGrid.woodBlockManager.areBlocksStationary())
+            HandleFinishFalling();
+    }
+
+    void HandleFinishFalling()
     {
         if (areGoalsScored())
         {
@@ -79,8 +91,14 @@ public class GoalChecker : MonoBehaviour {
                     {
                         this.GetComponent<PrintAnswer>().WriteToFile("Answers/" + SceneManager.GetActiveScene().name + ".txt");
                     }
-                }       
+                }
             }
         }
+    }
+
+    void OnFinishFalling()
+    {
+        StartCoroutine(checkGoalsAgain());
+        HandleFinishFalling();
     }
 }

@@ -426,7 +426,13 @@ public class SaveLoadBridge {
                     break;
             }
             GameObject obj = GameObject.Instantiate(objectToSpawn, new Vector3(data.pos.x, data.pos.y, data.pos.z), Quaternion.identity, grid);
-            obj.transform.localScale = new Vector3(data.scale.x, data.scale.y, data.scale.z);
+            Vector3 scale = obj.transform.localScale = new Vector3(data.scale.x, data.scale.y, data.scale.z);
+
+            //quick hack here to make sure anything other than walls max scale are 0.98
+            if(data.type != blockType.walls && (scale.x >= 1 || scale.y >= 1 || scale.z >= 1))
+            {
+                obj.transform.localScale = new Vector3(0.98f, 0.98f, 0.98f);
+            }
             if (currentDirection != Direction.none)
             {
                 if (data.type == blockType.one_way_b)
