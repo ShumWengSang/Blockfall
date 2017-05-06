@@ -9,6 +9,7 @@ public class SceneChanger : MonoBehaviour {
     public GameObject WatchAdToContinue;
     public GameObject Background;
     static int InternalResetCounter = 0;
+    public int AmountToShowVideo = 10;
     void Awake()
     {
         screenManager = GetComponent<ScreenManager>();
@@ -38,8 +39,9 @@ public class SceneChanger : MonoBehaviour {
     public void ReloadScene()
     {
         InternalResetCounter++;
-        if(InternalResetCounter > 5)
+        if(InternalResetCounter >= AmountToShowVideo)
         {
+            InternalResetCounter = 0;
             Background.SetActive(true);
             WatchAdToContinue.SetActive(true);
         }

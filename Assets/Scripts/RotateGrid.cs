@@ -259,6 +259,11 @@ public class RotateGrid : MonoBehaviour {
         GoalChecker.OnFinishedGame -= OnGameComplete;
     }
 
+    public void PauseFinger()
+    {
+        pauseFinger = !pauseFinger;
+    }
+
     public bool pauseFinger = false;
     void OnFingerSwipe(LeanFinger finger)
     {

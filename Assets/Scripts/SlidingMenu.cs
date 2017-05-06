@@ -31,11 +31,12 @@ public class SlidingMenu : MonoBehaviour {
         get { return BoxCounter; }
         set
         {
-            int range = Mathf.Clamp((int)BoxCounter, 0, transparentBoxes.Length - 1);
-            transparentBoxes[range].CrossFadeAlpha(0.3f, 0.5f, true);
+            foreach (Image box in transparentBoxes)
+            {
+                box.CrossFadeAlpha(0.3f, 0.5f, true);
+            }
             BoxCounter = value;
-            range = Mathf.Clamp((int)BoxCounter, 0, transparentBoxes.Length - 1);
-            transparentBoxes[range].CrossFadeAlpha(0.8f, 0.5f, true);
+            ResetBox();
         }
     }
     [Inspect(InspectorLevel.Debug)]
@@ -71,6 +72,15 @@ public class SlidingMenu : MonoBehaviour {
         LeanTouch.OnFingerDown -= OnFingerDown;
     }
 	
+    public void ResetBox()
+    {
+        foreach (Image box in transparentBoxes)
+        {
+            box.CrossFadeAlpha(0.3f, 0.5f, true);
+        }
+        int range = Mathf.Clamp((int)BoxCounter, 0, transparentBoxes.Length - 1);
+        transparentBoxes[range].CrossFadeAlpha(0.8f, 0.5f, true);
+    }
 
     [Inspect]
     void GenerateContentParent()
@@ -94,12 +104,19 @@ public class SlidingMenu : MonoBehaviour {
     }
 
     bool MoveParent = false;
+
+    Vector3 currentStepPosition;
+    Vector3 OnFingerDownWorldPosition;
+
     void OnFingerDown(LeanFinger finger)
     {
         if (!IgnoreGUI || !LeanTouch.GuiInUse)
         {
+            currentStepPosition = fingerHover.position;
+            OnFingerDownWorldPosition = finger.ScreenPosition ;
+
             MoveParent = true;
-            fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
+            //fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
             if (DOTween.IsTweening(ContentParent))
             {
                 ContentParent.DOKill();
@@ -108,10 +125,17 @@ public class SlidingMenu : MonoBehaviour {
         }
     }
 
+    public int scale_movement = 5;
     void OnFingerSet(LeanFinger finger)
     {
-        if(MoveParent)
-            fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
+        if (MoveParent)
+        {
+
+            float distance = OnFingerDownWorldPosition.x - finger.ScreenPosition.x;
+            distance *= scale_movement;
+            fingerHover.position = new Vector3(currentStepPosition.x - distance, fingerHover.position.y, fingerHover.position.z);
+            //fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
+        }
     }
 
     void OnFingerUp(LeanFinger finger)
@@ -121,11 +145,10 @@ public class SlidingMenu : MonoBehaviour {
             ContentParent.SetParent(parentOrigParent);
             ContentParent.SetSiblingIndex(1);
             MoveParent = false;
-            if (finger.GetScaledSnapshotDelta(LeanTouch.Instance.TapThreshold).magnitude <= LeanTouch.Instance.SwipeThreshold)
+            if (finger.GetScaledSnapshotDelta(LeanTouch.Instance.TapThreshold).magnitude <= LeanTouch.Instance.SwipeThreshold && !DOTween.IsTweening(ContentParent))
             {
-                //Not a swipe.
-                float newPosX = Steps[(int)InternalCounter];
-                ContentParent.DOLocalMoveX(newPosX, MoveTime).SetEase(Ease.InQuad);
+                //Not a swipe.  
+                ContentParent.DOLocalMoveX(Steps[(int)InternalCounter], MoveTime).SetEase(Ease.InQuad);
             }
         }
     }
@@ -208,5 +231,16 @@ public class SlidingMenu : MonoBehaviour {
             float newPosX = Steps[(int)InternalCounter];
             ContentParent.DOLocalMoveX(newPosX, MoveTime).SetEase(Ease.OutQuad);
         }
+    }
+
+    public void MoveTo(int FakeinternalCounter)
+    {
+        if (DOTween.IsTweening(ContentParent))
+        {
+            ContentParent.DOKill();
+        }
+        float newPosX = Steps[FakeinternalCounter];
+        InternalCounter = FakeinternalCounter;
+        ContentParent.DOLocalMoveX(newPosX, MoveTime).SetEase(Ease.InQuad);
     }
 }

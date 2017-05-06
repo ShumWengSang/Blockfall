@@ -19,10 +19,6 @@ Programming
 	Unity Service 			(0%) 
 	Facebook integration. 		(0%) 
 	Admob				(0%) 
-
-UI
-	Level Selection
-		Redo the sliding moving things using DOTWeen Sequence to make it more responsive as well as generally 		better.
 	
 Assets	Sounds
 	Moving Background(?)
@@ -30,4 +26,3 @@ Assets	Sounds
 Bugs
 	Can swipe and turn while in paused mode. ( MAJOR BUG)
 	If MasterGameScene starts with blocks already inside, and loaded from LevelSelection, error will occur and loading of blocks will stop. (Workaround, make sure MasterGameScene no blocks inside using Create New Puzzle).
-	Blocks not aligned when falling in ANDROID. (Not sure on PC)
