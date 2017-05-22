@@ -10,7 +10,7 @@ public class PortalManager : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	public void Init () {
         DicPortal = new Dictionary<Portal, Portal>();
         //PortalPairs = new List<PortalPair>();
 
@@ -31,14 +31,17 @@ public class PortalManager : MonoBehaviour {
             }
         }
 
-        foreach (Portal portal in blks)
-        {
-            if(!DicPortal.ContainsKey(portal) && !DicPortal.ContainsValue(portal))
+        for(int i = 0; i < blks.Count; i++)
+        { 
+            if(!DicPortal.ContainsKey(blks[i]) && !DicPortal.ContainsValue(blks[i]))
             {
-                DicPortal.Add(portal, portal.OtherPortal);
+                DicPortal.Add(blks[i], blks[i].OtherPortal);
             }
         }
-
+        if(DicPortal.Count < 0 )
+        {
+            return;
+        }
         int Counter = 0;
         foreach(var portal in DicPortal)
         {

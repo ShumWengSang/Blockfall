@@ -2,49 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
-
+using System;
 public class VideoRewardAd : MonoBehaviour {
     //ca-app-pub-3458078707660764/7616242139
     public RotateGrid grid;
     RewardBasedVideoAd rewardVideo;
+    private InterstitialAd interstitial;
+    public SceneChanger scene;
+
     private void OnEnable()
     {
         grid.PauseFinger();
-        if (rewardVideo == null)
-            Init("ca-app-pub-3458078707660764/7616242139");
-        RewardBasedVideoAd.Instance.OnAdRewarded += Instance_OnAdRewarded;
+    }
+    private void Awake()
+    {
+        Init("ca-app-pub-3458078707660764/7214982535");
     }
 
-    private void OnDisable()
+    private AdRequest CreateAdRequest()
     {
-        RewardBasedVideoAd.Instance.OnAdRewarded -= Instance_OnAdRewarded;
+        return new AdRequest.Builder().Build();
     }
 
     private void Init(string videoID)
     {
+#if UNITY_EDITOR
+        string adUnitId = "unused";
+#elif UNITY_ANDROID
+		string adUnitId = videoID;
+#endif
         rewardVideo = RewardBasedVideoAd.Instance;
-        AdRequest request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).Build();
-        rewardVideo.LoadAd(request, videoID);
-    }
-
-    private void Instance_OnAdRewarded(object sender, Reward e)
-    {
-        throw new System.NotImplementedException();
+        rewardVideo.LoadAd(CreateAdRequest(), adUnitId);
+        this.interstitial.OnAdClosed += this.HandleInterstitialClosed;
     }
 
     public void ShowVideo()
     {
-        if (rewardVideo.IsLoaded())
-        {
-            Debug.Log("Video loaded, playing");
-            rewardVideo.Show();
-        }
+        if (interstitial.IsLoaded())
+            interstitial.Show();
+        else
+            print("Ad not ready");
     }
 
-    public void HandleRewardBasedVideoRewarded(object sender, Reward args)
+    public void HandleInterstitialClosed(object sender, EventArgs args)
     {
-        string type = args.Type;
-        double amount = args.Amount;
-        print("User rewarded with: " + amount.ToString() + " " + type);
+        scene.ReloadScene();
     }
 }

@@ -31,11 +31,6 @@ public class BlockUndoModule : MonoBehaviour {
             ListOfUndoModules[i].MoveToLastPosition();
         }
     }
-    void OnDestroy()
-    {
-        if (ListOfUndoModules != null)
-            ListOfUndoModules = null;
-    }
 
     void OnEnable(){
         RotateGrid.OnFinishedRotating += OnFinishedRotating;
@@ -55,6 +50,9 @@ public class BlockUndoModule : MonoBehaviour {
     {
         RotateGrid.OnFinishedRotating -= OnFinishedRotating;
         ListOfUndoModules.Remove(this);
+        
+        if (ListOfUndoModules.Count == 0)
+            ListOfUndoModules = null;
     }
 
     public void OnFinishedRotating()

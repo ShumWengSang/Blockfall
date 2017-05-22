@@ -28,6 +28,11 @@ public class Portal : MonoBehaviour {
         }
     }
 
+    private void Awake()
+    {
+        theObject = null;
+    }
+
     private GameObject theObject;
 
     void OnEnable()

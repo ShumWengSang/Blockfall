@@ -8,6 +8,7 @@ using AdvancedInspector;
 using UnityEngine.UI;
 using System.Linq;
 
+#region woodManager
 public class WoodenBlockManager
 {
     public static WoodenBlockManager instance;
@@ -95,6 +96,7 @@ public class WoodenBlockManager
         }
     }
 }
+#endregion
 public class RotateGrid : MonoBehaviour {
 
     public delegate void GamePhase();
@@ -250,6 +252,7 @@ public class RotateGrid : MonoBehaviour {
         LeanTouch.OnFingerSwipe += OnFingerSwipe;
         GoalChecker.OnFinishedGame += OnGameComplete;
         RotateGrid.OnFinishedFalling += OnFinishedFallingDown;
+        LeanTouch.OnFingerDrag += OnFingerDrag;
     }
 
     void OnDisable()
@@ -257,6 +260,7 @@ public class RotateGrid : MonoBehaviour {
         LeanTouch.OnFingerSwipe -= OnFingerSwipe;
         RotateGrid.OnFinishedFalling -= OnFinishedFallingDown;
         GoalChecker.OnFinishedGame -= OnGameComplete;
+        LeanTouch.OnFingerDrag -= OnFingerDrag;
     }
 
     public void PauseFinger()
@@ -265,6 +269,16 @@ public class RotateGrid : MonoBehaviour {
     }
 
     public bool pauseFinger = false;
+
+    void OnFingerDrag(LeanFinger finger)
+    {
+        Debug.Log("Dragging detected.");
+        Debug.Log("Finger info are as follows");
+        Debug.Log("Finger last world position is " + finger.GetLastWorldPosition(10));
+        Debug.Log("Finger last degree is with reference to grid center in camera view " + finger.GetDegrees(mainCamera.WorldToViewportPoint(transform.position)) + " referencing " + mainCamera.WorldToViewportPoint(transform.position));
+
+    }
+
     void OnFingerSwipe(LeanFinger finger)
     {
         if (!woodBlockManager.areBlocksStationary())
@@ -276,19 +290,19 @@ public class RotateGrid : MonoBehaviour {
         var StartViewPos = mainCamera.ScreenToViewportPoint(finger.StartScreenPosition);
         //var EndViewPos = mainCamera.ScreenToViewportPoint(finger.LastScreenPosition);
 
-        if(StartViewPos.x < 0.5f && StartViewPos.y < 0.5f)
+        if(StartViewPos.x < 0.5f && StartViewPos.y < 0.6f)
         {
             HandleQuadrant(Quadrant.Fourth, finger);
         }
-        else if(StartViewPos.x < 0.5f && StartViewPos.y >= 0.5f)
+        else if(StartViewPos.x < 0.5f && StartViewPos.y >= 0.6f)
         {
             HandleQuadrant(Quadrant.First, finger);
         }
-        else if(StartViewPos.x >= 0.5f && StartViewPos.y < 0.5f)
+        else if(StartViewPos.x >= 0.5f && StartViewPos.y < 0.6f)
         {
             HandleQuadrant(Quadrant.Third, finger);
         }
-        else if(StartViewPos.x >= 0.5f && StartViewPos.y >= 0.5f)
+        else if(StartViewPos.x >= 0.5f && StartViewPos.y >= 0.6f)
         {
             HandleQuadrant(Quadrant.Second, finger);
         }

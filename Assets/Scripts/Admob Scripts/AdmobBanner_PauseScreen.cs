@@ -5,10 +5,13 @@ using GoogleMobileAds.Api;
 public class AdmobBanner_PauseScreen : MonoBehaviour {
     List<BannerView> banners = new List<BannerView>();
 
+    private void Awake()
+    {
+        initAdmob();
+    }
+
     void OnEnable()
     {
-        if(banners.Count == 0)
-            initAdmob();
         foreach (BannerView view in banners)
         {
             view.Show();
@@ -34,12 +37,10 @@ public class AdmobBanner_PauseScreen : MonoBehaviour {
         // Create a 320x50 banner at the top of the screen.
         BannerView bannerView = new BannerView(adUnitId, AdSize.Banner, pos);
         // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).Build();
+        AdRequest request = new AdRequest.Builder().Build();
         // Load the banner with the request.
         bannerView.LoadAd(request);
 
         banners.Add(bannerView);
     }
-
-
 }

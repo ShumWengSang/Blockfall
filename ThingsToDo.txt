@@ -16,13 +16,11 @@ Programming
 		Skip Level 		(100% done)
 		Continue 		(100% done)
 	Sound 				(0%) (Require Assets)
-	Unity Service 			(0%) 
 	Facebook integration. 		(0%) 
-	Admob				(0%) 
+	Admob				(90%) 
 	
 Assets	Sounds
 	Moving Background(?)
 
 Bugs
-	Can swipe and turn while in paused mode. ( MAJOR BUG)
-	If MasterGameScene starts with blocks already inside, and loaded from LevelSelection, error will occur and loading of blocks will stop. (Workaround, make sure MasterGameScene no blocks inside using Create New Puzzle).
+	Can swipe and turn while in paused mode. ( MAJOR BUG:: Seems to be fixed. More testing needed)

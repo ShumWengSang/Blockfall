@@ -429,7 +429,7 @@ public class SaveLoadBridge {
             Vector3 scale = obj.transform.localScale = new Vector3(data.scale.x, data.scale.y, data.scale.z);
 
             //quick hack here to make sure anything other than walls max scale are 0.98
-            if(data.type != blockType.walls && (scale.x >= 1 || scale.y >= 1 || scale.z >= 1))
+            if (data.type != blockType.walls && (scale.x >= 1 || scale.y >= 1 || scale.z >= 1))
             {
                 obj.transform.localScale = new Vector3(0.98f, 0.98f, 0.98f);
             }
@@ -446,9 +446,16 @@ public class SaveLoadBridge {
             }
             if (data.type == blockType.portal)
             {
+                //Portals are a bit different. We need to add them into the list of portals to handle.
                 portals.Add(new Portal_And_Reference_Pair(obj.GetComponent<Portal>(), new Vector3(data.portal_ref_pos.x, data.portal_ref_pos.y, data.portal_ref_pos.z)));
+                GameObject newObj = GameObject.Instantiate(obj, fakegrid);
+                newObj.transform.Translate(0, 0, 2);
+                portals.Add(new Portal_And_Reference_Pair(newObj.GetComponent<Portal>(), new Vector3(data.portal_ref_pos.x, data.portal_ref_pos.y, data.portal_ref_pos.z + 2)));
             }
-            GameObject.Instantiate(obj, fakegrid);
+            else
+            {
+                GameObject.Instantiate(obj, fakegrid);
+            }
         }
         //Handle Portals if any
 
@@ -470,6 +477,14 @@ public class SaveLoadBridge {
             portals[count].portal.OtherPortal = otherPortal;
         }
 
+        for(int i  = 0; i < portals.Count; i++)
+        {
+            if (portals[i].portal.transform.root.name == "FakeScene")
+            {
+                portals[i].portal.transform.Translate(0, 0, -2);
+            }
+        }
+
 
         Debug.Log("Successfully loaded");
         Current_World = scene.world; Current_Level = scene.level;
@@ -478,6 +493,8 @@ public class SaveLoadBridge {
         PlayerPrefs.SetInt("CurrentLevel", Current_Level);
 
         fakegrid.localPosition = Vector3.zero;
-        
+        GameObject.Find("Game Systems").GetComponent<PortalManager>().Init();
+
+        fakegrid.transform.root.gameObject.SetActive(false);
     }
 }

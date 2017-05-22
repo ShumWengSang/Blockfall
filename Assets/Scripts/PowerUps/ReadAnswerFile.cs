@@ -54,7 +54,6 @@ public class ReadAnswerFile : MonoBehaviour {
                 List_Answer.Push("Right");
             }
             count++;
-            Debug.Log("Line is " + line);
         }
 #elif UNITY_ANDROID
         StartCoroutine(readAnswerANDROID(path));
