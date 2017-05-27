@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class VortexBox : MonoBehaviour {
+
+    public delegate void VortexEvent();
+    public static event VortexEvent OnObjectHold;
+
     [AdvancedInspector.Inspect(AdvancedInspector.InspectorLevel.Debug)]
     Transform currentObject;
     Rigidbody currentRb;
@@ -41,7 +45,6 @@ public class VortexBox : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Name of entering item is " + other.name);
         if(CheckedItems.Contains(other.transform) || currentObject == other.transform)
         {
             Debug.LogWarning("Found stuff not supposed tob e here");
@@ -54,6 +57,7 @@ public class VortexBox : MonoBehaviour {
         currentRb = other.GetComponent<Rigidbody>();
         if (currentRb != null)
         {
+            if (OnObjectHold != null) OnObjectHold();
             CheckedItems.Add(other.transform);
             currentObject = other.transform;
             StopAllCoroutines();
@@ -61,6 +65,7 @@ public class VortexBox : MonoBehaviour {
 
         }
     }
+
 
     IEnumerator HoldObject()
     {

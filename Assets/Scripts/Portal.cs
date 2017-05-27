@@ -14,6 +14,9 @@ public class Portal_And_Reference_Pair
 
 public class Portal : MonoBehaviour {
 
+    public delegate void PortalEvent();
+    public static event PortalEvent OnPortalTransport;  
+
     public Portal OtherPortal;
     public GameObject lastObject
     {
@@ -61,6 +64,8 @@ public class Portal : MonoBehaviour {
             other.transform.position = OtherPortal.transform.position;
             BlockUndoModule undo = other.GetComponent<BlockUndoModule>();
             undo.OnFinishedRotating();
+            if (OnPortalTransport != null)
+                OnPortalTransport();
             Debug.Log("Coming here.");
         }
         if(Undoing)

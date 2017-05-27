@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
 [RequireComponent(typeof(AudioSource))]
 public class WoodSoundPlayer : MonoBehaviour {
-    public AudioClip[] clipsOfSounds;
-    public AudioClip WoodHitWall;
-    public AudioClip WoodHitVortex;
-    public AudioClip WoodHitPortal;
+
+    public randomSoundPlayer WoodHitWall;
+
 
     private AudioSource audioSource;
     private Vector3 blockVel;
@@ -19,7 +20,6 @@ public class WoodSoundPlayer : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         sound_played = true;
-        OnStartFalling();
 	}
 
     private void OnEnable()
@@ -42,11 +42,6 @@ public class WoodSoundPlayer : MonoBehaviour {
         StartCoroutine(checkSpeed());
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(transform.position, Vector3.down);
-    }
-
     private void Update()
     {
         blockVel = rb.velocity;
@@ -54,7 +49,7 @@ public class WoodSoundPlayer : MonoBehaviour {
         if (rb.velocity.magnitude < 0.01f)
         {
             RaycastHit outInfo;
-            if(Physics.Raycast(transform.position, Vector3.down, out outInfo, 1f))
+            if(Physics.Raycast(transform.position, Vector3.down, out outInfo, 2f))
             {
                 SortRaycastHit(outInfo);
             }
@@ -65,14 +60,16 @@ public class WoodSoundPlayer : MonoBehaviour {
     string ironwall = "Iron Block";
     string wood = "WoodBlock";
     string vortex = "Vortex";
+    string oneway = "OneWay";
 
     private void SortRaycastHit(RaycastHit info)
     {
         if(info.collider.CompareTag(placedwall) || info.collider.CompareTag(wall)
-            || info.collider.CompareTag(ironwall) || info.collider.CompareTag(wood))
+            || info.collider.CompareTag(ironwall) || info.collider.CompareTag(wood)
+            ||info.collider.CompareTag(oneway))
         {
             //We hit the wall. Lets play a sound.
-            PlaySound(WoodHitWall);
+            PlaySound(WoodHitWall.GetRandomClip());
         }
         else if(info.collider.CompareTag(vortex))
         {
@@ -80,24 +77,12 @@ public class WoodSoundPlayer : MonoBehaviour {
         }
     }
 
-    private AudioClip getClip(string name)
-    {
-        foreach (AudioClip clip in clipsOfSounds)
-        {
-            if(clip.name == name)
-            {
-                return clip;
-            }
-        }
-        return null;
-    }
-
     private void PlaySound(AudioClip sound)
     {
         if(!sound_played)
         {
             sound_played = true;
-            audioSource.PlayOneShot(sound);
+            audioSource.PlayOneShot(sound, GameSounds.GameSoundVolume);
         }
     }
 
@@ -112,10 +97,5 @@ public class WoodSoundPlayer : MonoBehaviour {
             }
             yield return null;
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
     }
 }

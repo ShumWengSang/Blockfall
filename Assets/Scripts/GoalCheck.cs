@@ -22,8 +22,34 @@ public class GoalCheck : MonoBehaviour {
 
 		goalScored = false;
 	}
-		
-	void OnTriggerEnter(Collider col) {
+
+    float TempCurrentEmission = 0.1f;
+    public float TempEmissionIncrement = 0.1f;
+    public float MaxTempEmission = 0.7f;
+    public float MinTempEmission = 0.3f;
+    float TempEmisionDir = 1f;
+
+    private void Update()
+    {
+        if(!goalScored)
+        {
+            TempCurrentEmission = TempCurrentEmission + TempEmissionIncrement * TempEmisionDir * Time.deltaTime;
+            if(TempCurrentEmission >= MaxTempEmission)
+            {
+                TempCurrentEmission = MaxTempEmission;
+                TempEmisionDir *= -1;
+            }
+            if(TempCurrentEmission <= MinTempEmission)
+            {
+                TempCurrentEmission = MinTempEmission;
+                TempEmisionDir *= -1;
+            }
+            SetEmission(TempCurrentEmission);
+
+        }
+    }
+
+    void OnTriggerEnter(Collider col) {
 		if (col.CompareTag("WoodBlock")) {
 			SetEmission (litEmission);
 			goalScored = true;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#define NEW_METHOD
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using DG.Tweening;
 using AdvancedInspector;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 #region woodManager
 public class WoodenBlockManager
@@ -113,6 +115,7 @@ public class RotateGrid : MonoBehaviour {
         LeftButton.interactable = interact;
         RightButton.interactable = interact;
     }
+    #region enum
     enum GridOrientation
     {
         Left,
@@ -133,18 +136,22 @@ public class RotateGrid : MonoBehaviour {
         Third,
         Fourth
     }
+    #endregion
 
-    WaitForSeconds waitUndo;
-    Stack<GridOrientation> LastMoves;
-	Transform targetRotation;
-    Camera mainCamera;
-    Tween theTween;
+    private WaitForSeconds waitUndo;
+    private Stack<GridOrientation> LastMoves;
+    private Transform targetRotation;
+    private Camera mainCamera;
+    private Tween theTween;
+    private PrintAnswer answer;
+
     public Text MovesDone;
     public WoodenBlockManager woodBlockManager;
+    
 
 	public float rotationTime = 1.0f;
-    bool GameOver = false;
-    bool FinishedFalling;
+    private bool GameOver = false;
+    private bool FinishedFalling;
 
     public Animator expandAnimator;
     [Inspect(InspectorLevel.Debug)]
@@ -175,6 +182,7 @@ public class RotateGrid : MonoBehaviour {
 		{
 			woodBlockManager.Start();
 		}
+        answer = GetComponent<PrintAnswer>();
     }
 	// Use this for initialization
 	void Start () {
@@ -182,7 +190,11 @@ public class RotateGrid : MonoBehaviour {
         TimesMoved = 0;
         SetButtonInteractable(true);
 
-	}
+#if NEW_METHOD
+
+
+#endif
+    }
 
     public void ButtonLeft()
     {
@@ -249,18 +261,26 @@ public class RotateGrid : MonoBehaviour {
 
     void OnEnable()
     {
+#if OLD_METHOD
         LeanTouch.OnFingerSwipe += OnFingerSwipe;
+#endif
         GoalChecker.OnFinishedGame += OnGameComplete;
         RotateGrid.OnFinishedFalling += OnFinishedFallingDown;
-        LeanTouch.OnFingerDrag += OnFingerDrag;
+#if NEW_METHOD
+        //LeanTouch.OnFingerDrag += OnFingerDrag;
+#endif
     }
 
     void OnDisable()
     {
+#if OLD_METHOD
         LeanTouch.OnFingerSwipe -= OnFingerSwipe;
+#endif
         RotateGrid.OnFinishedFalling -= OnFinishedFallingDown;
         GoalChecker.OnFinishedGame -= OnGameComplete;
-        LeanTouch.OnFingerDrag -= OnFingerDrag;
+#if NEW_METHOD
+        //LeanTouch.OnFingerDrag -= OnFingerDrag;
+#endif
     }
 
     public void PauseFinger()
@@ -269,16 +289,187 @@ public class RotateGrid : MonoBehaviour {
     }
 
     public bool pauseFinger = false;
+#if NEW_METHOD
+    #region DragData
+    private Vector2 StartDrag_ScreenPos;
+    private Vector2 EndDrag_ScreenPos;
 
-    void OnFingerDrag(LeanFinger finger)
+    //the middle of the grid rests at 0.6 Y
+    private Vector2 middle = new Vector2(0.5f, 0.6f);
+    private Vector3 initialRotation;
+    private float initialAngle = 0f;
+    private float stepIncrease = 0f;
+    private float totalStep = 0;
+    public float StepIncrementValue = 1f;
+    public float TweenDuration = 0.5f;
+    public Vector3 initialAngleVector3;
+    private bool TweenMoving = false;
+    private bool Once_Instance_Of_Dragging_Flag = false;
+    [RangeValue(-20f, 20f)]
+    public RangeFloat Direction_Determinator = new RangeFloat(-10f, 10f);
+    float lastAngle = 0.0f;
+    float lastDir = 1.0f;
+    public Transform DragResponseAnim;
+    private int Current_Pointer_ID = -1;
+    #endregion
+
+    public float GetRadians(Vector2 point, Vector2 referencePoint)
     {
-        Debug.Log("Dragging detected.");
-        Debug.Log("Finger info are as follows");
-        Debug.Log("Finger last world position is " + finger.GetLastWorldPosition(10));
-        Debug.Log("Finger last degree is with reference to grid center in camera view " + finger.GetDegrees(mainCamera.WorldToViewportPoint(transform.position)) + " referencing " + mainCamera.WorldToViewportPoint(transform.position));
+        return Mathf.Atan2(point.x - referencePoint.x, point.y - referencePoint.y);
+        ;
+    }
+     
+    public float GetDegrees(Vector2 point,Vector2 referencePoint)
+    {
+        return GetRadians(point, referencePoint) * Mathf.Rad2Deg;
+    }
+
+    public void OnFingerDrag(PointerEventData data)
+    {
+
+        if (TweenMoving)
+        {
+            return;
+        }
+        if(Current_Pointer_ID != data.pointerId)
+        {
+            return;
+        }
+        float newAngle = GetDegrees(mainCamera.ScreenToViewportPoint(data.position), middle);
+
+
+        //swap the two variables around in the formula ; quick optimization because it will go in opposite direction
+        // totalStep = lastAngle - newAngle;
+        totalStep = initialAngle - newAngle;
+        //Adding this causes the bug since clamping it makes it bug.
+        if(totalStep < -180)
+        {
+            totalStep += 360;
+        }
+        else if (totalStep > 180)
+        {
+            totalStep -= 360;
+        }
+
+        
+        if (Mathf.Abs(lastAngle) > 170)
+        {
+            if(lastAngle > 0)
+            {
+                if(totalStep < 0)
+                {
+                    totalStep += 360;
+                }
+            }
+            else
+            {
+                if (totalStep > 0)
+                {
+                    totalStep -= 360;
+                }
+            }
+        }
+
+        lastAngle = totalStep;
+        totalStep = Mathf.Clamp(totalStep, -20, 20);
+        
+        //slow down the thing after clamping if exceed clamp angle
+        if(totalStep >= 20 || totalStep <= -20)
+        {
+            stepIncrease += StepIncrementValue * Time.deltaTime;
+            totalStep += Mathf.Clamp(totalStep, -1, 1) * stepIncrease;
+        }
+        lastDir = Mathf.Clamp(lastAngle, -1, 1);
+
+        Quaternion temp = new Quaternion();
+        temp.eulerAngles = new Vector3(initialRotation.x, initialRotation.y, initialRotation.z + totalStep);
+        //transform.localRotation = temp;
+        //transform.Rotate(Vector3.forward, totalStep);
+        transform.DORotate(temp.eulerAngles, 0.1f).SetEase(Ease.OutBounce);
+
 
     }
 
+    public void AnimateDrag_PointDown(PointerEventData data)
+    {
+        DragResponseAnim.gameObject.SetActive(true);
+        DragResponseAnim.localScale = Vector3.zero;
+        DragResponseAnim.position = mainCamera.ScreenToWorldPoint(data.position);
+        DragResponseAnim.position = new Vector3(DragResponseAnim.position.x, DragResponseAnim.position.y, 0);
+        DragResponseAnim.DOScale(20f, 0.5f).OnComplete( ()=> {DragResponseAnim.gameObject.SetActive(false); });
+    }
+    
+    public void OnStartDrag(PointerEventData data)
+    {
+        if (TweenMoving)
+            return;
+        if(Current_Pointer_ID != -1)
+        {
+            return;
+        }
+        Current_Pointer_ID = data.pointerId;
+
+        StartDrag_ScreenPos = mainCamera.ScreenToViewportPoint(data.position);
+        initialAngle = GetDegrees(StartDrag_ScreenPos, middle);
+        initialRotation = transform.localRotation.eulerAngles;
+        woodBlockManager.SetBlockKinemactics(true);
+        totalStep = 0;
+        Once_Instance_Of_Dragging_Flag = true;
+
+        initialAngleVector3 = transform.localEulerAngles;
+    }
+
+    public void OnEndDrag(PointerEventData data)
+    {
+        if(data.pointerId != Current_Pointer_ID)
+        {
+            return;
+        }
+        EndDrag_ScreenPos = mainCamera.ScreenToViewportPoint(data.position);
+        stepIncrease = 0;
+        Current_Pointer_ID = -1;
+        if (totalStep >= Direction_Determinator.min && totalStep <= Direction_Determinator.max)
+        {
+            //This means the user has not moved enough to justify a move, so we move the grid back.
+            transform.DORotate(initialAngleVector3, TweenDuration).SetEase(Ease.OutBounce).OnComplete(
+                () => { woodBlockManager.SetBlockKinemactics(false); TweenMoving = false; });
+        }
+        else
+        {
+            float direction = Mathf.Clamp(totalStep, -1, 1);
+
+            SetButtonInteractable(false);
+            //woodBlockManager.AlignBlocks();
+
+            if (direction == -1)
+            {
+                expandAnimator.SetTrigger("MoveRight");
+                answer.AddMoveToList("Right");
+                LastMoves.Push(GridOrientation.Right);
+            }
+            else
+            {
+                expandAnimator.SetTrigger("MoveLeft");
+                answer.AddMoveToList("Left");
+                LastMoves.Push(GridOrientation.Right);
+            }
+
+            TimesMoved++;
+ 
+
+            //the user has moved far enough to move, so we determine whether we move left or right.
+
+            Vector3 finalAngleVector = new Vector3(initialAngleVector3.x, initialAngleVector3.y, initialAngleVector3.z + (direction * 90));
+            transform.DORotate(finalAngleVector, TweenDuration).SetEase(Ease.OutSine).OnComplete(
+                () => { OnTweenComplete(); TweenMoving = false; });
+
+        }
+        TweenMoving = true;
+    }
+
+#endif
+
+#if OLD_METHOD
     void OnFingerSwipe(LeanFinger finger)
     {
         if (!woodBlockManager.areBlocksStationary())
@@ -388,6 +579,10 @@ public class RotateGrid : MonoBehaviour {
                 break;
         }
     }
+
+
+#endif
+
     Direction DetermineSwipeDirection(LeanFinger finger)
     {
         var swipe = finger.SwipeDelta;
@@ -413,6 +608,7 @@ public class RotateGrid : MonoBehaviour {
         }
         return Direction.None;
     }
+
     void RotateLeft()
     {
         SetButtonInteractable(false);
@@ -421,7 +617,7 @@ public class RotateGrid : MonoBehaviour {
             woodBlockManager.AlignBlocks();
             {
                 expandAnimator.SetTrigger("MoveLeft");
-				this.GetComponent<PrintAnswer>().AddMoveToList("Left");
+                answer.AddMoveToList("Left");
 
                 TimesMoved++;
                 LastMoves.Push(GridOrientation.Left);
@@ -438,7 +634,7 @@ public class RotateGrid : MonoBehaviour {
             woodBlockManager.AlignBlocks();
             {
                 expandAnimator.SetTrigger("MoveRight");
-				this.GetComponent<PrintAnswer>().AddMoveToList("Right");
+                answer.AddMoveToList("Right");
                 TimesMoved++;
                 LastMoves.Push(GridOrientation.Right);
                 theTween = targetRotation.DORotate(new Vector3(0, 0, -90), rotationTime).SetEase(Ease.OutSine).OnComplete(OnTweenComplete).SetRelative();

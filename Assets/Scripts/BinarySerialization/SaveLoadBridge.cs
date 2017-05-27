@@ -444,17 +444,9 @@ public class SaveLoadBridge {
                     obj.GetComponent<OneWayGate>().currentDirection = data.direction;
                 }
             }
-            if (data.type == blockType.portal)
+            if(data.type == blockType.portal)
             {
-                //Portals are a bit different. We need to add them into the list of portals to handle.
                 portals.Add(new Portal_And_Reference_Pair(obj.GetComponent<Portal>(), new Vector3(data.portal_ref_pos.x, data.portal_ref_pos.y, data.portal_ref_pos.z)));
-                GameObject newObj = GameObject.Instantiate(obj, fakegrid);
-                newObj.transform.Translate(0, 0, 2);
-                portals.Add(new Portal_And_Reference_Pair(newObj.GetComponent<Portal>(), new Vector3(data.portal_ref_pos.x, data.portal_ref_pos.y, data.portal_ref_pos.z + 2)));
-            }
-            else
-            {
-                GameObject.Instantiate(obj, fakegrid);
             }
         }
         //Handle Portals if any
@@ -477,14 +469,6 @@ public class SaveLoadBridge {
             portals[count].portal.OtherPortal = otherPortal;
         }
 
-        for(int i  = 0; i < portals.Count; i++)
-        {
-            if (portals[i].portal.transform.root.name == "FakeScene")
-            {
-                portals[i].portal.transform.Translate(0, 0, -2);
-            }
-        }
-
 
         Debug.Log("Successfully loaded");
         Current_World = scene.world; Current_Level = scene.level;
@@ -494,7 +478,12 @@ public class SaveLoadBridge {
 
         fakegrid.localPosition = Vector3.zero;
         GameObject.Find("Game Systems").GetComponent<PortalManager>().Init();
-
-        fakegrid.transform.root.gameObject.SetActive(false);
+        
+        //Handle fake grid
+        for(int i = 0; i < grid.transform.childCount; i++)
+        {
+            Transform obj = GameObject.Instantiate(grid.transform.GetChild(i), fakegrid);
+            obj.localPosition = grid.transform.GetChild(i).localPosition;
+        }
     }
 }
