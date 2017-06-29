@@ -69,6 +69,17 @@ public class SaveLoadBridge {
         Init();
         LoadScene(LoadPath);
     }
+    [Inspect]
+    public void LoadNextScene()
+    {
+        GameObject obj = GameObject.Find("Game Systems");
+        obj.GetComponent<SceneChanger>().EditorDirectLoadNextLevel();
+        Init();
+        int world = PlayerPrefs.GetInt("CurrentWorld", 1);
+        int level = PlayerPrefs.GetInt("CurrentLevel", 1);
+
+        LoadScene(Application.dataPath + "/StreamingAssets/Data/" + world + "-" + level + ".dat");
+    }
 
     [Inspect, Descriptor("Create new puzzle","Cretes a new puzzle by clearing the MasterGameScene. World and leve values are unimportant")]
     public void ClearSceneBlocks()
@@ -98,7 +109,7 @@ public class SaveLoadBridge {
 
     }
 
-    public void LoadScene(string path)
+    public bool LoadScene(string path)
     {
         ClearSceneBlocks();
 #if UNITY_EDITOR
@@ -107,8 +118,7 @@ public class SaveLoadBridge {
 #if UNITY_ANDROID
 
         //quick hack to get an object to start the coroutine
-        LoadLevel_Android_Coroutine(path);
-        return;
+        return LoadLevel_Android_Coroutine(path);
     
 #else
         if (goal_block == null)
@@ -234,30 +244,58 @@ public class SaveLoadBridge {
         return new Vector2(GameSystem.GetComponent<ScoreSystem>().World, GameSystem.GetComponent<ScoreSystem>().level); 
     }
 
+    [Inspect]
+    public void EditScene()
+    {
+#if UNITY_EDITOR
+        SaveScene(true);
+#endif
+    }
+
+    [Inspect, Descriptor("Save the Puzzle", "Save current changes")]
+    public void public_save()
+    {
+#if UNITY_EDITOR
+        SaveScene();
+#endif
+    }
+
 #if UNITY_EDITOR
     [Inspect, Descriptor("Save Puzzle","Save current changes to blocks in 'Grid'. Uses new_world and new_level to determine world/level. If its a deprecated scene, new world and level is not necesary as it will parse the name of the scene"),Spacing(2,2)]
     //Don't use this at runtime. PLEASE.
-    public void SaveScene()
+    public void SaveScene(bool edit = false)
     {
         int world, level;
 
-        //If the scenes are the deprecated scenes we are using.
-        if (EditorSceneManager.GetActiveScene().name.Contains("Level"))
+        if (!edit)
         {
-            //OLD METHOD
-            Vector2 temp = updateinternalworldlevel();
+            //If the scenes are the deprecated scenes we are using.
+            if (EditorSceneManager.GetActiveScene().name.Contains("Level"))
+            {
+                //OLD METHOD
+                Vector2 temp = updateinternalworldlevel();
 
-            world = (int)temp.x;
-            level = (int)temp.y;
+                world = (int)temp.x;
+                level = (int)temp.y;
+            }
+            else
+            {
+                //this must be the new method, aka using the masterscene
+                world = new_world;
+                level = new_level;
+                GameObject GameSystem = GameObject.FindGameObjectWithTag("GameController");
+                GameSystem.GetComponent<ScoreSystem>().World = world;
+                GameSystem.GetComponent<ScoreSystem>().level = level;
+            }
         }
         else
         {
-            //this must be the new method, aka using the masterscene
-            world = new_world;
-            level = new_level;
+            world = Current_World;
+            level = Current_Level;
             GameObject GameSystem = GameObject.FindGameObjectWithTag("GameController");
             GameSystem.GetComponent<ScoreSystem>().World = world;
             GameSystem.GetComponent<ScoreSystem>().level = level;
+            SaveParentFolder = Application.streamingAssetsPath + "/Data";
         }
 
         Scene_Block saveData = new Scene_Block();
@@ -274,7 +312,8 @@ public class SaveLoadBridge {
                 //we use game component snapobject to identify if its a block...
                 if (obj.GetComponent<SnapObject>() != null || obj.CompareTag("PlacedWallBlock"))
                 {
-                    blks.Add(obj);
+                    if(obj.root != GameObject.Find("FakeScene").transform)
+                        blks.Add(obj);
                 }
             }
         }
@@ -366,7 +405,7 @@ public class SaveLoadBridge {
     }
 #endif
 
-    void LoadLevel_Android_Coroutine(string path)
+    bool LoadLevel_Android_Coroutine(string path)
     {
         if (goal_block == null)
             Init();
@@ -378,6 +417,8 @@ public class SaveLoadBridge {
         {
 
         }
+        if (file.error != null)
+            return false;
         MemoryStream mem = new MemoryStream(file.bytes);
         BinaryFormatter bf = new BinaryFormatter();
         scene = (Scene_Block)bf.Deserialize(mem);
@@ -485,5 +526,6 @@ public class SaveLoadBridge {
             Transform obj = GameObject.Instantiate(grid.transform.GetChild(i), fakegrid);
             obj.localPosition = grid.transform.GetChild(i).localPosition;
         }
+        return true;
     }
 }

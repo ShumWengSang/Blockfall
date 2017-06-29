@@ -94,6 +94,17 @@ public class WoodenBlockManager
             newPosition.x = Mathf.Round(newPosition.x * 2f) * 0.5f;
             newPosition.y = Mathf.Round(newPosition.y * 2f) * 0.5f;
 
+            if (SnapObject.IsThisInteger(newPosition.x))
+            {
+                // do stuff
+                newPosition.x += 0.5f;
+            }
+            if (SnapObject.IsThisInteger(newPosition.y))
+            {
+                newPosition.y += 0.5f;
+                //do stuff
+            }
+
             Blocks[i].GetComponentInParent<Transform>().position = newPosition;
         }
     }
@@ -390,13 +401,14 @@ public class RotateGrid : MonoBehaviour {
 
     }
 
+    public Ease animateEase;
     public void AnimateDrag_PointDown(PointerEventData data)
     {
         DragResponseAnim.gameObject.SetActive(true);
         DragResponseAnim.localScale = Vector3.zero;
         DragResponseAnim.position = mainCamera.ScreenToWorldPoint(data.position);
         DragResponseAnim.position = new Vector3(DragResponseAnim.position.x, DragResponseAnim.position.y, 0);
-        DragResponseAnim.DOScale(20f, 0.5f).OnComplete( ()=> {DragResponseAnim.gameObject.SetActive(false); });
+        DragResponseAnim.DOScale(20f, 0.5f).OnComplete( ()=> {DragResponseAnim.gameObject.SetActive(false); }).SetEase(animateEase);
     }
     
     public void OnStartDrag(PointerEventData data)

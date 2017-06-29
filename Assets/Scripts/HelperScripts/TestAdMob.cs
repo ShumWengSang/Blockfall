@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System;
 
 public class TestAdMob : MonoBehaviour {
-
+    public SceneChanger levelChanger;
     private InterstitialAd interstitial;
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class TestAdMob : MonoBehaviour {
 
     private AdRequest CreateAdRequest()
     {
-        return new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).Build();
+        return new AdRequest.Builder().Build();
     }
 
     public void ShowAd()
@@ -70,6 +70,8 @@ public class TestAdMob : MonoBehaviour {
     public void HandleInterstitialOpened(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleInterstitialOpened event received");
+        //close the ad window.
+        levelChanger.ReloadScene();
     }
     
     public void HandleInterstitialClosed(object sender, EventArgs args)

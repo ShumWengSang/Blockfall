@@ -39,6 +39,12 @@ public class SlidingMenu : MonoBehaviour {
             ResetBox();
         }
     }
+
+    public bool PauseFinger
+    {
+        get; set;
+    }
+
     [Inspect(InspectorLevel.Debug)]
     float []Steps;
 
@@ -46,6 +52,7 @@ public class SlidingMenu : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        PauseFinger = false;
         GenerateContentParent();
        
         for(int i = 0; i < transparentBoxes.Length; i++)
@@ -110,6 +117,8 @@ public class SlidingMenu : MonoBehaviour {
 
     void OnFingerDown(LeanFinger finger)
     {
+        if (PauseFinger)
+            return;
         if (!IgnoreGUI || !LeanTouch.GuiInUse)
         {
             currentStepPosition = fingerHover.position;
@@ -128,6 +137,8 @@ public class SlidingMenu : MonoBehaviour {
     public int scale_movement = 5;
     void OnFingerSet(LeanFinger finger)
     {
+        if (PauseFinger)
+            return;
         if (MoveParent)
         {
 
@@ -140,6 +151,8 @@ public class SlidingMenu : MonoBehaviour {
 
     void OnFingerUp(LeanFinger finger)
     {
+        if (PauseFinger)
+            return;
         if (MoveParent)
         {
             ContentParent.SetParent(parentOrigParent);
@@ -156,6 +169,8 @@ public class SlidingMenu : MonoBehaviour {
 
     void OnFingerSwipe(LeanFinger finger)
     {
+        if (PauseFinger)
+            return;
         var swipe = finger.SwipeDelta;
 
         if (swipe.x < -Mathf.Abs(swipe.y))

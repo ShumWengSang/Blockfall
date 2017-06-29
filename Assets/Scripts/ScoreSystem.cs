@@ -47,7 +47,29 @@ public class ScoreSystem : MonoBehaviour
     public Text Ranks;
     void Awake()
     {
+        GetPlayerPrefData();
         UpdateWorldLevelInts();
+    }
+
+    void GetPlayerPrefData()
+    {
+        int local_world = PlayerPrefs.GetInt("CurrentWorld", 0);
+        int local_level = PlayerPrefs.GetInt("CurrentLevel", 0);
+
+        GoldRank = PlayerPrefs.GetInt("GoldRank_" + local_world + "_" + local_level, 4);
+        SilverRank = PlayerPrefs.GetInt("SilverRank_" + local_world + "_" + local_level, 6);
+        BronzeRank = PlayerPrefs.GetInt("BronzeRank_" + local_world + "_" + local_level, 8);
+    }
+
+    [Inspect]
+    public void SetPlayerPrefData()
+    {
+        int local_world = PlayerPrefs.GetInt("CurrentWorld", 0);
+        int local_level = PlayerPrefs.GetInt("CurrentLevel", 0);
+
+        PlayerPrefs.SetInt("GoldRank_" + local_world + "_" + local_level, GoldRank);
+        PlayerPrefs.SetInt("SilverRank_" + local_world + "_" + local_level, SilverRank);
+        PlayerPrefs.SetInt("BronzeRank_" + local_world + "_" + local_level, BronzeRank);
     }
 
     [Inspect]
@@ -92,17 +114,17 @@ public class ScoreSystem : MonoBehaviour
             //basically using saveloadbridge in realtime
 //#if UNITY_EDITOR_WIN
             string path = Application.streamingAssetsPath + "/Data/" + World.ToString() + "-" + level.ToString() + ".dat";
-//#elif UNITY_ANDROID
+            //#elif UNITY_ANDROID
             //string path = Application.streamingAssetsPath + "/Data/" + World.ToString() + "-" + level.ToString() + ".dat";
             //string path = "jar:file://" + Application.dataPath + "!/assets/" + "/Data/" + World.ToString() + "-" + level.ToString() + ".dat";
-//#endif
-            SaveLoadBridge.Instance.LoadScene(path);
+            //#endif
+            if (!SaveLoadBridge.Instance.LoadScene(path))
+                GetComponent<SceneChanger>().DirectlyMainMenu();
         }
     }
 
     void Start()
     {
-
         UpdateTexts();
         gameOver.SetActive(false);
     }
@@ -162,7 +184,6 @@ public class ScoreSystem : MonoBehaviour
 
     void FinishedPuzzle(int result)
     {
-        Debug.Log("Level: " + World + "-" + level + " result is " + result);
         PlayerPrefs.SetInt("Level" + World + "-" + level, result);
     }
 }

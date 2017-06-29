@@ -1,5 +1,21 @@
 Levels
-					Done. Don't care anymore about this.
+	Design Levels
+					World 2 
+						Level 12
+	Redesign Levels
+					World 2
+						Level 6
+						Level 8
+						Level 9
+					World 3
+						Level 6
+						Level 7
+						Level 11
+						Level 12
+					World 4
+						Level 5
+						Level 7
+						Level 12		
 
 Programming
 
@@ -19,8 +35,12 @@ Programming
 	Facebook integration. 		(0%) 
 	Admob				(90%) 
 	
-Assets	Sounds
+Assets	
 	Moving Background(?)
-
+	Speed Multiplier image
 Bugs
 	Can swipe and turn while in paused mode. ( MAJOR BUG:: Seems to be fixed. More testing needed)
+
+https://docs.google.com/forms/d/e/1FAIpQLScGEnoDpuGzSReBiD0h30w3qq85AD8UvJ8lwk1z55LELCgnpQ/viewform?usp=pp_url&entry.1915388255&entry.1361999965&entry.344336516&entry.312253194&entry.466685859
+
+blockfall blockfall blockfall

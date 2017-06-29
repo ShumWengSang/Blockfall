@@ -23,6 +23,10 @@ public class SceneChanger : MonoBehaviour {
     {
         screenManager.OpenPanel(screenTransAnim);
     }
+    public void DirectlyMainMenu()
+    {
+        SceneManager.LoadSceneAsync("LevelSelection");
+    }
 
     public void ChangeScene(string scene)
     {
@@ -79,6 +83,26 @@ public class SceneChanger : MonoBehaviour {
         //        break;
         //}
    // }
+   public void EditorDirectLoadNextLevel()
+    {
+        int World = PlayerPrefs.GetInt("CurrentWorld", 0);
+        int level = PlayerPrefs.GetInt("CurrentLevel", 0);
+        int nextLevelInt = level + 1;
+        int currentWorldInt = World;
+
+        if (nextLevelInt < 13)
+        {
+            //not a new world
+            PlayerPrefs.SetInt("CurrentLevel", nextLevelInt);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("CurrentWorld", currentWorldInt + 1);
+            PlayerPrefs.SetInt("CurrentLevel", 1);
+        }
+        //UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/Scenes/MasterGameScene.unity");
+
+    }
 
     public void LoadNextLevel()
     {
@@ -87,7 +111,7 @@ public class SceneChanger : MonoBehaviour {
         int nextLevelInt = level + 1;
         int currentWorldInt = World;
 
-        if (nextLevelInt < 12)
+        if (nextLevelInt < 13)
         {
             //not a new world
             PlayerPrefs.SetInt("CurrentLevel", nextLevelInt);

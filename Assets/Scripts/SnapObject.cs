@@ -50,7 +50,7 @@ public class SnapObject : MonoBehaviour {
         transform.position = newPosition;
 
     }
-    static bool IsThisInteger(float myFloat)
+    public static bool IsThisInteger(float myFloat)
     {
         return Mathf.Approximately(myFloat, Mathf.RoundToInt(myFloat));
     }

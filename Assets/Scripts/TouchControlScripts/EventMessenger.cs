@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
+
 public class EventMessenger : MonoBehaviour {
     public RotateGrid grid;
 
     public delegate void Message(EventMessenger obj);
     public static event Message OnStartDragEvent;
     public static event Message OnEndDragEvent;
+    public static event Message OnPointerDown;
+    public static event Message OnPointerUp;
 
     private bool TriggerRespondFlag = true;
 
@@ -47,7 +51,14 @@ public class EventMessenger : MonoBehaviour {
         entry.callback.AddListener((data) => { OnPointDown((PointerEventData)data); });
         trigger.triggers.Add(entry);
 
+        entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerUp;
+        entry.callback.AddListener((data) => { OnPointUp((PointerEventData)data); });
+        trigger.triggers.Add(entry);
+
         TriggerRespondFlag = true;
+
+        this.transform.DORotate(new Vector3(0, 0, 360), 2f).SetRelative().SetLoops(-1).SetEase(Ease.Linear);
     }
 
     #region TriggerEventMessengers
@@ -81,8 +92,14 @@ public class EventMessenger : MonoBehaviour {
     {
         if (TriggerRespondFlag)
         {
+            if (OnPointerDown != null) OnPointerDown(this);
             grid.AnimateDrag_PointDown(data);
         }
+    }
+
+    public void OnPointUp(PointerEventData data)
+    {
+        if (OnPointerUp != null) OnPointerUp(this);
     }
 
     #endregion
