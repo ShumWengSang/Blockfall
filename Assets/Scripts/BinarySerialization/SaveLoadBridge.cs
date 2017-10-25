@@ -423,7 +423,9 @@ public class SaveLoadBridge {
         BinaryFormatter bf = new BinaryFormatter();
         scene = (Scene_Block)bf.Deserialize(mem);
         
+
         mem.Close();
+        mem.Dispose();
 
         Direction currentDirection = Direction.none;
         Transform grid = GameObject.Find("Grid").transform;
@@ -525,6 +527,11 @@ public class SaveLoadBridge {
         {
             Transform obj = GameObject.Instantiate(grid.transform.GetChild(i), fakegrid);
             obj.localPosition = grid.transform.GetChild(i).localPosition;
+        }
+
+        for(int i = 0; i < fakegrid.transform.childCount; i++)
+        {
+            fakegrid.transform.GetChild(i).gameObject.SetActive(false);
         }
         return true;
     }

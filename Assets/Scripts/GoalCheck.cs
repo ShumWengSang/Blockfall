@@ -48,9 +48,9 @@ public class GoalCheck : MonoBehaviour {
 
         }
     }
-
+    string wood = "WoodBlock";
     void OnTriggerEnter(Collider col) {
-		if (col.CompareTag("WoodBlock")) {
+		if (col.CompareTag(wood)) {
 			SetEmission (litEmission);
 			goalScored = true;
             col.GetComponentInChildren<Animator>().SetTrigger("EndZone");
@@ -58,7 +58,7 @@ public class GoalCheck : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider col) {
-        if (col.CompareTag("WoodBlock"))
+        if (col.CompareTag(wood))
         {
 			SetEmission (litEmission);
 			goalScored = true;
@@ -66,7 +66,7 @@ public class GoalCheck : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider col) {
-        if (col.CompareTag("WoodBlock"))
+        if (col.CompareTag(wood))
         {
 			SetEmission (unlitEmission);
 			goalScored = false;

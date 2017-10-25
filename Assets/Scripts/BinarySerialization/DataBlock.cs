@@ -2,6 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Scoring_Data_Block
+{
+    [System.Serializable]
+    public class Scoring_Block
+    {
+        public block_data[] data;
+    }
+
+    [System.Serializable]
+    public class block_data
+    {
+        [SerializeField]
+        public int world, level;
+        public int bronze, silver, gold;
+    }
+}
 namespace Data_Blocks
 {
 
@@ -16,6 +32,7 @@ namespace Data_Blocks
     {
         [SerializeField]
         public block_data[] blocks;
+        [SerializeField]
         public int world, level;
     }
 

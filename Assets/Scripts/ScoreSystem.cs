@@ -1,8 +1,14 @@
-﻿using UnityEngine;
+﻿
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using AdvancedInspector;
 using UnityEngine.SceneManagement;
+using Scoring_Data_Block;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
 public class ScoreSystem : MonoBehaviour
 {
     public bool isReal_testing = false;
@@ -56,14 +62,48 @@ public class ScoreSystem : MonoBehaviour
         int local_world = PlayerPrefs.GetInt("CurrentWorld", 0);
         int local_level = PlayerPrefs.GetInt("CurrentLevel", 0);
 
+        //Scoring_Block data = BinarySerializor.DeserializeFromBinary<Scoring_Block>(Application.streamingAssetsPath + "/Data/ScoreSystem.sco");
+        WWW file = new WWW(Application.streamingAssetsPath + "/Data/ScoreSystem.sco");
+        Scoring_Block data;
+        while (!file.isDone)
+        {
+
+        }
+        if (file.error != null)
+            return;
+        MemoryStream mem = new MemoryStream(file.bytes);
+        BinaryFormatter bf = new BinaryFormatter();
+        data = (Scoring_Block)bf.Deserialize(mem);
+
+        mem.Close();
+        mem.Dispose();
+        foreach (var iter in data.data)
+        {
+            if(iter.world == local_world)
+                if(iter.level == local_level)
+                {
+                    GoldRank = iter.gold;
+                    SilverRank = iter.silver;
+                    BronzeRank = iter.bronze;
+                }
+        }
+#if OLDLOADDATA
+        int local_world = PlayerPrefs.GetInt("CurrentWorld", 0);
+        int local_level = PlayerPrefs.GetInt("CurrentLevel", 0);
+
         GoldRank = PlayerPrefs.GetInt("GoldRank_" + local_world + "_" + local_level, 4);
         SilverRank = PlayerPrefs.GetInt("SilverRank_" + local_world + "_" + local_level, 6);
         BronzeRank = PlayerPrefs.GetInt("BronzeRank_" + local_world + "_" + local_level, 8);
+#else
+
+#endif
     }
 
     [Inspect]
     public void SetPlayerPrefData()
     {
+        //DEPRECATED
+        return;
         int local_world = PlayerPrefs.GetInt("CurrentWorld", 0);
         int local_level = PlayerPrefs.GetInt("CurrentLevel", 0);
 
