@@ -31,8 +31,8 @@ public class _ChangeGameHolderInScene : MonoBehaviour {
 
 
         PrefabUtility.InstantiatePrefab(prefab);
-        Transform realGrid = GameObject.Find("RealScene").transform.FindChild("Grid");
-        Transform fakeGrid = GameObject.Find("FakeScene").transform.FindChild("Grid");
+        Transform realGrid = GameObject.Find("RealScene").transform.Find("Grid");
+        Transform fakeGrid = GameObject.Find("FakeScene").transform.Find("Grid");
         for (int i = 0; i < realGrid.childCount; i++ )
         {
             DestroyImmediate(realGrid.GetChild(i).gameObject);

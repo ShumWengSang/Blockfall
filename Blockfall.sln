@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blockfall.Plugins", "blockfall.Plugins.csproj", "{9A85FCE2-531A-F598-D80C-FA77D8400BE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blockfall", "blockfall.csproj", "{6F9CA679-9277-DCB9-0B51-F5E05506C3AE}"

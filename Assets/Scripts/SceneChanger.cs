@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 //using UnityEngine.Advertisements;
 public class SceneChanger : MonoBehaviour {
     ScreenManager screenManager;
+    public Animator LoadingWords;
     public Animator screenTransAnim; 
     public float waitSeconds = 0.5f;
     public GameObject WatchAdToContinue;
@@ -18,6 +20,7 @@ public class SceneChanger : MonoBehaviour {
     void Start()
     {
         screenManager.OpenPanel(screenTransAnim);
+        screenTransitionImage = screenTransAnim.GetComponent<Image>();
     }
     void OnLevelWasLoaded(int index)
     {
@@ -28,11 +31,13 @@ public class SceneChanger : MonoBehaviour {
         SceneManager.LoadSceneAsync("LevelSelection");
     }
 
-    public void ChangeScene(string scene)
+    public void ChangeScene(string scene, LoadSceneMode mode = LoadSceneMode.Single)
     {
+        LoadingWords.SetTrigger("Loading");
         screenTransAnim.transform.SetAsLastSibling();
         screenManager.CloseCurrent(scene);
-        StartCoroutine(loadNextScene(scene));
+        //StartCoroutine(loadNextScene(scene, mode));
+        SceneManager.LoadSceneAsync(scene);
     }
 
     public void LoadMainMenu()
@@ -124,13 +129,13 @@ public class SceneChanger : MonoBehaviour {
         ChangeScene("MasterGameScene");
     }
 
-    IEnumerator loadNextScene(string scene)
+    IEnumerator loadNextScene(string scene, LoadSceneMode mode = LoadSceneMode.Single)
     {
         while(screenTransAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !screenTransAnim.IsInTransition(0))
         {
             yield return null;
         }
-        yield return SceneManager.LoadSceneAsync(scene);
+        yield return SceneManager.LoadSceneAsync(scene, mode);
     }
 
     public void Load_Scene_Directed(int world, int level)
@@ -138,6 +143,21 @@ public class SceneChanger : MonoBehaviour {
         PlayerPrefs.SetInt("CurrentWorld", world);
         PlayerPrefs.SetInt("CurrentLevel", level);
 
-        ChangeScene("MasterGameScene");
+        ChangeScene("MasterGameScene", LoadSceneMode.Additive);
+
+       // string scene = "MasterGameScene";
+        //LoadingWords.SetTrigger("Loading");
+        //screenTransAnim.transform.SetAsLastSibling();
+        //screenManager.CloseCurrent(scene);
+        //StartCoroutine(Load_Scene_Direct_From_Menu_Coroutine(scene, LoadSceneMode.Additive));
     }
+
+    IEnumerator Load_Scene_Direct_From_Menu_Coroutine(string scene, LoadSceneMode mode = LoadSceneMode.Single)
+    {
+        yield return SceneManager.LoadSceneAsync(scene, mode);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("MasterGameScene"));
+    }
+
+    Image screenTransitionImage;
+
 }

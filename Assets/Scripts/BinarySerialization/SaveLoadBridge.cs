@@ -429,7 +429,10 @@ public class SaveLoadBridge {
 
         Direction currentDirection = Direction.none;
         Transform grid = GameObject.Find("Grid").transform;
-        Transform fakegrid = GameObject.Find("FakeGrid").transform;
+        Vector3 gridInitialPos = grid.transform.position;
+        grid.transform.position = Vector3.zero;
+        Transform fakegrid = GameObject.Find("Root").transform.Find("FakeScene");
+        
         fakegrid.transform.position = grid.position;
         GameObject objectToSpawn;
         foreach (block_data data in scene.blocks)
@@ -533,6 +536,11 @@ public class SaveLoadBridge {
         {
             fakegrid.transform.GetChild(i).gameObject.SetActive(false);
         }
+
+        grid.transform.position = gridInitialPos;
+        fakegrid.transform.position = gridInitialPos;
+
+        fakegrid.gameObject.SetActive(false);
         return true;
     }
 }
