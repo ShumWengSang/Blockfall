@@ -16,14 +16,17 @@ TextureImporter:
     21300018: spr_main_9
     21300020: spr_main_10
     21300022: spr_main_11
-  serializedVersion: 2
+  externalObjects: {}
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -33,23 +36,22 @@ TextureImporter:
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 512
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: 16
     mipBias: -1
-    wrapMode: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -57,12 +59,47 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 200
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: spr_main_0
+    - serializedVersion: 2
+      name: spr_main_0
       rect:
         serializedVersion: 2
         x: 29
@@ -72,55 +109,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 2, y: 14}
-        - {x: -8, y: -1}
-        - {x: -8, y: -25}
-        - {x: 28, y: -25}
-        - {x: 36, y: -13}
-        - {x: 36, y: 13}
-        - {x: 35, y: 14}
-      - - {x: -24, y: 13}
-        - {x: -34, y: 10}
-        - {x: -36, y: 3}
-        - {x: -36, y: -12}
-        - {x: -28, y: -22}
-        - {x: -10, y: -22}
-        - {x: -2, y: -20}
-        - {x: -2, y: 10}
-        - {x: -8, y: 13}
-      - - {x: -48, y: -9}
-        - {x: -48, y: -18}
-        - {x: -45, y: -19}
-        - {x: -36, y: -19}
-        - {x: -35, y: -15}
-        - {x: -35, y: -10}
-        - {x: -38, y: -9}
-      - - {x: 40, y: -9}
-        - {x: 36, y: -11}
-        - {x: 36, y: -15}
-        - {x: 38, y: -19}
-        - {x: 46, y: -19}
-        - {x: 49, y: -17}
-        - {x: 49, y: -11}
-        - {x: 47, y: -9}
-      - - {x: -28, y: 26}
-        - {x: -31, y: 23}
-        - {x: -31, y: 18}
-        - {x: -29, y: 15}
-        - {x: -25, y: 15}
-        - {x: -13, y: 18}
-        - {x: -10, y: 22}
-        - {x: -10, y: 26}
-      - - {x: 10, y: 26}
-        - {x: 10, y: 20}
-        - {x: 11, y: 18}
-        - {x: 15, y: 17}
-        - {x: 29, y: 17}
-        - {x: 31, y: 18}
-        - {x: 31, y: 24}
-        - {x: 27, y: 26}
-    - name: spr_main_1
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_1
       rect:
         serializedVersion: 2
         x: 291
@@ -130,59 +123,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -6, y: -14}
-        - {x: -8, y: -17}
-        - {x: -8, y: -20}
-        - {x: -5, y: -23}
-        - {x: 7, y: -23}
-        - {x: 8, y: -21}
-        - {x: 8, y: -14}
-      - - {x: -44, y: -6}
-        - {x: -46, y: -7}
-        - {x: -46, y: -16}
-        - {x: -35, y: -16}
-        - {x: -33, y: -12}
-        - {x: -33, y: -9}
-        - {x: -36, y: -6}
-      - - {x: 37, y: -6}
-        - {x: 34, y: -7}
-        - {x: 34, y: -15}
-        - {x: 36, y: -16}
-        - {x: 47, y: -16}
-        - {x: 47, y: -6}
-      - - {x: 5, y: 2}
-        - {x: 2, y: -2}
-        - {x: 2, y: -13}
-        - {x: 15, y: -13}
-        - {x: 36, y: -9}
-        - {x: 37, y: -6}
-        - {x: 37, y: -2}
-        - {x: 30, y: 2}
-      - - {x: -36, y: -7}
-        - {x: -30, y: -12}
-        - {x: -3, y: -12}
-        - {x: -3, y: 1}
-        - {x: -4, y: 2}
-        - {x: -33, y: 2}
-        - {x: -36, y: 0}
-      - - {x: -29, y: 24}
-        - {x: -32, y: 21}
-        - {x: -32, y: 16}
-        - {x: -30, y: 13}
-        - {x: -26, y: 13}
-        - {x: -14, y: 16}
-        - {x: -11, y: 20}
-        - {x: -11, y: 24}
-      - - {x: 9, y: 24}
-        - {x: 9, y: 18}
-        - {x: 10, y: 16}
-        - {x: 14, y: 15}
-        - {x: 28, y: 15}
-        - {x: 30, y: 16}
-        - {x: 30, y: 22}
-        - {x: 26, y: 24}
-    - name: spr_main_2
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_2
       rect:
         serializedVersion: 2
         x: 541
@@ -192,47 +137,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -7, y: -17}
-        - {x: -7, y: -29}
-        - {x: -4, y: -33}
-        - {x: 6, y: -33}
-        - {x: 9, y: -26}
-        - {x: 9, y: -17}
-      - - {x: -32, y: 19}
-        - {x: -47, y: 11}
-        - {x: -48, y: 7}
-        - {x: -48, y: -18}
-        - {x: -40, y: -21}
-        - {x: -3, y: -21}
-        - {x: -2, y: -16}
-        - {x: -2, y: 18}
-        - {x: -3, y: 19}
-      - - {x: 43, y: 20}
-        - {x: 1, y: 20}
-        - {x: 1, y: -8}
-        - {x: 6, y: -21}
-        - {x: 36, y: -21}
-        - {x: 47, y: -18}
-        - {x: 49, y: -15}
-        - {x: 49, y: 1}
-      - - {x: -26, y: 34}
-        - {x: -31, y: 32}
-        - {x: -31, y: 23}
-        - {x: -25, y: 23}
-        - {x: -12, y: 26}
-        - {x: -11, y: 28}
-        - {x: -11, y: 34}
-      - - {x: 26, y: 34}
-        - {x: 12, y: 34}
-        - {x: 10, y: 32}
-        - {x: 10, y: 29}
-        - {x: 13, y: 26}
-        - {x: 23, y: 24}
-        - {x: 28, y: 24}
-        - {x: 30, y: 27}
-        - {x: 30, y: 31}
-    - name: spr_main_3
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_3
       rect:
         serializedVersion: 2
         x: 809
@@ -242,42 +151,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -42.5, y: 5}
-        - {x: -42.5, y: -11}
-        - {x: -38.5, y: -13}
-        - {x: -33.5, y: -12}
-        - {x: -13.5, y: -19}
-        - {x: 13.5, y: -19}
-        - {x: 33.5, y: -2}
-        - {x: 33.5, y: 5}
-      - - {x: 33.5, y: -1}
-        - {x: 30.5, y: -2}
-        - {x: 30.5, y: -8}
-        - {x: 31.5, y: -11}
-        - {x: 39.5, y: -11}
-        - {x: 43.5, y: -8}
-        - {x: 43.5, y: -3}
-        - {x: 41.5, y: -1}
-      - - {x: -27.5, y: 20}
-        - {x: -30.5, y: 19}
-        - {x: -30.5, y: 13}
-        - {x: -29.5, y: 11}
-        - {x: -20.5, y: 8}
-        - {x: -12.5, y: 8}
-        - {x: -10.5, y: 9}
-        - {x: -10.5, y: 13}
-        - {x: -14.5, y: 18}
-        - {x: -17.5, y: 20}
-      - - {x: 29.5, y: 20}
-        - {x: 15.5, y: 20}
-        - {x: 8.5, y: 15}
-        - {x: 8.5, y: 9}
-        - {x: 9.5, y: 8}
-        - {x: 18.5, y: 8}
-        - {x: 30.5, y: 15}
-        - {x: 30.5, y: 19}
-    - name: spr_main_4
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_4
       rect:
         serializedVersion: 2
         x: 29
@@ -287,41 +165,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -47, y: 20}
-        - {x: -48, y: 19}
-        - {x: -48, y: -14}
-        - {x: -33, y: -28}
-        - {x: -17, y: -30}
-        - {x: 7, y: -30}
-        - {x: 7, y: 9}
-        - {x: -6, y: 20}
-      - - {x: 9, y: 21}
-        - {x: 1, y: 16}
-        - {x: 1, y: -9}
-        - {x: 6, y: -20}
-        - {x: 35, y: -20}
-        - {x: 49, y: -15}
-        - {x: 49, y: -1}
-        - {x: 31, y: 21}
-      - - {x: -26, y: 31}
-        - {x: -31, y: 27}
-        - {x: -31, y: 21}
-        - {x: -30, y: 20}
-        - {x: -26, y: 20}
-        - {x: -13, y: 24}
-        - {x: -11, y: 24}
-        - {x: -11, y: 29}
-        - {x: -12, y: 31}
-      - - {x: 27, y: 31}
-        - {x: 10, y: 31}
-        - {x: 10, y: 26}
-        - {x: 13, y: 23}
-        - {x: 23, y: 21}
-        - {x: 28, y: 21}
-        - {x: 30, y: 24}
-        - {x: 30, y: 29}
-    - name: spr_main_5
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_5
       rect:
         serializedVersion: 2
         x: 285
@@ -331,41 +179,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -47, y: 20}
-        - {x: -48, y: 19}
-        - {x: -48, y: -14}
-        - {x: -33, y: -28}
-        - {x: -17, y: -30}
-        - {x: 7, y: -30}
-        - {x: 7, y: 9}
-        - {x: -6, y: 20}
-      - - {x: 9, y: 21}
-        - {x: 1, y: 16}
-        - {x: 1, y: -9}
-        - {x: 6, y: -20}
-        - {x: 35, y: -20}
-        - {x: 49, y: -15}
-        - {x: 49, y: -1}
-        - {x: 31, y: 21}
-      - - {x: -26, y: 31}
-        - {x: -31, y: 27}
-        - {x: -31, y: 21}
-        - {x: -30, y: 20}
-        - {x: -26, y: 20}
-        - {x: -13, y: 24}
-        - {x: -11, y: 24}
-        - {x: -11, y: 29}
-        - {x: -12, y: 31}
-      - - {x: 27, y: 31}
-        - {x: 10, y: 31}
-        - {x: 10, y: 26}
-        - {x: 13, y: 23}
-        - {x: 23, y: 21}
-        - {x: 28, y: 21}
-        - {x: 30, y: 24}
-        - {x: 30, y: 29}
-    - name: spr_main_6
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_6
       rect:
         serializedVersion: 2
         x: 545
@@ -375,22 +193,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -33.5, y: 28}
-        - {x: -38.5, y: 21}
-        - {x: -46.5, y: -7}
-        - {x: -46.5, y: -27}
-        - {x: 39.5, y: -27}
-        - {x: 39.5, y: 28}
-      - - {x: 40.5, y: -7}
-        - {x: 37.5, y: -8}
-        - {x: 34.5, y: -10}
-        - {x: 34.5, y: -14}
-        - {x: 35.5, y: -17}
-        - {x: 47.5, y: -17}
-        - {x: 47.5, y: -9}
-        - {x: 44.5, y: -7}
-    - name: spr_main_7
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_7
       rect:
         serializedVersion: 2
         x: 803
@@ -400,25 +207,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -12, y: 22}
-        - {x: -15, y: 29}
-        - {x: -25, y: 29}
-        - {x: -36, y: 27}
-        - {x: -45, y: 7}
-        - {x: -45, y: -19}
-        - {x: -31, y: -29}
-        - {x: 9, y: -29}
-        - {x: 9, y: -10}
-        - {x: -11, y: 18}
-      - - {x: 3, y: 30}
-        - {x: 1, y: 23}
-        - {x: 1, y: -22}
-        - {x: 4, y: -23}
-        - {x: 46, y: -23}
-        - {x: 46, y: 15}
-        - {x: 37, y: 30}
-    - name: spr_main_8
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_8
       rect:
         serializedVersion: 2
         x: 29
@@ -428,31 +221,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 33.5, y: 24.5}
-        - {x: 14.5, y: 24.5}
-        - {x: 6.5, y: 19.5}
-        - {x: -10.5, y: -16.5}
-        - {x: -10.5, y: -23.5}
-        - {x: 15.5, y: -23.5}
-        - {x: 47.5, y: -18.5}
-        - {x: 47.5, y: -1.5}
-        - {x: 38.5, y: 19.5}
-      - - {x: -46.5, y: -5.5}
-        - {x: -46.5, y: -14.5}
-        - {x: -43.5, y: -15.5}
-        - {x: -34.5, y: -15.5}
-        - {x: -33.5, y: -11.5}
-        - {x: -33.5, y: -6.5}
-        - {x: -36.5, y: -5.5}
-      - - {x: -15.5, y: 24.5}
-        - {x: -30.5, y: 24.5}
-        - {x: -34.5, y: 21.5}
-        - {x: -34.5, y: -11.5}
-        - {x: 0.5, y: -11.5}
-        - {x: 0.5, y: 10.5}
-        - {x: -0.5, y: 13.5}
-    - name: spr_main_9
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_9
       rect:
         serializedVersion: 2
         x: 287
@@ -462,30 +235,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -12, y: -22}
-        - {x: 42, y: -22}
-        - {x: 48, y: -21}
-        - {x: 48, y: 4}
-        - {x: 37, y: 23}
-        - {x: 4, y: 23}
-        - {x: -12, y: -15}
-      - - {x: -47, y: -6}
-        - {x: -47, y: -15}
-        - {x: -44, y: -16}
-        - {x: -35, y: -16}
-        - {x: -34, y: -12}
-        - {x: -34, y: -7}
-        - {x: -37, y: -6}
-      - - {x: -21, y: 23}
-        - {x: -24, y: 22}
-        - {x: -36, y: 17}
-        - {x: -36, y: -12}
-        - {x: -2, y: -12}
-        - {x: -1, y: -9}
-        - {x: -1, y: 8}
-        - {x: -17, y: 23}
-    - name: spr_main_10
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_10
       rect:
         serializedVersion: 2
         x: 541
@@ -495,55 +249,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 2, y: 14}
-        - {x: -8, y: -1}
-        - {x: -8, y: -25}
-        - {x: 28, y: -25}
-        - {x: 36, y: -13}
-        - {x: 36, y: 13}
-        - {x: 35, y: 14}
-      - - {x: -24, y: 13}
-        - {x: -34, y: 10}
-        - {x: -36, y: 3}
-        - {x: -36, y: -12}
-        - {x: -28, y: -22}
-        - {x: -10, y: -22}
-        - {x: -2, y: -20}
-        - {x: -2, y: 10}
-        - {x: -8, y: 13}
-      - - {x: -48, y: -9}
-        - {x: -48, y: -18}
-        - {x: -45, y: -19}
-        - {x: -36, y: -19}
-        - {x: -35, y: -15}
-        - {x: -35, y: -10}
-        - {x: -38, y: -9}
-      - - {x: 40, y: -9}
-        - {x: 36, y: -11}
-        - {x: 36, y: -15}
-        - {x: 38, y: -19}
-        - {x: 46, y: -19}
-        - {x: 49, y: -17}
-        - {x: 49, y: -11}
-        - {x: 47, y: -9}
-      - - {x: -28, y: 26}
-        - {x: -31, y: 23}
-        - {x: -31, y: 18}
-        - {x: -29, y: 15}
-        - {x: -25, y: 15}
-        - {x: -13, y: 18}
-        - {x: -10, y: 22}
-        - {x: -10, y: 26}
-      - - {x: 10, y: 26}
-        - {x: 10, y: 20}
-        - {x: 11, y: 18}
-        - {x: 15, y: 17}
-        - {x: 29, y: 17}
-        - {x: 31, y: 18}
-        - {x: 31, y: 24}
-        - {x: 27, y: 26}
-    - name: spr_main_11
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_main_11
       rect:
         serializedVersion: 2
         x: 797
@@ -553,59 +263,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 27, y: 14}
-        - {x: 4, y: 14}
-        - {x: -6, y: -6}
-        - {x: -8, y: -12}
-        - {x: -8, y: -24}
-        - {x: -7, y: -25}
-        - {x: 19, y: -25}
-        - {x: 29, y: -20}
-        - {x: 36, y: -16}
-        - {x: 36, y: 10}
-      - - {x: -24, y: 13}
-        - {x: -29, y: 11}
-        - {x: -32, y: 7}
-        - {x: -36, y: 3}
-        - {x: -36, y: -12}
-        - {x: -28, y: -22}
-        - {x: -10, y: -22}
-        - {x: -2, y: -20}
-        - {x: -2, y: 9}
-        - {x: -15, y: 13}
-      - - {x: -48, y: -9}
-        - {x: -48, y: -18}
-        - {x: -45, y: -19}
-        - {x: -36, y: -19}
-        - {x: -35, y: -15}
-        - {x: -35, y: -10}
-        - {x: -38, y: -9}
-      - - {x: 40, y: -9}
-        - {x: 36, y: -11}
-        - {x: 36, y: -15}
-        - {x: 38, y: -19}
-        - {x: 46, y: -19}
-        - {x: 49, y: -17}
-        - {x: 49, y: -11}
-        - {x: 47, y: -9}
-      - - {x: -28, y: 26}
-        - {x: -31, y: 23}
-        - {x: -31, y: 18}
-        - {x: -29, y: 15}
-        - {x: -25, y: 15}
-        - {x: -13, y: 18}
-        - {x: -10, y: 22}
-        - {x: -10, y: 26}
-      - - {x: 10, y: 26}
-        - {x: 10, y: 20}
-        - {x: 11, y: 18}
-        - {x: 15, y: 17}
-        - {x: 29, y: 17}
-        - {x: 31, y: 18}
-        - {x: 31, y: 24}
-        - {x: 27, y: 26}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
     outline: []
+    physicsShape: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

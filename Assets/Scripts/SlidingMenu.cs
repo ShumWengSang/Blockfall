@@ -16,8 +16,7 @@ public class SlidingMenu : MonoBehaviour {
     public float margin;
 
     public float MoveTime = 1f;
-
-    public Transform fingerHover;
+    
     public Transform parentOrigParent;
 
     private float BoxCounter = 0;
@@ -114,6 +113,7 @@ public class SlidingMenu : MonoBehaviour {
 
     Vector3 currentStepPosition;
     Vector3 OnFingerDownWorldPosition;
+    Vector3 InitialContentPos;
 
     void OnFingerDown(LeanFinger finger)
     {
@@ -121,16 +121,14 @@ public class SlidingMenu : MonoBehaviour {
             return;
         if (!IgnoreGUI || !LeanTouch.GuiInUse)
         {
-            currentStepPosition = fingerHover.position;
             OnFingerDownWorldPosition = finger.ScreenPosition ;
+            InitialContentPos = ContentParent.position;
 
             MoveParent = true;
-            //fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
             if (DOTween.IsTweening(ContentParent))
             {
                 ContentParent.DOKill();
             }
-            ContentParent.SetParent(fingerHover);
         }
     }
 
@@ -141,11 +139,9 @@ public class SlidingMenu : MonoBehaviour {
             return;
         if (MoveParent)
         {
-
             float distance = OnFingerDownWorldPosition.x - finger.ScreenPosition.x;
             distance *= scale_movement;
-            fingerHover.position = new Vector3(currentStepPosition.x - distance, fingerHover.position.y, fingerHover.position.z);
-            //fingerHover.position = new Vector3(finger.GetWorldPosition(0).x, fingerHover.position.y, fingerHover.position.z);
+            ContentParent.position = new Vector3(InitialContentPos.x - distance, ContentParent.position.y, ContentParent.position.z);
         }
     }
 
@@ -155,8 +151,6 @@ public class SlidingMenu : MonoBehaviour {
             return;
         if (MoveParent)
         {
-            ContentParent.SetParent(parentOrigParent);
-            ContentParent.SetSiblingIndex(1);
             MoveParent = false;
             if (finger.GetScaledSnapshotDelta(LeanTouch.Instance.TapThreshold).magnitude <= LeanTouch.Instance.SwipeThreshold && !DOTween.IsTweening(ContentParent))
             {

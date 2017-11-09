@@ -31,8 +31,8 @@ public class LevelSelection : MonoBehaviour
             {
                 WorldButtons[k - 1, i - 1] = WorldBGs[k - 1].GetChild(i - 1);
                 WorldButtons[k - 1, i - 1].GetComponentInChildren<Text>().text = (i).ToString();
-                int Pref = PlayerPrefs.GetInt("Level" + k + "-" + i);
-                if (Pref >= 1)
+                int Pref = PlayerPrefs.GetInt("Level" + k + "-" + i, -1);
+                if (Pref >= 0)
                 {
                     //Level finished.
                     //Give the appropriate medal.

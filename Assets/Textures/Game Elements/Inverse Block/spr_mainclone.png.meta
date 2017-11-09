@@ -16,14 +16,17 @@ TextureImporter:
     21300018: spr_mainclone_9
     21300020: spr_mainclone_10
     21300022: spr_mainclone_11
-  serializedVersion: 2
+  externalObjects: {}
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -33,23 +36,22 @@ TextureImporter:
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: 16
     mipBias: -1
-    wrapMode: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -57,12 +59,47 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 200
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: spr_mainclone_0
+    - serializedVersion: 2
+      name: spr_mainclone_0
       rect:
         serializedVersion: 2
         x: 0
@@ -72,72 +109,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -13, y: -7}
-        - {x: -18, y: -8}
-        - {x: -18, y: -14}
-        - {x: -12, y: -21}
-        - {x: -9, y: -22}
-        - {x: 8, y: -22}
-        - {x: 11, y: -16}
-        - {x: 11, y: -7}
-      - - {x: -58, y: 52}
-        - {x: -66, y: 50}
-        - {x: -73, y: 29}
-        - {x: -73, y: 11}
-        - {x: -69, y: 3}
-        - {x: -60, y: -7}
-        - {x: -52, y: -12}
-        - {x: -49, y: -14}
-        - {x: -30, y: -14}
-        - {x: -10, y: -7}
-        - {x: -10, y: 49}
-        - {x: -22, y: 52}
-      - - {x: 48, y: 53}
-        - {x: 21, y: 53}
-        - {x: 8, y: 48}
-        - {x: -1, y: 37}
-        - {x: -1, y: 11}
-        - {x: 2, y: -4}
-        - {x: 12, y: -13}
-        - {x: 46, y: -13}
-        - {x: 66, y: -5}
-        - {x: 66, y: 31}
-        - {x: 64, y: 45}
-      - - {x: -94, y: 8}
-        - {x: -99, y: 4}
-        - {x: -99, y: -5}
-        - {x: -94, y: -7}
-        - {x: -79, y: -7}
-        - {x: -76, y: -5}
-        - {x: -76, y: 3}
-        - {x: -79, y: 8}
-      - - {x: 77, y: 8}
-        - {x: 71, y: 5}
-        - {x: 71, y: -5}
-        - {x: 72, y: -7}
-        - {x: 91, y: -7}
-        - {x: 94, y: -6}
-        - {x: 94, y: 5}
-        - {x: 92, y: 8}
-      - - {x: -63, y: 71}
-        - {x: -63, y: 65}
-        - {x: -61, y: 61}
-        - {x: -51, y: 61}
-        - {x: -27, y: 70}
-        - {x: -27, y: 80}
-        - {x: -52, y: 80}
-      - - {x: 43, y: 80}
-        - {x: 25, y: 80}
-        - {x: 19, y: 76}
-        - {x: 19, y: 71}
-        - {x: 20, y: 68}
-        - {x: 46, y: 64}
-        - {x: 52, y: 64}
-        - {x: 55, y: 66}
-        - {x: 55, y: 72}
-        - {x: 53, y: 78}
-    - name: spr_mainclone_1
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_1
       rect:
         serializedVersion: 2
         x: 256
@@ -147,64 +123,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -12, y: -5}
-        - {x: -17, y: -6}
-        - {x: -17, y: -12}
-        - {x: -11, y: -19}
-        - {x: -8, y: -20}
-        - {x: 9, y: -20}
-        - {x: 12, y: -14}
-        - {x: 12, y: -5}
-      - - {x: -89, y: 12}
-        - {x: -94, y: 8}
-        - {x: -94, y: 1}
-        - {x: -90, y: -3}
-        - {x: -79, y: -3}
-        - {x: -74, y: -2}
-        - {x: -71, y: 0}
-        - {x: -71, y: 8}
-        - {x: -73, y: 12}
-      - - {x: 72, y: 12}
-        - {x: 68, y: 10}
-        - {x: 68, y: -2}
-        - {x: 72, y: -3}
-        - {x: 89, y: -3}
-        - {x: 91, y: 0}
-        - {x: 91, y: 9}
-        - {x: 89, y: 12}
-      - - {x: 6, y: 28}
-        - {x: 5, y: 25}
-        - {x: 5, y: 3}
-        - {x: 69, y: 3}
-        - {x: 69, y: 25}
-        - {x: 58, y: 28}
-      - - {x: -67, y: 28}
-        - {x: -72, y: 27}
-        - {x: -72, y: 16}
-        - {x: -44, y: 5}
-        - {x: -13, y: 5}
-        - {x: -11, y: 7}
-        - {x: -11, y: 23}
-        - {x: -17, y: 28}
-      - - {x: -63, y: 65}
-        - {x: -63, y: 59}
-        - {x: -61, y: 55}
-        - {x: -51, y: 55}
-        - {x: -27, y: 64}
-        - {x: -27, y: 74}
-        - {x: -52, y: 74}
-      - - {x: 43, y: 74}
-        - {x: 25, y: 74}
-        - {x: 19, y: 70}
-        - {x: 19, y: 65}
-        - {x: 20, y: 62}
-        - {x: 46, y: 58}
-        - {x: 52, y: 58}
-        - {x: 55, y: 60}
-        - {x: 55, y: 66}
-        - {x: 53, y: 72}
-    - name: spr_mainclone_2
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_2
       rect:
         serializedVersion: 2
         x: 512
@@ -214,52 +137,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: -8}
-        - {x: -16, y: -30}
-        - {x: -10, y: -37}
-        - {x: 0, y: -37}
-        - {x: 4, y: -36}
-        - {x: 10, y: -34}
-        - {x: 11, y: -31}
-        - {x: 11, y: -8}
-      - - {x: -27, y: 63}
-        - {x: -63, y: 63}
-        - {x: -86, y: 55}
-        - {x: -99, y: 22}
-        - {x: -99, y: -4}
-        - {x: -62, y: -12}
-        - {x: -28, y: -12}
-        - {x: -11, y: 6}
-        - {x: -11, y: 47}
-        - {x: -12, y: 49}
-      - - {x: 66, y: 65}
-        - {x: 21, y: 65}
-        - {x: 0, y: 58}
-        - {x: 0, y: 1}
-        - {x: 17, y: -12}
-        - {x: 79, y: -12}
-        - {x: 94, y: -3}
-        - {x: 94, y: 14}
-        - {x: 83, y: 39}
-      - - {x: -64, y: 86}
-        - {x: -64, y: 80}
-        - {x: -62, y: 76}
-        - {x: -52, y: 76}
-        - {x: -28, y: 85}
-        - {x: -28, y: 95}
-        - {x: -53, y: 95}
-      - - {x: 42, y: 95}
-        - {x: 24, y: 95}
-        - {x: 18, y: 91}
-        - {x: 18, y: 86}
-        - {x: 19, y: 83}
-        - {x: 45, y: 79}
-        - {x: 51, y: 79}
-        - {x: 54, y: 81}
-        - {x: 54, y: 87}
-        - {x: 52, y: 93}
-    - name: spr_mainclone_3
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_3
       rect:
         serializedVersion: 2
         x: 768
@@ -269,65 +151,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -19, y: -14}
-        - {x: -19, y: -23}
-        - {x: -18, y: -27}
-        - {x: -10, y: -29}
-        - {x: 7, y: -29}
-        - {x: 17, y: -23}
-        - {x: 18, y: -22}
-        - {x: 18, y: -14}
-      - - {x: -86, y: 3}
-        - {x: -87, y: 1}
-        - {x: -87, y: -8}
-        - {x: -86, y: -11}
-        - {x: -84, y: -13}
-        - {x: -68, y: -13}
-        - {x: -64, y: -12}
-        - {x: -64, y: 2}
-        - {x: -68, y: 3}
-      - - {x: -62, y: 16}
-        - {x: -68, y: 14}
-        - {x: -70, y: 11}
-        - {x: -70, y: 3}
-        - {x: -25, y: -13}
-        - {x: -9, y: -13}
-        - {x: -9, y: 16}
-      - - {x: 56, y: 16}
-        - {x: 30, y: 16}
-        - {x: 9, y: 10}
-        - {x: 6, y: 8}
-        - {x: 6, y: -5}
-        - {x: 10, y: -13}
-        - {x: 20, y: -13}
-        - {x: 22, y: -12}
-        - {x: 60, y: 5}
-        - {x: 61, y: 6}
-        - {x: 61, y: 15}
-      - - {x: 62, y: 4}
-        - {x: 60, y: 2}
-        - {x: 60, y: -8}
-        - {x: 61, y: -12}
-        - {x: 77, y: -12}
-        - {x: 83, y: -7}
-        - {x: 83, y: 2}
-        - {x: 78, y: 4}
-      - - {x: 20, y: 47}
-        - {x: 17, y: 38}
-        - {x: 17, y: 26}
-        - {x: 31, y: 26}
-        - {x: 56, y: 39}
-        - {x: 56, y: 47}
-      - - {x: -61, y: 45}
-        - {x: -62, y: 42}
-        - {x: -62, y: 34}
-        - {x: -60, y: 33}
-        - {x: -37, y: 27}
-        - {x: -27, y: 27}
-        - {x: -27, y: 37}
-        - {x: -38, y: 45}
-    - name: spr_mainclone_4
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_4
       rect:
         serializedVersion: 2
         x: 0
@@ -337,51 +165,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -19, y: -9}
-        - {x: -19, y: -26}
-        - {x: -16, y: -33}
-        - {x: -8, y: -40}
-        - {x: 0, y: -40}
-        - {x: 8, y: -33}
-        - {x: 8, y: -9}
-      - - {x: -66, y: 57}
-        - {x: -100, y: 18}
-        - {x: -100, y: -7}
-        - {x: -69, y: -19}
-        - {x: -23, y: -19}
-        - {x: -11, y: -15}
-        - {x: -11, y: 55}
-        - {x: -15, y: 57}
-      - - {x: 80, y: 13}
-        - {x: 73, y: 35}
-        - {x: 64, y: 59}
-        - {x: 2, y: 59}
-        - {x: -1, y: 53}
-        - {x: -1, y: 2}
-        - {x: 12, y: -17}
-        - {x: 54, y: -17}
-        - {x: 93, y: -1}
-        - {x: 93, y: 9}
-        - {x: 86, y: 14}
-      - - {x: -64, y: 72}
-        - {x: -64, y: 66}
-        - {x: -62, y: 62}
-        - {x: -52, y: 62}
-        - {x: -28, y: 71}
-        - {x: -28, y: 81}
-        - {x: -53, y: 81}
-      - - {x: 42, y: 81}
-        - {x: 24, y: 81}
-        - {x: 18, y: 77}
-        - {x: 18, y: 72}
-        - {x: 19, y: 69}
-        - {x: 45, y: 65}
-        - {x: 51, y: 65}
-        - {x: 54, y: 67}
-        - {x: 54, y: 73}
-        - {x: 52, y: 79}
-    - name: spr_mainclone_5
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_5
       rect:
         serializedVersion: 2
         x: 256
@@ -391,51 +179,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -19, y: -9}
-        - {x: -19, y: -26}
-        - {x: -16, y: -33}
-        - {x: -8, y: -40}
-        - {x: 0, y: -40}
-        - {x: 8, y: -33}
-        - {x: 8, y: -9}
-      - - {x: -66, y: 57}
-        - {x: -100, y: 18}
-        - {x: -100, y: -7}
-        - {x: -69, y: -19}
-        - {x: -23, y: -19}
-        - {x: -11, y: -15}
-        - {x: -11, y: 55}
-        - {x: -15, y: 57}
-      - - {x: 80, y: 13}
-        - {x: 73, y: 35}
-        - {x: 64, y: 59}
-        - {x: 2, y: 59}
-        - {x: -1, y: 53}
-        - {x: -1, y: 2}
-        - {x: 12, y: -17}
-        - {x: 54, y: -17}
-        - {x: 93, y: -1}
-        - {x: 93, y: 9}
-        - {x: 86, y: 14}
-      - - {x: -64, y: 72}
-        - {x: -64, y: 66}
-        - {x: -62, y: 62}
-        - {x: -52, y: 62}
-        - {x: -28, y: 71}
-        - {x: -28, y: 81}
-        - {x: -53, y: 81}
-      - - {x: 42, y: 81}
-        - {x: 24, y: 81}
-        - {x: 18, y: 77}
-        - {x: 18, y: 72}
-        - {x: 19, y: 69}
-        - {x: 45, y: 65}
-        - {x: 51, y: 65}
-        - {x: 54, y: 67}
-        - {x: 54, y: 73}
-        - {x: 52, y: 79}
-    - name: spr_mainclone_6
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_6
       rect:
         serializedVersion: 2
         x: 512
@@ -445,60 +193,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 7, y: -3}
-        - {x: -14, y: -3}
-        - {x: -24, y: -8}
-        - {x: -24, y: -31}
-        - {x: -22, y: -34}
-        - {x: 13, y: -34}
-        - {x: 13, y: -15}
-        - {x: 11, y: -6}
-      - - {x: -41, y: 55}
-        - {x: -50, y: 55}
-        - {x: -51, y: 54}
-        - {x: -53, y: 54}
-        - {x: -49, y: 55}
-        - {x: -40, y: 61}
-        - {x: -38, y: 74}
-        - {x: -39, y: 76}
-        - {x: -54, y: 76}
-        - {x: -81, y: 68}
-        - {x: -81, y: -23}
-        - {x: -37, y: -23}
-        - {x: -12, y: -1}
-        - {x: -12, y: 35}
-        - {x: -27, y: 62}
-      - - {x: 38, y: 75}
-        - {x: 29, y: 75}
-        - {x: 28, y: 72}
-        - {x: 28, y: 67}
-        - {x: 3, y: 51}
-        - {x: -3, y: 36}
-        - {x: -3, y: -1}
-        - {x: 12, y: -17}
-        - {x: 20, y: -18}
-        - {x: 60, y: -18}
-        - {x: 73, y: 13}
-        - {x: 73, y: 41}
-        - {x: 62, y: 66}
-      - - {x: -94, y: 2}
-        - {x: -96, y: -1}
-        - {x: -96, y: -11}
-        - {x: -91, y: -13}
-        - {x: -77, y: -13}
-        - {x: -73, y: -9}
-        - {x: -73, y: 1}
-        - {x: -77, y: 2}
-      - - {x: 74, y: 3}
-        - {x: 68, y: 0}
-        - {x: 68, y: -10}
-        - {x: 69, y: -12}
-        - {x: 88, y: -12}
-        - {x: 91, y: -11}
-        - {x: 91, y: 0}
-        - {x: 89, y: 3}
-    - name: spr_mainclone_7
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_7
       rect:
         serializedVersion: 2
         x: 768
@@ -508,53 +207,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -18, y: -4}
-        - {x: -23, y: -10}
-        - {x: -23, y: -35}
-        - {x: 12, y: -35}
-        - {x: 12, y: -11}
-        - {x: 3, y: -4}
-      - - {x: -45, y: 78}
-        - {x: -73, y: 64}
-        - {x: -79, y: 39}
-        - {x: -79, y: 12}
-        - {x: -65, y: -25}
-        - {x: -57, y: -26}
-        - {x: -31, y: -26}
-        - {x: -8, y: -10}
-        - {x: -8, y: 49}
-        - {x: -35, y: 78}
-      - - {x: 75, y: 3}
-        - {x: 76, y: 40}
-        - {x: 67, y: 53}
-        - {x: 58, y: 55}
-        - {x: 20, y: 55}
-        - {x: 1, y: 39}
-        - {x: 1, y: -2}
-        - {x: 27, y: -22}
-        - {x: 64, y: -22}
-        - {x: 88, y: -11}
-        - {x: 88, y: -1}
-        - {x: 81, y: 4}
-      - - {x: -92, y: 1}
-        - {x: -94, y: -2}
-        - {x: -94, y: -12}
-        - {x: -89, y: -14}
-        - {x: -75, y: -14}
-        - {x: -71, y: -10}
-        - {x: -71, y: 0}
-        - {x: -75, y: 1}
-      - - {x: 58, y: 69}
-        - {x: 39, y: 80}
-        - {x: 35, y: 81}
-        - {x: 27, y: 81}
-        - {x: 26, y: 80}
-        - {x: 26, y: 61}
-        - {x: 41, y: 56}
-        - {x: 62, y: 56}
-        - {x: 62, y: 65}
-    - name: spr_mainclone_8
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_8
       rect:
         serializedVersion: 2
         x: 0
@@ -564,71 +221,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 15, y: -24}
-        - {x: 15, y: -16}
-        - {x: 14, y: -11}
-        - {x: 10, y: -7}
-        - {x: -19, y: -7}
-        - {x: -25, y: -8}
-        - {x: -25, y: -24}
-        - {x: -22, y: -26}
-        - {x: -17, y: -26}
-        - {x: -13, y: -22}
-        - {x: 6, y: -26}
-        - {x: 11, y: -26}
-      - - {x: 15, y: 53}
-        - {x: 7, y: 49}
-        - {x: 0, y: 35}
-        - {x: -1, y: 28}
-        - {x: -1, y: -3}
-        - {x: 13, y: -10}
-        - {x: 38, y: -10}
-        - {x: 67, y: 0}
-        - {x: 67, y: 39}
-        - {x: 49, y: 53}
-      - - {x: -94, y: 8}
-        - {x: -99, y: 4}
-        - {x: -99, y: -5}
-        - {x: -94, y: -7}
-        - {x: -79, y: -7}
-        - {x: -76, y: -5}
-        - {x: -76, y: 3}
-        - {x: -79, y: 8}
-      - - {x: 71, y: 8}
-        - {x: 65, y: 5}
-        - {x: 65, y: -5}
-        - {x: 66, y: -7}
-        - {x: 85, y: -7}
-        - {x: 88, y: -6}
-        - {x: 88, y: 5}
-        - {x: 86, y: 8}
-      - - {x: -29, y: 52}
-        - {x: -62, y: 52}
-        - {x: -73, y: 35}
-        - {x: -73, y: 1}
-        - {x: -66, y: 0}
-        - {x: -9, y: 0}
-        - {x: -8, y: 2}
-        - {x: -8, y: 38}
-        - {x: -9, y: 46}
-      - - {x: -53, y: 68}
-        - {x: -72, y: 55}
-        - {x: -72, y: 47}
-        - {x: -69, y: 46}
-        - {x: -56, y: 46}
-        - {x: -41, y: 58}
-        - {x: -41, y: 67}
-        - {x: -44, y: 68}
-      - - {x: 34, y: 69}
-        - {x: 33, y: 66}
-        - {x: 33, y: 59}
-        - {x: 46, y: 50}
-        - {x: 65, y: 50}
-        - {x: 66, y: 52}
-        - {x: 66, y: 59}
-        - {x: 45, y: 69}
-    - name: spr_mainclone_9
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_9
       rect:
         serializedVersion: 2
         x: 256
@@ -638,40 +235,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 47, y: 67}
-        - {x: 13, y: 67}
-        - {x: -25, y: 13}
-        - {x: -25, y: -22}
-        - {x: 18, y: -22}
-        - {x: 70, y: 2}
-        - {x: 70, y: 33}
-        - {x: 63, y: 60}
-      - - {x: -92, y: 8}
-        - {x: -97, y: 4}
-        - {x: -97, y: -5}
-        - {x: -92, y: -7}
-        - {x: -77, y: -7}
-        - {x: -74, y: -5}
-        - {x: -74, y: 3}
-        - {x: -77, y: 8}
-      - - {x: 75, y: 10}
-        - {x: 69, y: 7}
-        - {x: 69, y: -3}
-        - {x: 70, y: -5}
-        - {x: 89, y: -5}
-        - {x: 92, y: -4}
-        - {x: 92, y: 7}
-        - {x: 90, y: 10}
-      - - {x: -38, y: 65}
-        - {x: -57, y: 65}
-        - {x: -73, y: 48}
-        - {x: -73, y: 2}
-        - {x: -62, y: 0}
-        - {x: -8, y: 0}
-        - {x: -8, y: 26}
-        - {x: -13, y: 43}
-    - name: spr_mainclone_10
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_10
       rect:
         serializedVersion: 2
         x: 512
@@ -681,72 +249,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -13, y: -7}
-        - {x: -18, y: -8}
-        - {x: -18, y: -14}
-        - {x: -12, y: -21}
-        - {x: -9, y: -22}
-        - {x: 8, y: -22}
-        - {x: 11, y: -16}
-        - {x: 11, y: -7}
-      - - {x: -58, y: 52}
-        - {x: -66, y: 50}
-        - {x: -73, y: 29}
-        - {x: -73, y: 11}
-        - {x: -69, y: 3}
-        - {x: -60, y: -7}
-        - {x: -52, y: -12}
-        - {x: -49, y: -14}
-        - {x: -30, y: -14}
-        - {x: -10, y: -7}
-        - {x: -10, y: 49}
-        - {x: -22, y: 52}
-      - - {x: 48, y: 53}
-        - {x: 21, y: 53}
-        - {x: 8, y: 48}
-        - {x: -1, y: 37}
-        - {x: -1, y: 11}
-        - {x: 2, y: -4}
-        - {x: 12, y: -13}
-        - {x: 46, y: -13}
-        - {x: 66, y: -5}
-        - {x: 66, y: 31}
-        - {x: 64, y: 45}
-      - - {x: -94, y: 8}
-        - {x: -99, y: 4}
-        - {x: -99, y: -5}
-        - {x: -94, y: -7}
-        - {x: -79, y: -7}
-        - {x: -76, y: -5}
-        - {x: -76, y: 3}
-        - {x: -79, y: 8}
-      - - {x: 77, y: 8}
-        - {x: 71, y: 5}
-        - {x: 71, y: -5}
-        - {x: 72, y: -7}
-        - {x: 91, y: -7}
-        - {x: 94, y: -6}
-        - {x: 94, y: 5}
-        - {x: 92, y: 8}
-      - - {x: -63, y: 71}
-        - {x: -63, y: 65}
-        - {x: -61, y: 61}
-        - {x: -51, y: 61}
-        - {x: -27, y: 70}
-        - {x: -27, y: 80}
-        - {x: -52, y: 80}
-      - - {x: 43, y: 80}
-        - {x: 25, y: 80}
-        - {x: 19, y: 76}
-        - {x: 19, y: 71}
-        - {x: 20, y: 68}
-        - {x: 46, y: 64}
-        - {x: 52, y: 64}
-        - {x: 55, y: 66}
-        - {x: 55, y: 72}
-        - {x: 53, y: 78}
-    - name: spr_mainclone_11
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_mainclone_11
       rect:
         serializedVersion: 2
         x: 768
@@ -756,64 +263,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -13, y: -7}
-        - {x: -18, y: -8}
-        - {x: -18, y: -14}
-        - {x: -12, y: -21}
-        - {x: -9, y: -22}
-        - {x: 8, y: -22}
-        - {x: 11, y: -16}
-        - {x: 11, y: -7}
-      - - {x: -64, y: 52}
-        - {x: -72, y: 34}
-        - {x: -73, y: 32}
-        - {x: -73, y: 4}
-        - {x: -58, y: -14}
-        - {x: -10, y: -14}
-        - {x: -10, y: 52}
-      - - {x: 8, y: 53}
-        - {x: -1, y: 43}
-        - {x: -1, y: -10}
-        - {x: 12, y: -13}
-        - {x: 57, y: -13}
-        - {x: 66, y: 3}
-        - {x: 66, y: 42}
-        - {x: 49, y: 53}
-      - - {x: -94, y: 8}
-        - {x: -99, y: 4}
-        - {x: -99, y: -5}
-        - {x: -94, y: -7}
-        - {x: -79, y: -7}
-        - {x: -76, y: -5}
-        - {x: -76, y: 3}
-        - {x: -79, y: 8}
-      - - {x: 77, y: 8}
-        - {x: 71, y: 5}
-        - {x: 71, y: -5}
-        - {x: 72, y: -7}
-        - {x: 91, y: -7}
-        - {x: 94, y: -6}
-        - {x: 94, y: 5}
-        - {x: 92, y: 8}
-      - - {x: -63, y: 71}
-        - {x: -63, y: 65}
-        - {x: -61, y: 61}
-        - {x: -51, y: 61}
-        - {x: -27, y: 70}
-        - {x: -27, y: 80}
-        - {x: -52, y: 80}
-      - - {x: 43, y: 80}
-        - {x: 25, y: 80}
-        - {x: 19, y: 76}
-        - {x: 19, y: 71}
-        - {x: 20, y: 68}
-        - {x: 46, y: 64}
-        - {x: 52, y: 64}
-        - {x: 55, y: 66}
-        - {x: 55, y: 72}
-        - {x: 53, y: 78}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
     outline: []
+    physicsShape: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

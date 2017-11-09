@@ -16,14 +16,17 @@ TextureImporter:
     21300018: LevelSelect_Buttons_9
     21300020: LevelSelect_Buttons_10
     21300022: LevelSelect_Buttons_11
-  serializedVersion: 2
+  externalObjects: {}
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -33,23 +36,22 @@ TextureImporter:
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 512
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: 16
     mipBias: -1
-    wrapMode: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -57,12 +59,47 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: LevelSelect_Buttons_0
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_0
       rect:
         serializedVersion: 2
         x: 15
@@ -72,13 +109,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_1
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_1
       rect:
         serializedVersion: 2
         x: 271
@@ -88,13 +123,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_2
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_2
       rect:
         serializedVersion: 2
         x: 527
@@ -104,13 +137,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_3
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_3
       rect:
         serializedVersion: 2
         x: 15
@@ -120,13 +151,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_4
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_4
       rect:
         serializedVersion: 2
         x: 271
@@ -136,13 +165,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_5
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_5
       rect:
         serializedVersion: 2
         x: 527
@@ -152,13 +179,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_6
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_6
       rect:
         serializedVersion: 2
         x: 15
@@ -168,13 +193,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_7
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_7
       rect:
         serializedVersion: 2
         x: 271
@@ -184,13 +207,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_8
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_8
       rect:
         serializedVersion: 2
         x: 527
@@ -200,13 +221,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_9
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_9
       rect:
         serializedVersion: 2
         x: 15
@@ -216,13 +235,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_10
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_10
       rect:
         serializedVersion: 2
         x: 271
@@ -232,13 +249,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
-    - name: LevelSelect_Buttons_11
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: LevelSelect_Buttons_11
       rect:
         serializedVersion: 2
         x: 527
@@ -248,13 +263,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -54, y: 57.5}
-        - {x: -57, y: 54.5}
-        - {x: -57, y: -56.5}
-        - {x: 58, y: -56.5}
-        - {x: 58, y: 57.5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
     outline: []
+    physicsShape: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

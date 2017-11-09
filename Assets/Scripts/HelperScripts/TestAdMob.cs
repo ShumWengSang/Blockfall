@@ -49,6 +49,8 @@ public class TestAdMob : MonoBehaviour {
         this.interstitial.OnAdClosed += this.HandleInterstitialClosed;
         this.interstitial.OnAdLeavingApplication += this.HandleInterstitialLeftApplication;
 
+
+
         // Load an interstitial ad.
         this.interstitial.LoadAd(this.CreateAdRequest());
     }
@@ -77,6 +79,7 @@ public class TestAdMob : MonoBehaviour {
     public void HandleInterstitialClosed(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleInterstitialClosed event received");
+        levelChanger.ReloadScene();
     }
 
     public void HandleInterstitialLeftApplication(object sender, EventArgs args)

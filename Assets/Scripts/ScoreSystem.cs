@@ -181,6 +181,9 @@ public class ScoreSystem : MonoBehaviour
     void OnDisable()
     {
         GoalChecker.OnFinishedGame -= OnFinishedGame;
+
+        if(!gameOver.activeSelf)
+            FinishedPuzzle(0);
     }
 
     void OnFinishedGame()
@@ -224,6 +227,8 @@ public class ScoreSystem : MonoBehaviour
 
     void FinishedPuzzle(int result)
     {
-        PlayerPrefs.SetInt("Level" + World + "-" + level, result);
+        int currentResult = PlayerPrefs.GetInt("Level" + World + "-" + level);
+        if(currentResult <= result)
+            PlayerPrefs.SetInt("Level" + World + "-" + level, result);
     }
 }
