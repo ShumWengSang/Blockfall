@@ -23,7 +23,7 @@ using GoogleMobileAds.Common;
 
 namespace GoogleMobileAds.iOS
 {
-    internal class NativeExpressAdClient : IDisposable, INativeExpressAdClient
+    public class NativeExpressAdClient : IDisposable, INativeExpressAdClient
     {
         private IntPtr nativeExpressAdViewPtr;
         private IntPtr nativeExpressAdClientPtr;
@@ -139,6 +139,12 @@ namespace GoogleMobileAds.iOS
         {
             Externs.GADURemoveNativeExpressAdView(this.NativeExpressAdViewPtr);
             this.NativeExpressAdViewPtr = IntPtr.Zero;
+        }
+
+        // Returns the mediation adapter class name.
+        public string MediationAdapterClassName()
+        {
+            return Externs.GADUMediationAdapterClassNameForNativeExpressAdView(this.NativeExpressAdViewPtr);
         }
 
         public void Dispose()

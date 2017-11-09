@@ -12,10 +12,16 @@ public class InterstitialAd_Show : MonoBehaviour {
 
     public SceneChanger LevelChanger;
 
+    public GameObject loadingObj;
+
+    public GameObject Thankyou;
+    public GameObject Sorry;
+
+    bool LoadNextScene = false;
+
     private void Awake()
     {
-
-        Init();
+        
     }
 
     private AdRequest CreateAdRequest()
@@ -33,13 +39,23 @@ public class InterstitialAd_Show : MonoBehaviour {
 
     public void ShowRewardAd()
     {
+        loadingObj.SetActive(true);
         if (rewardVideo.IsLoaded())
             rewardVideo.Show();
         else
-            print("reward not ready");
+            StartCoroutine(waitLoadRewardAd());
     }
 
-    private void Init()
+    IEnumerator waitLoadRewardAd()
+    {
+        while(!rewardVideo.IsLoaded())
+        {
+            yield return null;
+        }
+        rewardVideo.Show();
+    }
+
+    public void Init()
     {
 //        bool DataNetwork;
 //        string adUnityId = "unused";
@@ -71,8 +87,10 @@ public class InterstitialAd_Show : MonoBehaviour {
         //interstitial
         string adUnitId = "ca-app-pub-3458078707660764/7214982535";
 
-        //reward video      
-        adUnitId = "ca-app-pub-3458078707660764/7616242139";
+        adUnitId = "ca-app-pub-3458078707660764/5939202531";
+
+        //google test device
+        adUnitId = "ca-app-pub-3940256099942544/5224354917";
 #endif
 
         // Create an interstitial.
@@ -89,12 +107,13 @@ public class InterstitialAd_Show : MonoBehaviour {
         this.rewardVideo.OnAdLoaded += this.HandleRewardedLoaded;
         this.rewardVideo.OnAdRewarded += this.HandleRewardedReward;
         this.rewardVideo.OnAdFailedToLoad += this.HandleRewardedFailedToLoad;
+        this.rewardVideo.OnAdClosed += this.HandleRewardedClosed;
 
         // Load an interstitial ad.
         this.interstitial.LoadAd(this.CreateAdRequest());
 
         AdRequest request = new AdRequest.Builder().Build();
-        this.rewardVideo.LoadAd(request, "ca-app-pub-3458078707660764/7616242139");
+        this.rewardVideo.LoadAd(request, adUnitId);
     }
 
 
@@ -145,14 +164,26 @@ public class InterstitialAd_Show : MonoBehaviour {
 
     public void HandleRewardedReward(object sender, EventArgs args)
     {
-        //MonoBehaviour.print("HandleInterstitialOpened event received");
+        //LoadNextScene = true;
+        MonoBehaviour.print("HandleReward event received");
         //close the ad window.
-        LevelChanger.ReloadScene();
+        //LevelChanger.DirectReloadScene();
     }
 
     public void HandleRewardedClosed(object sender, EventArgs args)
     {
-        //MonoBehaviour.print("HandleInterstitialClosed event received");
+        LoadNextScene = true;
+        MonoBehaviour.print("Handlereward closed");
+        //LevelChanger.DirectReloadScene();
     }
     #endregion
+
+    private void Update()
+    {
+        if(LoadNextScene)
+        {
+            LevelChanger.DirectReloadScene();
+            LoadNextScene = false;
+        }
+    }
 }

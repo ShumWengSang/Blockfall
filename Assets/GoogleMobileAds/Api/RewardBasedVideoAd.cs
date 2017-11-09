@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Reflection;
 
 using GoogleMobileAds.Common;
 
@@ -21,16 +22,12 @@ namespace GoogleMobileAds.Api
     public class RewardBasedVideoAd
     {
         private IRewardBasedVideoAdClient client;
-        private static RewardBasedVideoAd instance;
+        private static readonly RewardBasedVideoAd instance = new RewardBasedVideoAd();
 
         public static RewardBasedVideoAd Instance
         {
             get
             {
-                if (instance == null)
-                {
-                    instance = new RewardBasedVideoAd();
-                }
                 return instance;
             }
         }
@@ -38,7 +35,12 @@ namespace GoogleMobileAds.Api
         // Creates a Singleton RewardBasedVideoAd.
         private RewardBasedVideoAd()
         {
-            client = GoogleMobileAdsClientFactory.BuildRewardBasedVideoAdClient();
+            Type googleMobileAdsClientFactory = Type.GetType(
+                "GoogleMobileAds.GoogleMobileAdsClientFactory,Assembly-CSharp");
+            MethodInfo method = googleMobileAdsClientFactory.GetMethod(
+                "BuildRewardBasedVideoAdClient",
+                BindingFlags.Static | BindingFlags.Public);
+            this.client = (IRewardBasedVideoAdClient)method.Invoke(null, null);
             client.CreateRewardBasedVideoAd();
 
             this.client.OnAdLoaded += (sender, args) =>
@@ -129,6 +131,12 @@ namespace GoogleMobileAds.Api
         public void Show()
         {
             client.ShowRewardBasedVideoAd();
+        }
+
+        // Returns the mediation adapter class name.
+        public string MediationAdapterClassName()
+        {
+            return this.client.MediationAdapterClassName();
         }
     }
 }

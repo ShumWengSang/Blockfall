@@ -23,7 +23,7 @@ using GoogleMobileAds.Common;
 
 namespace GoogleMobileAds.iOS
 {
-    internal class BannerClient : IBannerClient, IDisposable
+    public class BannerClient : IBannerClient, IDisposable
     {
         private IntPtr bannerViewPtr;
 
@@ -154,6 +154,12 @@ namespace GoogleMobileAds.iOS
         {
             Externs.GADURemoveBannerView(this.BannerViewPtr);
             this.BannerViewPtr = IntPtr.Zero;
+        }
+
+        // Returns the mediation adapter class name.
+        public string MediationAdapterClassName()
+        {
+            return Externs.GADUMediationAdapterClassNameForBannerView(this.BannerViewPtr);
         }
 
         public void Dispose()

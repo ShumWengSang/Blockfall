@@ -15,7 +15,6 @@
 #if UNITY_ANDROID
 
 using System;
-using System.Collections.Generic;
 
 using GoogleMobileAds.Api;
 using GoogleMobileAds.Common;
@@ -23,7 +22,7 @@ using UnityEngine;
 
 namespace GoogleMobileAds.Android
 {
-    internal class BannerClient : AndroidJavaProxy, IBannerClient
+    public class BannerClient : AndroidJavaProxy, IBannerClient
     {
         private AndroidJavaObject bannerView;
 
@@ -86,7 +85,13 @@ namespace GoogleMobileAds.Android
             this.bannerView.Call("destroy");
         }
 
-        #region Callbacks from UnityBannerAdListener.
+        // Returns the mediation adapter class name.
+        public string MediationAdapterClassName()
+        {
+            return this.bannerView.Call<string>("getMediationAdapterClassName");
+        }
+
+#region Callbacks from UnityBannerAdListener.
 
         public void onAdLoaded()
         {
@@ -132,7 +137,7 @@ namespace GoogleMobileAds.Android
             }
         }
 
-        #endregion
+#endregion
     }
 }
 

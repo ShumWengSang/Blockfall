@@ -18,7 +18,7 @@ using GoogleMobileAds.Api;
 
 namespace GoogleMobileAds.Common
 {
-    internal interface INativeExpressAdClient
+    public interface INativeExpressAdClient
     {
         // Fired when the native express ad has been received.
         event EventHandler<EventArgs> OnAdLoaded;
@@ -52,5 +52,8 @@ namespace GoogleMobileAds.Common
 
         // Destroys a native express ad view.
         void DestroyNativeExpressAdView();
+
+        // Returns the mediation adapter class name.
+        string MediationAdapterClassName();
     }
 }

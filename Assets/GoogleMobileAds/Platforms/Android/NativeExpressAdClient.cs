@@ -15,7 +15,6 @@
 #if UNITY_ANDROID
 
 using System;
-using System.Collections.Generic;
 
 using GoogleMobileAds.Api;
 using GoogleMobileAds.Common;
@@ -23,7 +22,7 @@ using UnityEngine;
 
 namespace GoogleMobileAds.Android
 {
-    internal class NativeExpressAdClient : AndroidJavaProxy, INativeExpressAdClient
+    public class NativeExpressAdClient : AndroidJavaProxy, INativeExpressAdClient
     {
         private AndroidJavaObject nativeExpressAdView;
 
@@ -92,7 +91,13 @@ namespace GoogleMobileAds.Android
             this.nativeExpressAdView.Call("destroy");
         }
 
-        #region Callbacks from UnityAdListener.
+        // Returns the mediation adapter class name.
+        public string MediationAdapterClassName()
+        {
+            return this.nativeExpressAdView.Call<string>("getMediationAdapterClassName");
+        }
+
+#region Callbacks from UnityAdListener.
 
         public void onAdLoaded()
         {
@@ -138,7 +143,7 @@ namespace GoogleMobileAds.Android
             }
         }
 
-        #endregion
+#endregion
     }
 }
 

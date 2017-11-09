@@ -24,7 +24,7 @@ using GoogleMobileAds.Common;
 
 namespace GoogleMobileAds.iOS
 {
-    internal class RewardBasedVideoAdClient : IRewardBasedVideoAdClient, IDisposable
+    public class RewardBasedVideoAdClient : IRewardBasedVideoAdClient, IDisposable
     {
         private IntPtr rewardBasedVideoAdPtr;
         private IntPtr rewardBasedVideoAdClientPtr;
@@ -118,6 +118,12 @@ namespace GoogleMobileAds.iOS
         public bool IsLoaded()
         {
             return Externs.GADURewardBasedVideoAdReady(this.RewardBasedVideoAdPtr);
+        }
+
+        // Returns the mediation adapter class name.
+        public string MediationAdapterClassName()
+        {
+            return Externs.GADUMediationAdapterClassNameForRewardedVideo(this.RewardBasedVideoAdPtr);
         }
 
         // Destroys the rewarded video ad.

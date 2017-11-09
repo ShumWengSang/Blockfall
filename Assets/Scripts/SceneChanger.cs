@@ -21,6 +21,11 @@ public class SceneChanger : MonoBehaviour {
     {
         screenManager.OpenPanel(screenTransAnim);
         screenTransitionImage = screenTransAnim.GetComponent<Image>();
+
+        if(WatchAdToContinue != null)
+        {
+            WatchAdToContinue.GetComponent<InterstitialAd_Show>().Init();
+        }
     }
     void OnLevelWasLoaded(int index)
     {
@@ -58,6 +63,11 @@ public class SceneChanger : MonoBehaviour {
         {
             ChangeScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+    public void DirectReloadScene()
+    {
+        ChangeScene("MasterGameScene");
     }
 
     public void ShowRewardedAd()

@@ -17,7 +17,7 @@ using System;
 using GoogleMobileAds.Api;
 
 namespace GoogleMobileAds.Common {
-    internal interface IBannerClient
+    public interface IBannerClient
     {
         // Ad event fired when the banner ad has been received.
         event EventHandler<EventArgs> OnAdLoaded;
@@ -47,5 +47,8 @@ namespace GoogleMobileAds.Common {
 
         // Destroys a banner view.
         void DestroyBannerView();
+
+        // Returns the mediation adapter class name.
+        string MediationAdapterClassName();
     }
 }
