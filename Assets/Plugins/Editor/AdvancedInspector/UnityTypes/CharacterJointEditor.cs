@@ -25,6 +25,15 @@ namespace AdvancedInspector
                 new DescriptorAttribute("Swing Limit 1", "The limit around the primary axis of the character joint.", "http://docs.unity3d.com/ScriptReference/CharacterJoint-swing1Limit.html")));
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("swing2Limit"), new ExpandableAttribute(), 
                 new DescriptorAttribute("Swing Limit 2", "The limit around the primary axis of the character joint.", "http://docs.unity3d.com/ScriptReference/CharacterJoint-swing2Limit.html")));
+
+#if UNITY_5_6
+            Fields.Add(new InspectorField(type, Instances, type.GetProperty("enableProjection"),
+                new DescriptorAttribute("Enable Projection", "Brings violated constraints back into alignment even when the solver fails.", "https://docs.unity3d.com/ScriptReference/CharacterJoint-enableProjection.html")));
+            Fields.Add(new InspectorField(type, Instances, type.GetProperty("projectionAngle"),
+                new DescriptorAttribute("Projection Angle", "Set the angular tolerance threshold (in degrees) for projection.", "https://docs.unity3d.com/ScriptReference/CharacterJoint-projectionAngle.html")));
+            Fields.Add(new InspectorField(type, Instances, type.GetProperty("projectionDistance"),
+                new DescriptorAttribute("Projection Distance", "Set the linear tolerance threshold for projection.", "https://docs.unity3d.com/ScriptReference/CharacterJoint-projectionDistance.html")));
+#endif
         }
     }
 }

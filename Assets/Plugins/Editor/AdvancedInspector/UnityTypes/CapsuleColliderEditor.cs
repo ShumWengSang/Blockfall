@@ -141,7 +141,7 @@ namespace AdvancedInspector
             if (dot < -angle)
                 Handles.color = new Color(Handles.color.r, Handles.color.g, Handles.color.b, Handles.color.a * 0.2f);
 
-#if UNITY_5_6
+#if UNITY_5_6 || UNITY_2017
             Vector3 point = Handles.Slider(position, rhs, handleSize * 0.03f, new Handles.CapFunction(Handles.DotHandleCap), 0f);
 #else
             Vector3 point = Handles.Slider(position, rhs, handleSize * 0.03f, new Handles.DrawCapFunction(Handles.DotCap), 0f);

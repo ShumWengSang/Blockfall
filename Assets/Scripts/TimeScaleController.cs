@@ -10,11 +10,8 @@ public class TimeScaleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         timeScaleModifier = PlayerPrefs.GetFloat("TimeScaleDelta", 0);
-
-        Debug.Log("Time mod is " + timeScaleModifier);
         timeSlider.value = timeScaleModifier;
         Time.timeScale = timeScale + timeScaleModifier;
-        Debug.Log("Current time scale is " + Time.timeScale);
     }
     
     void OnEnable()

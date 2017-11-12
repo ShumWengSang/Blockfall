@@ -29,6 +29,11 @@ namespace AdvancedInspector
                 new DescriptorAttribute("Break Torque", "The torque that needs to be applied for this joint to break.", "http://docs.unity3d.com/ScriptReference/Joint-breakTorque.html")));
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("enableCollision"),
                 new DescriptorAttribute("Enable Collision", "Enable collision between bodies connected with the joint.", "http://docs.unity3d.com/ScriptReference/Joint-enableCollision.html")));
+
+#if UNITY_5_6
+            Fields.Add(new InspectorField(type, Instances, type.GetProperty("enablePreprocessing"),
+                new DescriptorAttribute("Enable Preprocessing", "Toggle preprocessing for this joint.", "https://docs.unity3d.com/ScriptReference/Joint-enablePreprocessing.html")));
+#endif
         }
     }
 }

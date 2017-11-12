@@ -520,6 +520,11 @@ Take a look at the video for more information. It's an example of what the AI ca
 - Added properties for motion vectors in the mesh renderer.
 - For now, it is advised to turn off the MeshRenderer editor if you want to use the new Lightmap settings. Proper support is coming soon.
 
+1.73:
+[FIXES]
+- Added missing properites on CharacterJoint and Joint objects.
+- 
+
 1.60 and above is only supported on Unity 5.2+
 You may require to disable custom Advanced Inspector if you wish to use 1.60 on 5.1x.
 

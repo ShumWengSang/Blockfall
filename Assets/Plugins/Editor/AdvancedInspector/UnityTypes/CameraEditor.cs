@@ -56,7 +56,7 @@ namespace AdvancedInspector
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("useOcclusionCulling"),
                 new DescriptorAttribute("Occlusion Culling", "Whether or not the Camera will use occlusion culling during rendering.", "http://docs.unity3d.com/ScriptReference/Camera-useOcclusionCulling.html")));
 
-#if UNITY_5_6
+#if UNITY_5_6 || UNITY_2017
             Fields.Add(new InspectorField(type, Instances, type.GetProperty("allowHDR"),
                 new DescriptorAttribute("HDR", "High dynamic range rendering.", "http://docs.unity3d.com/ScriptReference/Camera-hdr.html")));
 #else

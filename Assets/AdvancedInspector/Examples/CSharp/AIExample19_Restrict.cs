@@ -41,5 +41,17 @@ namespace AdvancedInspector
             collection.AddRange(GetComponents<MonoBehaviour>());
             return collection;
         }
+
+        [Restrict("GetUnrelatedData")]
+        public int myInteger;
+
+        private IList GetUnrelatedData()
+        {
+            DescriptionPair[] pairs = new DescriptionPair[10];
+            for (int i = 0; i < 10; i++)
+                pairs[i] = new DescriptionPair(i, new Description("This is " + i.ToString()));
+
+            return pairs;
+        }
     }
 }

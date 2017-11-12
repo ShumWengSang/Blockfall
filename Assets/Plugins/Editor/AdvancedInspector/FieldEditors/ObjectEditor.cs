@@ -134,7 +134,7 @@ namespace AdvancedInspector
             {
                 Rect position = EditorGUILayout.GetControlRect(false, 16f);
 
-#if UNITY_5_6
+#if UNITY_5_6 || UNITY_2017
                 int id = GUIUtility.GetControlID(s_ObjectFieldHash, FocusType.Passive, position);
 #else
                 int id = GUIUtility.GetControlID(s_ObjectFieldHash, EditorGUIUtility.native, position);
