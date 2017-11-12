@@ -30,7 +30,7 @@ public class LevelSelection : MonoBehaviour
             for (int i = 1; i < WorldBGs[k - 1].childCount + 1; i++)
             {
                 WorldButtons[k - 1, i - 1] = WorldBGs[k - 1].GetChild(i - 1);
-                WorldButtons[k - 1, i - 1].GetComponentInChildren<Text>().text = (i).ToString();
+                WorldButtons[k - 1, i - 1].GetComponentInChildren<Text>().text = "<b>" + (i).ToString() + "</b>";
                 int Pref = PlayerPrefs.GetInt("Level" + k + "-" + i, -1);
                 if (Pref >= 0)
                 {

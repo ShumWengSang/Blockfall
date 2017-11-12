@@ -80,38 +80,23 @@ public class OneWayGate : MonoBehaviour
         Rigidbody rb = col.GetComponent<Rigidbody>();
         if (rb == null)
             return;
-        if (Debug_b)
-        {
-            Debug.Log("Object passing through me is " + col.name);
-        }
+
         Vector2 vel = transform.InverseTransformDirection(rb.velocity);
         Direction velDir = DetermineDirection(vel);
         if (velDir == currentDirection)
         {
-            if (Debug_b)
-            {
-                Debug.Log("Letting object through after direction check ");
-            }
             if (!PassedBlocks.Contains(col))
             {
                 PassedBlocks.Add(col);
                 DisableCollider(collisionBox);
                 if (--BlocksPassThrough < 0)
                 {
-                    if (Debug_b)
-                    {
-                        Debug.Log("BlocksPassThrough amount is " + BlocksPassThrough);
-                    }
                     EnableCollider(collisionBox);
                 }
             }
         }
         else
         {
-            if (Debug_b)
-            {
-                Debug.Log("Enabling collider as direction is wrong. The direction of col is " + velDir + " while mine is " + currentDirection + " with velocity being " + rb.velocity + " and transformed vel is " + vel);
-            }
             EnableCollider(collisionBox);
         }
     }

@@ -170,4 +170,9 @@ public class SceneChanger : MonoBehaviour {
 
     Image screenTransitionImage;
 
+    public void QuitApp()
+    {
+        Application.Quit();
+    }
+
 }

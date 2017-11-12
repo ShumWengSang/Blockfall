@@ -90,7 +90,7 @@ public class InterstitialAd_Show : MonoBehaviour {
         adUnitId = "ca-app-pub-3458078707660764/5939202531";
 
         //google test device
-        adUnitId = "ca-app-pub-3940256099942544/5224354917";
+        //adUnitId = "ca-app-pub-3940256099942544/5224354917";
 #endif
 
         // Create an interstitial.

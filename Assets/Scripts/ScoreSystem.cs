@@ -196,28 +196,24 @@ public class ScoreSystem : MonoBehaviour
             result = 4;
             onGameCompleteMedel.sprite = GoldMedal;
             endMedalText = "Gold Rank!";
-            Debug.Log("You get gold rank");
         }
         else if(movedUsed <= SilverRank)
         {
             result = 3;
             onGameCompleteMedel.sprite = SilverMedal;
             endMedalText = "Silver Rank!";
-            Debug.Log("You got silver rank");
         }
         else if(movedUsed <= BronzeRank)
         {
             result = 2;
             onGameCompleteMedel.sprite = BronzeMedal;
             endMedalText = "Bronze Rank!";
-            Debug.Log("You got bronze");
         }
         else
         {
             result = 1;
             onGameCompleteMedel.sprite = Aluminum;
             endMedalText = "Runner Up!";
-            Debug.Log("You got aluminium");
         }
         EndMedalText.text = "Medal : " + endMedalText;
         NumberOfMoves.text = "Moves : " + movedUsed.ToString();

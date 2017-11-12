@@ -55,7 +55,6 @@ public class Portal : MonoBehaviour {
     bool Undoing = false;
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Object entering " + this.name + " trigger area : " + other.name);
         if (lastObject != other.gameObject)
         {
             OtherPortal.lastObject = other.gameObject;

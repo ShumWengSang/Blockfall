@@ -91,7 +91,6 @@ public class VortexBox : MonoBehaviour {
             Physics.Raycast(transform.position, Vector3.back, out hit, 2f ,1 << LayerMask.NameToLayer("Default"));
             if (hit.collider != null)
             {
-                Debug.Log("Adding " + currentObject.name + " to checked items");
                 currentObject = hit.collider.transform;
                 currentObject.GetComponent<Rigidbody>().isKinematic = true;
                 CheckedItems.Add(currentObject);

@@ -16,8 +16,8 @@ public class _ChangeScoresToBinaryData : MonoBehaviour {
         //Now we put the data as binary
         Scoring_Block data = new Scoring_Block();
         data.data = AllPlayerPrefScores.ToArray();
-        if (BinarySerializor.SerializeToBinary<Scoring_Block>(Application.streamingAssetsPath + "/Data/ScoreSystem.sco", data))
-            Debug.Log("Successfully saved scores");
+        BinarySerializor.SerializeToBinary<Scoring_Block>(Application.streamingAssetsPath + "/Data/ScoreSystem.sco", data);
+            //Debug.Log("Successfully saved scores");
     }
 
     block_data LoadPlayerPrefScore(int world, int level)

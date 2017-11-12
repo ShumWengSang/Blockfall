@@ -21,11 +21,9 @@ public class SplitBlock : MonoBehaviour {
         int HalfScaleY = FullScaleY % 2 == 0 ? FullScaleY / 2 : (FullScaleY - 1) / 2;
         float OffSetX = FullScaleX % 2 == 0 ? 0.5f : 0.0f;
         float OffSetY = FullScaleY % 2 == 0 ? 0.5f : 0.0f;
-        Debug.Log("Half ScaleX is " + HalfScaleX + " and HalfScaleY is " + HalfScaleY + " and offset is " + OffSetX);
 
         float CalculatedTransformStartPosX = transform.position.x - (HalfScaleX - OffSetX);
         float CalculatedTransformStartPosY = transform.position.y - (HalfScaleY - OffSetY);
-        Debug.Log("Calculated new Transform start is " + CalculatedTransformStartPosX);
 
 
         for (int i = 0, j = 0; i < FullScaleX; i++)

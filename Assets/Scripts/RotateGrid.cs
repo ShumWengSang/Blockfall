@@ -689,7 +689,6 @@ public class RotateGrid : MonoBehaviour {
         BlockUndoModule.UndoAllBlocks();
         yield return waitUndo;
         yield return new WaitForSeconds(undoWaitExtra);
-        Debug.Log("End waiting for extra");
         undoWaitExtra = 0.0f;
         Vector3 targetVector;
         GridOrientation currentOrientation = LastMoves.Pop();

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+
 public class TimeScaleController : MonoBehaviour {
 
     public float timeScale = 1.75f;
@@ -8,9 +9,12 @@ public class TimeScaleController : MonoBehaviour {
     public float timeScaleModifier = 0;
 	// Use this for initialization
 	void Start () {
-        timeScaleModifier = PlayerPrefs.GetFloat("TimeScaleDelta", timeScale);
+        timeScaleModifier = PlayerPrefs.GetFloat("TimeScaleDelta", 0);
+
+        Debug.Log("Time mod is " + timeScaleModifier);
         timeSlider.value = timeScaleModifier;
         Time.timeScale = timeScale + timeScaleModifier;
+        Debug.Log("Current time scale is " + Time.timeScale);
     }
     
     void OnEnable()

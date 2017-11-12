@@ -19,7 +19,7 @@ public class ReadAnswerFile : MonoBehaviour {
     }
     void OnLevelParsed(int world, int level)
     {
-        //ReadFile(world, level);
+        ReadFile(world, level);
     }
 
     void ReadFileManaul()
@@ -55,6 +55,7 @@ public class ReadAnswerFile : MonoBehaviour {
             }
             count++;
         }
+        int a = 0;
 #elif UNITY_ANDROID
         StartCoroutine(readAnswerANDROID(path));
 #endif
@@ -85,7 +86,6 @@ public class ReadAnswerFile : MonoBehaviour {
                 {
                     List_Answer.Push("Right");
                 }
-                Debug.Log("Line " + i + " is " + List_Answer.Peek());
             }
         }
     }

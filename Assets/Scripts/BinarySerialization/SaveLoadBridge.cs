@@ -515,8 +515,7 @@ public class SaveLoadBridge {
             portals[count].portal.OtherPortal = otherPortal;
         }
 
-
-        Debug.Log("Successfully loaded");
+        
         Current_World = scene.world; Current_Level = scene.level;
 
         PlayerPrefs.SetInt("CurrentWorld", Current_World);
