@@ -11,7 +11,6 @@ public class WoodSoundPlayer : MonoBehaviour {
 
 
     private AudioSource audioSource;
-    private Vector3 blockVel;
     private Rigidbody rb;
 
     bool sound_played;
@@ -44,7 +43,6 @@ public class WoodSoundPlayer : MonoBehaviour {
 
     private void Update()
     {
-        blockVel = rb.velocity;
 
         if (rb.velocity.magnitude < 0.01f)
         {

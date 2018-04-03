@@ -15,19 +15,29 @@ public class SceneChanger : MonoBehaviour {
     void Awake()
     {
         screenManager = GetComponent<ScreenManager>();
+        
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelWasLoaded_new;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelWasLoaded_new;
     }
 
     void Start()
     {
         screenManager.OpenPanel(screenTransAnim);
-        screenTransitionImage = screenTransAnim.GetComponent<Image>();
 
         if(WatchAdToContinue != null)
         {
             WatchAdToContinue.GetComponent<InterstitialAd_Show>().Init();
         }
     }
-    void OnLevelWasLoaded(int index)
+    void OnLevelWasLoaded_new(Scene scene, LoadSceneMode mode)
     {
         screenManager.OpenPanel(screenTransAnim);
     }
@@ -167,8 +177,6 @@ public class SceneChanger : MonoBehaviour {
         yield return SceneManager.LoadSceneAsync(scene, mode);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("MasterGameScene"));
     }
-
-    Image screenTransitionImage;
 
     public void QuitApp()
     {

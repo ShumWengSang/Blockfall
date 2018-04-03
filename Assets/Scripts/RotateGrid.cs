@@ -303,7 +303,7 @@ public class RotateGrid : MonoBehaviour {
 #if NEW_METHOD
     #region DragData
     private Vector2 StartDrag_ScreenPos;
-    private Vector2 EndDrag_ScreenPos;
+
 
     //the middle of the grid rests at 0.6 Y
     private Vector2 middle = new Vector2(0.5f, 0.6f);
@@ -315,11 +315,11 @@ public class RotateGrid : MonoBehaviour {
     public float TweenDuration = 0.5f;
     public Vector3 initialAngleVector3;
     private bool TweenMoving = false;
-    private bool Once_Instance_Of_Dragging_Flag = false;
+
     [RangeValue(-20f, 20f)]
     public RangeFloat Direction_Determinator = new RangeFloat(-10f, 10f);
     float lastAngle = 0.0f;
-    float lastDir = 1.0f;
+
     public Transform DragResponseAnim;
     private int Current_Pointer_ID = -1;
     #endregion
@@ -390,7 +390,6 @@ public class RotateGrid : MonoBehaviour {
             stepIncrease += StepIncrementValue * Time.deltaTime;
             totalStep += Mathf.Clamp(totalStep, -1, 1) * stepIncrease;
         }
-        lastDir = Mathf.Clamp(lastAngle, -1, 1);
 
         Quaternion temp = new Quaternion();
         temp.eulerAngles = new Vector3(initialRotation.x, initialRotation.y, initialRotation.z + totalStep);
@@ -426,7 +425,6 @@ public class RotateGrid : MonoBehaviour {
         initialRotation = transform.localRotation.eulerAngles;
         woodBlockManager.SetBlockKinemactics(true);
         totalStep = 0;
-        Once_Instance_Of_Dragging_Flag = true;
 
         initialAngleVector3 = transform.localEulerAngles;
     }
@@ -437,7 +435,6 @@ public class RotateGrid : MonoBehaviour {
         {
             return;
         }
-        EndDrag_ScreenPos = mainCamera.ScreenToViewportPoint(data.position);
         stepIncrease = 0;
         Current_Pointer_ID = -1;
         if (totalStep >= Direction_Determinator.min && totalStep <= Direction_Determinator.max)

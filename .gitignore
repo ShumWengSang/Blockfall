@@ -5,3 +5,16 @@ Assembly-CSharp-Editor-firstpass.csproj
 Assembly-CSharp-Editor.csproj
 Assembly-CSharp-firstpass.csproj
 obj/Debug/Assembly-CSharp.csproj.FileListAbsolute.txt
+/.vs/Blockfall/v14/.suo
+/.vs/Blockfall/v15/.suo
+/.vs/Blockfall/v15/Server/sqlite3/db.lock
+/.vs/Blockfall/v15/Server/sqlite3/storage.ide
+/.vs/Blockfall/v15/Server/sqlite3/storage.ide-shm
+/.vs/Blockfall/v15/Server/sqlite3/storage.ide-wal
+/.vs/Blockfall/v15/sqlite3/db.lock
+/.vs/Blockfall/v15/sqlite3/storage.ide-shm
+/.vs/Blockfall/v15/sqlite3/storage.ide-wal
+/blockfall.Editor.Plugins.csproj
+/blockfall.Editor.csproj
+/blockfall.Plugins.csproj
+/blockfall.csproj

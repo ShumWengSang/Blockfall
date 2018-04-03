@@ -1,17 +1,16 @@
 <dependencies>
   <packages>
-    <package>com.google.android.gms:play-services-ads:11.2.2</package>
-    <package>com.google.android.gms:play-services-ads:LATEST</package>
+    <package>com.google.android.gms:play-services-ads:11.8.0</package>
   </packages>
   <files>
-    <file>Assets/Plugins/Android/play-services-ads-11.6.0.aar</file>
-    <file>Assets/Plugins/Android/play-services-ads-license-11.6.0</file>
-    <file>Assets/Plugins/Android/play-services-ads-lite-11.6.0.aar</file>
-    <file>Assets/Plugins/Android/play-services-ads-lite-license-11.6.0</file>
-    <file>Assets/Plugins/Android/play-services-basement-11.6.0.aar</file>
-    <file>Assets/Plugins/Android/play-services-basement-license-11.6.0</file>
-    <file>Assets/Plugins/Android/play-services-gass-11.6.0.aar</file>
-    <file>Assets/Plugins/Android/play-services-gass-license-11.6.0</file>
+    <file>Assets/Plugins/Android/play-services-ads-11.8.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-ads-license-11.8.0</file>
+    <file>Assets/Plugins/Android/play-services-ads-lite-11.8.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-ads-lite-license-11.8.0</file>
+    <file>Assets/Plugins/Android/play-services-basement-11.8.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-basement-license-11.8.0</file>
+    <file>Assets/Plugins/Android/play-services-gass-11.8.0.aar</file>
+    <file>Assets/Plugins/Android/play-services-gass-license-11.8.0</file>
     <file>Assets/Plugins/Android/support-annotations-25.2.0.jar</file>
     <file>Assets/Plugins/Android/support-compat-25.2.0.aar</file>
     <file>Assets/Plugins/Android/support-core-ui-25.2.0.aar</file>

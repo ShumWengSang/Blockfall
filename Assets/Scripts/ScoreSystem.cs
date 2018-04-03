@@ -104,12 +104,6 @@ public class ScoreSystem : MonoBehaviour
     {
         //DEPRECATED
         return;
-        int local_world = PlayerPrefs.GetInt("CurrentWorld", 0);
-        int local_level = PlayerPrefs.GetInt("CurrentLevel", 0);
-
-        PlayerPrefs.SetInt("GoldRank_" + local_world + "_" + local_level, GoldRank);
-        PlayerPrefs.SetInt("SilverRank_" + local_world + "_" + local_level, SilverRank);
-        PlayerPrefs.SetInt("BronzeRank_" + local_world + "_" + local_level, BronzeRank);
     }
 
     [Inspect]

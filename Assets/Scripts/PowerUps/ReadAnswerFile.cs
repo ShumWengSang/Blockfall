@@ -7,6 +7,10 @@ using System.IO;
 public class ReadAnswerFile : MonoBehaviour {
 
     public Stack<string> List_Answer = new Stack<string>();
+    [ReadOnly]
+#if UNITY_EDITOR
+    public int Length_Of_Stack = 0;
+#endif
 
     void OnEnable()
     {
@@ -55,7 +59,6 @@ public class ReadAnswerFile : MonoBehaviour {
             }
             count++;
         }
-        int a = 0;
 #elif UNITY_ANDROID
         StartCoroutine(readAnswerANDROID(path));
 #endif
@@ -88,5 +91,8 @@ public class ReadAnswerFile : MonoBehaviour {
                 }
             }
         }
+#if UNITY_EDITOR
+        Length_Of_Stack = List_Answer.Count + 1;
+#endif
     }
 }

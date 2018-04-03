@@ -65,7 +65,6 @@ public class Portal : MonoBehaviour {
             undo.OnFinishedRotating();
             if (OnPortalTransport != null)
                 OnPortalTransport();
-            Debug.Log("Coming here.");
         }
         if(Undoing)
         {

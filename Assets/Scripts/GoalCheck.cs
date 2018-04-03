@@ -14,7 +14,7 @@ public class GoalCheck : MonoBehaviour {
 	void Start () {
 		foreach (Transform child in transform.parent) { //loop through borders
 			if (child.name != this.name) {
-				Material mat = child.GetComponent<Renderer> ().material; 
+				Material mat = child.GetComponent<Renderer> ().sharedMaterial; 
 				origColor = mat.color;
 				break;
 			}
@@ -77,7 +77,7 @@ public class GoalCheck : MonoBehaviour {
 	{
 		foreach (Transform child in transform.parent) { //loop through borders
 			if (child.name != this.name) {
-				Material mat = child.GetComponent<Renderer> ().material; 
+				Material mat = child.GetComponent<Renderer> ().sharedMaterial; 
 				Color finalColor = origColor * emissionValue;
 
 				mat.SetColor ("_EmissionColor", finalColor);

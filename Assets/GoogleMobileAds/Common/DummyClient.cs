@@ -68,6 +68,21 @@ namespace GoogleMobileAds.Common
             Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
         }
 
+        public void SetApplicationMuted(bool muted)
+        {
+            Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
+        }
+
+        public void SetApplicationVolume(float volume)
+        {
+            Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
+        }
+
+        public void SetiOSAppPauseOnBackground(bool pause)
+        {
+            Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
+        }
+
         public void CreateBannerView(string adUnitId, AdSize adSize, AdPosition position)
         {
             Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
@@ -94,6 +109,28 @@ namespace GoogleMobileAds.Common
         }
 
         public void DestroyBannerView()
+        {
+            Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
+        }
+
+        public float GetHeightInPixels()
+        {
+            Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
+            return 0;
+        }
+
+        public float GetWidthInPixels()
+        {
+            Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
+            return 0;
+        }
+
+        public void SetPosition(AdPosition adPosition)
+        {
+            Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
+        }
+
+        public void SetPosition(int x, int y)
         {
             Debug.Log("Dummy " + MethodBase.GetCurrentMethod().Name);
         }
