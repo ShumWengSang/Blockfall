@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class GoalCheck : MonoBehaviour {
 
@@ -11,17 +12,28 @@ public class GoalCheck : MonoBehaviour {
 	Color origColor;
 	public bool goalScored;
 
-	void Start () {
-		foreach (Transform child in transform.parent) { //loop through borders
-			if (child.name != this.name) {
-				Material mat = child.GetComponent<Renderer> ().sharedMaterial; 
-				origColor = mat.color;
-				break;
-			}
-		}
+    //void Start () {
+    //	foreach (Transform child in transform.parent) { //loop through borders
+    //		if (child.name != this.name) {
+    //			Material mat = child.GetComponent<Renderer> ().sharedMaterial; 
+    //			origColor = mat.color;
+    //			break;
+    //		}
+    //	}
 
-		goalScored = false;
-	}
+    //	goalScored = false;
+    //}
+
+    private void Start()
+    {
+        //	foreach (Transform child in transform.parent) { //loop through borders
+        //		if (child.name != this.name) {
+        //			Material mat = child.GetComponent<Renderer> ().sharedMaterial; 
+        //			origColor = mat.color;
+        //			break;
+        //		}
+        //	}
+    }
 
     float TempCurrentEmission = 0.1f;
     public float TempEmissionIncrement = 0.1f;
@@ -49,11 +61,12 @@ public class GoalCheck : MonoBehaviour {
         }
     }
     string wood = "WoodBlock";
+    string endzone = "EndZone";
     void OnTriggerEnter(Collider col) {
 		if (col.CompareTag(wood)) {
 			SetEmission (litEmission);
 			goalScored = true;
-            col.GetComponentInChildren<Animator>().SetTrigger("EndZone");
+            col.GetComponentInChildren<Animator>().SetTrigger(endzone);
 		}
 	}
 
@@ -73,14 +86,16 @@ public class GoalCheck : MonoBehaviour {
 		}
 	}
 
-	void SetEmission(float emissionValue)
+    string emissionColor = "_EmissionColor";
+
+    void SetEmission(float emissionValue)
 	{
 		foreach (Transform child in transform.parent) { //loop through borders
 			if (child.name != this.name) {
 				Material mat = child.GetComponent<Renderer> ().sharedMaterial; 
 				Color finalColor = origColor * emissionValue;
 
-				mat.SetColor ("_EmissionColor", finalColor);
+				mat.SetColor (emissionColor, finalColor);
 			}
 		}
 	}
