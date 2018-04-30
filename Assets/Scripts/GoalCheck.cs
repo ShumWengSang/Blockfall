@@ -26,13 +26,15 @@ public class GoalCheck : MonoBehaviour {
 
     private void Start()
     {
-        //	foreach (Transform child in transform.parent) { //loop through borders
-        //		if (child.name != this.name) {
-        //			Material mat = child.GetComponent<Renderer> ().sharedMaterial; 
-        //			origColor = mat.color;
-        //			break;
-        //		}
-        //	}
+        foreach (Transform child in transform.parent)
+        { //loop through borders
+            if (child.name != this.name)
+            {
+                Material mat = child.GetComponent<Renderer>().sharedMaterial;
+                origColor = mat.color;
+                break;
+            }
+        }
     }
 
     float TempCurrentEmission = 0.1f;
@@ -90,13 +92,17 @@ public class GoalCheck : MonoBehaviour {
 
     void SetEmission(float emissionValue)
 	{
-		foreach (Transform child in transform.parent) { //loop through borders
-			if (child.name != this.name) {
-				Material mat = child.GetComponent<Renderer> ().sharedMaterial; 
-				Color finalColor = origColor * emissionValue;
+        Material mat = transform.parent.GetChild(1).GetComponent<Renderer>().sharedMaterial;
+        Color finalColor = origColor * emissionValue;
+        mat.SetColor (emissionColor, finalColor);
 
-				mat.SetColor (emissionColor, finalColor);
-			}
-		}
-	}
+        //foreach (Transform child in transform.parent) { //loop through borders
+        //	if (child.name != this.name) {
+        //		Material mat = child.GetComponent<Renderer> ().sharedMaterial; 
+        //		Color finalColor = origColor * emissionValue;
+
+        //		mat.SetColor (emissionColor, finalColor);
+        //	}
+        //}
+    }
 }

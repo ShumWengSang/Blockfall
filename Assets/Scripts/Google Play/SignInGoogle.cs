@@ -9,7 +9,6 @@ using GooglePlayGames.BasicApi;
 
 public class SignInGoogle : MonoBehaviour {
     private GameObject obj;
-    public Text debug_test;
 
     void BuildGooglePlayConfig()
     {
@@ -35,7 +34,7 @@ public class SignInGoogle : MonoBehaviour {
             if (success)
             {
                 ((PlayGamesPlatform)Social.Active).SetGravityForPopups(Gravity.BOTTOM);
-                debug_test.text = "Successful log in.";
+                Debug.Log("Successful log in.");
 
                 Social.ReportProgress("CgkItIPS7NIVEAIQAQ", 100.0f, (bool success_2) =>
                 {
@@ -46,7 +45,7 @@ public class SignInGoogle : MonoBehaviour {
             }
             else
             {
-                debug_test.text = "Authentication Fail";
+                Debug.Log("Authentication Fail");
             }
         });
     }
