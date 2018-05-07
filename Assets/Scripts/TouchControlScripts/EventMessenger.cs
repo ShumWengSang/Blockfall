@@ -13,12 +13,16 @@ public class EventMessenger : MonoBehaviour {
     public static event Message OnPointerDown;
     public static event Message OnPointerUp;
 
+    private EventTrigger trigger;
+
     private bool TriggerRespondFlag = true;
 
     private void OnEnable()
     {
         OnEndDragEvent += OnEndDragEvent_Response;
         OnStartDragEvent += OnStartDragEvent_Response;
+        RotateGrid.OnStartFalling += OnStartFalling;
+        RotateGrid.OnFinishedFalling += OnEndFalling;
     }
 
     private void OnDisable()
@@ -27,10 +31,13 @@ public class EventMessenger : MonoBehaviour {
         OnStartDragEvent -= OnStartDragEvent_Response;
     }
 
+    private void Awake()
+    {
+        trigger = GetComponent<EventTrigger>();
+    }
     // Use this for initialization
     void Start()
     {
-        EventTrigger trigger = GetComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.BeginDrag;
         entry.callback.AddListener((data) => { OnStartDrag((PointerEventData)data); });
@@ -57,8 +64,7 @@ public class EventMessenger : MonoBehaviour {
         trigger.triggers.Add(entry);
 
         TriggerRespondFlag = true;
-
-        this.transform.DORotate(new Vector3(0, 0, 360), 2f).SetRelative().SetLoops(-1).SetEase(Ease.Linear);
+        
     }
 
     #region TriggerEventMessengers
@@ -115,5 +121,15 @@ public class EventMessenger : MonoBehaviour {
     private void OnEndDragEvent_Response(EventMessenger obj)
     {
         TriggerRespondFlag = true;
+    }
+
+    private void OnStartFalling()
+    {
+        trigger.enabled = false;
+    }
+
+    private void OnEndFalling()
+    {
+        trigger.enabled = true;
     }
 }

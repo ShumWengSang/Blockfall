@@ -1,12 +1,16 @@
-﻿#if UNITY_EDITOR
+﻿
 using UnityEngine;
 using System.Collections;
 using AdvancedInspector;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
 using UnityEditor.SceneManagement;
+#endif
+
 public class DetermineBackgroundImage : MonoBehaviour {
+    #if UNITY_EDITOR
     public Sprite World1Bg;
     public Sprite World2Bg;
     public Sprite World3Bg;
@@ -38,7 +42,7 @@ public class DetermineBackgroundImage : MonoBehaviour {
 
     private void Start()
     {
-        World = PlayerPrefs.GetInt("CurrentWorld");
+        World = PlayerPrefs.GetInt(StaticString.CurrentWorld);
         ChangeToBackground(); 
     }
 
@@ -62,11 +66,7 @@ public class DetermineBackgroundImage : MonoBehaviour {
                 thisImage.texture = World4Bg.texture;
                 break;
         }
-#if UNITY_EDITOR
-        if(!Application.isPlaying)
-            EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
-#endif
     }
 
-}
 #endif
+}

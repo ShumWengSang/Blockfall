@@ -1,5 +1,8 @@
 Levels
 	Design Levels
+					World 1
+						Level 6
+						Level 10
 					World 2 
 						Level 12
 	Redesign Levels
@@ -24,23 +27,18 @@ Programming
 		Solution 		(80%) (Can read and replay answers. Need someone to make the answers all over 							again. After that need to test against portals and vortex, but expected to work 						properly)(Portals do not yet work properly)
 		Hint 			(50%) (Halted. Not sure if this is feasible at all.)
 		Move a Block 		(0%)
-	Pause Widget 			(95% done)
-		Sound On/Off 		(100% done) (Awaiting sound assets)
-		Speed Multiplier Slider (100% done) (Awaiting sound assets)
-		Music On/Off 		(100% done)
-		Level Select 		(100% done)
-		Skip Level 		(100% done)
-		Continue 		(100% done)
-	Sound 				(0%) (Require Assets)
-	Facebook integration. 		(0%) 
-	Admob				(90%) 
+
 	
 Assets	
 	Moving Background(?)
 	Speed Multiplier image
-Bugs
-	Can swipe and turn while in paused mode. ( MAJOR BUG:: Seems to be fixed. More testing needed)
+
 
 https://docs.google.com/forms/d/e/1FAIpQLScGEnoDpuGzSReBiD0h30w3qq85AD8UvJ8lwk1z55LELCgnpQ/viewform?usp=pp_url&entry.1915388255&entry.1361999965&entry.344336516&entry.312253194&entry.466685859
 
+FEEDBACK:
+	Back Button on android should be native.
+	UI needs improvement. Sliding UI no good.
+	Controls need improvement. Need it to be more intuitive. Some sort of UI help to show players.
+	Front page on android store
 blockfall blockfall blockfall

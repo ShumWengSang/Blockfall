@@ -200,7 +200,6 @@ public class RotateGrid : MonoBehaviour {
 		targetRotation = transform;
         TimesMoved = 0;
         SetButtonInteractable(true);
-
 #if NEW_METHOD
 
 
@@ -335,9 +334,9 @@ public class RotateGrid : MonoBehaviour {
         return GetRadians(point, referencePoint) * Mathf.Rad2Deg;
     }
 
+    public float ClampAngles = 20;
     public void OnFingerDrag(PointerEventData data)
     {
-
         if (TweenMoving)
         {
             return;
@@ -347,7 +346,7 @@ public class RotateGrid : MonoBehaviour {
             return;
         }
         float newAngle = GetDegrees(mainCamera.ScreenToViewportPoint(data.position), middle);
-
+      Debug.Log("On Drag, tweenmoving is " + TweenMoving);
 
         //swap the two variables around in the formula ; quick optimization because it will go in opposite direction
         // totalStep = lastAngle - newAngle;
@@ -382,10 +381,10 @@ public class RotateGrid : MonoBehaviour {
         }
 
         lastAngle = totalStep;
-        totalStep = Mathf.Clamp(totalStep, -20, 20);
+        totalStep = Mathf.Clamp(totalStep, -ClampAngles, ClampAngles);
         
         //slow down the thing after clamping if exceed clamp angle
-        if(totalStep >= 20 || totalStep <= -20)
+        if(totalStep >= ClampAngles || totalStep <= -ClampAngles)
         {
             stepIncrease += StepIncrementValue * Time.deltaTime;
             totalStep += Mathf.Clamp(totalStep, -1, 1) * stepIncrease;
@@ -425,13 +424,12 @@ public class RotateGrid : MonoBehaviour {
         initialRotation = transform.localRotation.eulerAngles;
         woodBlockManager.SetBlockKinemactics(true);
         totalStep = 0;
-
         initialAngleVector3 = transform.localEulerAngles;
     }
 
     public void OnEndDrag(PointerEventData data)
     {
-        if(data.pointerId != Current_Pointer_ID)
+        if (data.pointerId != Current_Pointer_ID)
         {
             return;
         }
@@ -470,10 +468,11 @@ public class RotateGrid : MonoBehaviour {
 
             Vector3 finalAngleVector = new Vector3(initialAngleVector3.x, initialAngleVector3.y, initialAngleVector3.z + (direction * 90));
             transform.DORotate(finalAngleVector, TweenDuration).SetEase(Ease.OutSine).OnComplete(
-                () => { OnTweenComplete(); TweenMoving = false; });
+                () => { OnTweenComplete(); TweenMoving = false;});
 
         }
         TweenMoving = true;
+        Debug.Log("Tween moving here is " + TweenMoving);
     }
 
 #endif

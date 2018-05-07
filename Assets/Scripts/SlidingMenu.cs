@@ -110,6 +110,7 @@ public class SlidingMenu : MonoBehaviour {
     }
 
     bool MoveParent = false;
+    bool DontMove = false;
 
     Vector3 currentStepPosition;
     Vector3 OnFingerDownWorldPosition;
@@ -135,18 +136,32 @@ public class SlidingMenu : MonoBehaviour {
     public int scale_movement = 5;
     void OnFingerSet(LeanFinger finger)
     {
+        DontMove = false;
         if (PauseFinger)
             return;
         if (MoveParent)
         {
             float distance = OnFingerDownWorldPosition.x - finger.ScreenPosition.x;
             distance *= scale_movement;
-            ContentParent.position = new Vector3(InitialContentPos.x - distance, ContentParent.position.y, ContentParent.position.z);
+
+            //We don't move  the content paret if it we are at the edges
+            if ((distance > 0 && InternalCounter == 3) || (distance < 0 && InternalCounter == 0))
+            {
+                DontMove = true;
+            }
+            else
+            {
+                ContentParent.position = new Vector3(InitialContentPos.x - distance, ContentParent.position.y, ContentParent.position.z);
+            }
         }
     }
 
     void OnFingerUp(LeanFinger finger)
     {
+        if(DontMove)
+        {
+            return;
+        }
         if (PauseFinger)
             return;
         if (MoveParent)
@@ -158,11 +173,16 @@ public class SlidingMenu : MonoBehaviour {
                 ContentParent.DOLocalMoveX(Steps[(int)InternalCounter], MoveTime).SetEase(Ease.InQuad);
             }
         }
+        Debug.Log("Fingerup");
     }
 
 
     void OnFingerSwipe(LeanFinger finger)
     {
+        if (DontMove)
+        {
+            return;
+        }
         if (PauseFinger)
             return;
         var swipe = finger.SwipeDelta;
@@ -176,6 +196,7 @@ public class SlidingMenu : MonoBehaviour {
         {
             MoveRight();
         }
+        Debug.Log("i'm swiping");
     }
 
     public void Button(bool back)
@@ -251,5 +272,31 @@ public class SlidingMenu : MonoBehaviour {
         float newPosX = Steps[FakeinternalCounter];
         InternalCounter = FakeinternalCounter;
         ContentParent.DOLocalMoveX(newPosX, MoveTime).SetEase(Ease.InQuad);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (InternalCounter == 0)
+            {
+#if UNITY_ANDROID
+                // Get the unity player activity
+                AndroidJavaObject activity =
+                   new AndroidJavaClass("com.unity3d.player.UnityPlayer")
+                   .GetStatic<AndroidJavaObject>("currentActivity");
+
+                // call activity's boolean moveTaskToBack(boolean nonRoot) function
+                // documentation:
+                http://developer.android.com/reference/android/app/Activity.html#moveTaskToBack(boolean)
+                activity.Call<bool>("moveTaskToBack", true);
+
+#endif
+            }
+            else
+            {
+                MoveRight();
+            }
+        }
     }
 }

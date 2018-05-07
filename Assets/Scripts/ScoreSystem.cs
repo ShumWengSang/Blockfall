@@ -15,6 +15,9 @@ public class ScoreSystem : MonoBehaviour
     public delegate void OnLevelParsed(int world, int level);
     public static event OnLevelParsed OnParsed;
 
+    public delegate void OnBackButtonDown();
+    public static event OnBackButtonDown OnBackButtonDowned;
+
     //[Group("Game UI"), Inspect]
     public int World = 1;
     //[Group("Game UI"), Inspect]
@@ -55,12 +58,13 @@ public class ScoreSystem : MonoBehaviour
     {
         GetPlayerPrefData();
         UpdateWorldLevelInts();
+        QuitParent = QuitButton.transform.parent;
     }
 
     void GetPlayerPrefData()
     {
-        int local_world = PlayerPrefs.GetInt("CurrentWorld", 0);
-        int local_level = PlayerPrefs.GetInt("CurrentLevel", 0);
+        int local_world = PlayerPrefs.GetInt(StaticString.CurrentWorld, 0);
+        int local_level = PlayerPrefs.GetInt(StaticString.CurrentLevel, 0);
 
         //Scoring_Block data = BinarySerializor.DeserializeFromBinary<Scoring_Block>(Application.streamingAssetsPath + "/Data/ScoreSystem.sco");
         WWW file = new WWW(Application.streamingAssetsPath + "/Data/ScoreSystem.sco");
@@ -88,8 +92,8 @@ public class ScoreSystem : MonoBehaviour
                 }
         }
 #if OLDLOADDATA
-        int local_world = PlayerPrefs.GetInt("CurrentWorld", 0);
-        int local_level = PlayerPrefs.GetInt("CurrentLevel", 0);
+        int local_world = PlayerPrefs.GetInt(StaticString.CurrentWorld, 0);
+        int local_level = PlayerPrefs.GetInt(StaticString.CurrentLevel, 0);
 
         GoldRank = PlayerPrefs.GetInt("GoldRank_" + local_world + "_" + local_level, 4);
         SilverRank = PlayerPrefs.GetInt("SilverRank_" + local_world + "_" + local_level, 6);
@@ -138,8 +142,8 @@ public class ScoreSystem : MonoBehaviour
     [Inspect]
     public void UpdateWorldLevelInts()
     {
-        World = PlayerPrefs.GetInt("CurrentWorld",0);
-        level = PlayerPrefs.GetInt("CurrentLevel",0);
+        World = PlayerPrefs.GetInt(StaticString.CurrentWorld,0);
+        level = PlayerPrefs.GetInt(StaticString.CurrentLevel,0);
         if (OnParsed != null) OnParsed(World, level);
        // if (isReal_testing)
         {
@@ -161,6 +165,22 @@ public class ScoreSystem : MonoBehaviour
     {
         UpdateTexts();
         gameOver.SetActive(false);
+    }
+    public Button QuitButton;
+    private Transform QuitParent;
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (QuitParent.localScale != Vector3.zero)
+            {
+                QuitButton.onClick.Invoke();
+            }
+            else
+            {
+                OnBackButtonDowned();
+            }
+        }
     }
 
     void OnDestroy()
@@ -189,25 +209,25 @@ public class ScoreSystem : MonoBehaviour
         {
             result = 4;
             onGameCompleteMedel.sprite = GoldMedal;
-            endMedalText = "Gold Rank!";
+            endMedalText = StaticString.GoldRank;
         }
         else if(movedUsed <= SilverRank)
         {
             result = 3;
             onGameCompleteMedel.sprite = SilverMedal;
-            endMedalText = "Silver Rank!";
+            endMedalText = StaticString.SilverRank;
         }
         else if(movedUsed <= BronzeRank)
         {
             result = 2;
             onGameCompleteMedel.sprite = BronzeMedal;
-            endMedalText = "Bronze Rank!";
+            endMedalText = StaticString.BronzeRank;
         }
         else
         {
             result = 1;
             onGameCompleteMedel.sprite = Aluminum;
-            endMedalText = "Runner Up!";
+            endMedalText = StaticString.RunnerUpRank;
         }
         EndMedalText.text = "Medal : " + endMedalText;
         NumberOfMoves.text = "Moves : " + movedUsed.ToString();

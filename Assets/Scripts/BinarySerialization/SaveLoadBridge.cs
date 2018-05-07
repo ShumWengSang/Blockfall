@@ -75,8 +75,8 @@ public class SaveLoadBridge {
         GameObject obj = GameObject.Find("Game Systems");
         obj.GetComponent<SceneChanger>().EditorDirectLoadNextLevel();
         Init();
-        int world = PlayerPrefs.GetInt("CurrentWorld", 1);
-        int level = PlayerPrefs.GetInt("CurrentLevel", 1);
+        int world = PlayerPrefs.GetInt(StaticString.CurrentWorld, 1);
+        int level = PlayerPrefs.GetInt(StaticString.CurrentLevel, 1);
 
         LoadScene(Application.dataPath + "/StreamingAssets/Data/" + world + "-" + level + ".dat");
     }
@@ -125,7 +125,7 @@ public class SaveLoadBridge {
             Init();
         List<Portal_And_Reference_Pair> portals = new List<Portal_And_Reference_Pair>();
 #if UNITY_EDITOR
-        if (!EditorSceneManager.GetActiveScene().name.Contains("MasterGameScene"))
+        if (!EditorSceneManager.GetActiveScene().name.Contains(StaticString.MasterGameScene))
         {
             EditorSceneManager.OpenScene("Assets/Scenes/MasterGameScene.unity");
         }
@@ -220,8 +220,8 @@ public class SaveLoadBridge {
         Debug.Log("Successfully loaded");
         Current_World = scene.world; Current_Level = scene.level;
 
-        PlayerPrefs.SetInt("CurrentWorld", Current_World);
-        PlayerPrefs.SetInt("CurrentLevel", Current_Level);
+        PlayerPrefs.SetInt(StaticString.CurrentWorld, Current_World);
+        PlayerPrefs.SetInt(StaticString.CurrentLevel, Current_Level);
 
         fakegrid.localPosition = Vector3.zero;
         #endif
@@ -518,8 +518,8 @@ public class SaveLoadBridge {
         
         Current_World = scene.world; Current_Level = scene.level;
 
-        PlayerPrefs.SetInt("CurrentWorld", Current_World);
-        PlayerPrefs.SetInt("CurrentLevel", Current_Level);
+        PlayerPrefs.SetInt(StaticString.CurrentWorld, Current_World);
+        PlayerPrefs.SetInt(StaticString.CurrentLevel, Current_Level);
 
         fakegrid.localPosition = Vector3.zero;
         GameObject.Find("Game Systems").GetComponent<PortalManager>().Init();

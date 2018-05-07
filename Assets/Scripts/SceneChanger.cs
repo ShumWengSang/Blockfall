@@ -21,11 +21,13 @@ public class SceneChanger : MonoBehaviour {
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnLevelWasLoaded_new;
+        ScoreSystem.OnBackButtonDowned += OnEscapeButtonDown;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnLevelWasLoaded_new;
+        ScoreSystem.OnBackButtonDowned -= OnEscapeButtonDown;
     }
 
     void Start()
@@ -77,7 +79,7 @@ public class SceneChanger : MonoBehaviour {
 
     public void DirectReloadScene()
     {
-        ChangeScene("MasterGameScene");
+        ChangeScene(StaticString.MasterGameScene);
     }
 
     public void ShowRewardedAd()
@@ -110,20 +112,20 @@ public class SceneChanger : MonoBehaviour {
    // }
    public void EditorDirectLoadNextLevel()
     {
-        int World = PlayerPrefs.GetInt("CurrentWorld", 0);
-        int level = PlayerPrefs.GetInt("CurrentLevel", 0);
+        int World = PlayerPrefs.GetInt(StaticString.CurrentWorld, 0);
+        int level = PlayerPrefs.GetInt(StaticString.CurrentLevel, 0);
         int nextLevelInt = level + 1;
         int currentWorldInt = World;
 
         if (nextLevelInt < 13)
         {
             //not a new world
-            PlayerPrefs.SetInt("CurrentLevel", nextLevelInt);
+            PlayerPrefs.SetInt(StaticString.CurrentLevel, nextLevelInt);
         }
         else
         {
-            PlayerPrefs.SetInt("CurrentWorld", currentWorldInt + 1);
-            PlayerPrefs.SetInt("CurrentLevel", 1);
+            PlayerPrefs.SetInt(StaticString.CurrentWorld, currentWorldInt + 1);
+            PlayerPrefs.SetInt(StaticString.CurrentLevel, 1);
         }
         //UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/Scenes/MasterGameScene.unity");
 
@@ -131,22 +133,22 @@ public class SceneChanger : MonoBehaviour {
 
     public void LoadNextLevel()
     {
-        int World = PlayerPrefs.GetInt("CurrentWorld", 0);
-        int level = PlayerPrefs.GetInt("CurrentLevel", 0);
+        int World = PlayerPrefs.GetInt(StaticString.CurrentWorld, 0);
+        int level = PlayerPrefs.GetInt(StaticString.CurrentLevel, 0);
         int nextLevelInt = level + 1;
         int currentWorldInt = World;
 
         if (nextLevelInt < 13)
         {
             //not a new world
-            PlayerPrefs.SetInt("CurrentLevel", nextLevelInt);
+            PlayerPrefs.SetInt(StaticString.CurrentLevel, nextLevelInt);
         }
         else
         {
-            PlayerPrefs.SetInt("CurrentWorld", currentWorldInt + 1);
-            PlayerPrefs.SetInt("CurrentLevel", 1);
+            PlayerPrefs.SetInt(StaticString.CurrentWorld, currentWorldInt + 1);
+            PlayerPrefs.SetInt(StaticString.CurrentLevel, 1);
         }
-        ChangeScene("MasterGameScene");
+        ChangeScene(StaticString.MasterGameScene);
     }
 
     IEnumerator loadNextScene(string scene, LoadSceneMode mode = LoadSceneMode.Single)
@@ -160,12 +162,12 @@ public class SceneChanger : MonoBehaviour {
 
     public void Load_Scene_Directed(int world, int level)
     {
-        PlayerPrefs.SetInt("CurrentWorld", world);
-        PlayerPrefs.SetInt("CurrentLevel", level);
+        PlayerPrefs.SetInt(StaticString.CurrentWorld, world);
+        PlayerPrefs.SetInt(StaticString.CurrentLevel, level);
 
-        ChangeScene("MasterGameScene", LoadSceneMode.Additive);
+        ChangeScene(StaticString.MasterGameScene, LoadSceneMode.Additive);
 
-       // string scene = "MasterGameScene";
+       // string scene = StaticString.MasterGameScene;
         //LoadingWords.SetTrigger("Loading");
         //screenTransAnim.transform.SetAsLastSibling();
         //screenManager.CloseCurrent(scene);
@@ -175,7 +177,7 @@ public class SceneChanger : MonoBehaviour {
     IEnumerator Load_Scene_Direct_From_Menu_Coroutine(string scene, LoadSceneMode mode = LoadSceneMode.Single)
     {
         yield return SceneManager.LoadSceneAsync(scene, mode);
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("MasterGameScene"));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(StaticString.MasterGameScene));
     }
 
     public void QuitApp()
@@ -183,4 +185,9 @@ public class SceneChanger : MonoBehaviour {
         Application.Quit();
     }
 
+    public void OnEscapeButtonDown()
+    {
+        Debug.Log("Escape butrton scene ahcanger"); 
+        LoadMainMenu();
+    }
 }

@@ -28,8 +28,8 @@ public class ReadAnswerFile : MonoBehaviour {
 
     void ReadFileManaul()
     {
-        int world = PlayerPrefs.GetInt("CurrentWorld");
-        int level = PlayerPrefs.GetInt("CurrentLevel");
+        int world = PlayerPrefs.GetInt(StaticString.CurrentWorld);
+        int level = PlayerPrefs.GetInt(StaticString.CurrentLevel);
         ReadFile(world, level);
     }
 
@@ -49,13 +49,13 @@ public class ReadAnswerFile : MonoBehaviour {
 
         while ((line = sr.ReadLine()) != null)
         {
-            if (line.Contains("Left"))
+            if (line.Contains(StaticString.Left))
             {
-                List_Answer.Push("Left");
+                List_Answer.Push(StaticString.Left);
             }
             else
             {
-                List_Answer.Push("Right");
+                List_Answer.Push(StaticString.Right);
             }
             count++;
         }
@@ -81,13 +81,13 @@ public class ReadAnswerFile : MonoBehaviour {
 
             for (int i = 0; i < lines.Length; i++)
             {
-                if (lines[i].Contains("Left"))
+                if (lines[i].Contains(StaticString.Left))
                 {
-                    List_Answer.Push("Left");
+                    List_Answer.Push(StaticString.Left);
                 }
-                else if(lines[i].Contains("Right"))
+                else if(lines[i].Contains(StaticString.Right))
                 {
-                    List_Answer.Push("Right");
+                    List_Answer.Push(StaticString.Right);
                 }
             }
         }

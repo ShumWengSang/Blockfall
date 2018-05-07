@@ -22,8 +22,11 @@ public class SignInGoogle : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        BuildGooglePlayConfig();
-        AuthenticatePlay();
+        if (!PlayGamesPlatform.Instance.IsAuthenticated())
+        {
+            BuildGooglePlayConfig();
+            AuthenticatePlay();
+        }
     }
 
     void AuthenticatePlay()
